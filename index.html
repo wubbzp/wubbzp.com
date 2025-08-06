@@ -47,30 +47,19 @@
       font-size: 0.9rem;
     }
 
-    section {
+    .main {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
       padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+      flex-wrap: wrap;
     }
 
-    section h2 {
-      font-size: 1.8rem;
-      color: var(--purple);
-      margin-bottom: 1rem;
-    }
-
-    .discography ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .discography li {
-      margin-bottom: 1rem;
-      padding: 0.75rem;
-      background: white;
-      border-left: 5px solid var(--purple);
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    .main img {
+      max-width: 50%;
+      height: auto;
+      border-radius: 12px;
     }
 
     .new-song-box {
@@ -86,13 +75,6 @@
       font-size: 1.5rem;
       color: var(--purple);
       margin-top: 0;
-    }
-
-    .new-song-box iframe {
-      width: 100%;
-      height: 180px;
-      border: none;
-      margin-top: 0.5rem;
     }
 
     footer {
@@ -133,15 +115,11 @@
   <main class="main">
     <img src="BACKGROUND.png" alt="HuxP Hero" />
     <div class="new-song-box">
-  <h2>NEW RELEASE!</h2>
-  <p>Vocarips (Deluxe) - Bonus Tracks (Remastered)</p>
-  <a href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank" style="display:inline-block; margin-top:0.75rem; background-color:var(--purple); color:white; padding:0.5rem 1rem; border-radius:6px; text-decoration:none; font-weight:bold;">Listen on Bandcamp</a>
-</div>
+      <h2>NEW RELEASE!</h2>
+      <p>Vocarips (Deluxe) - Bonus Tracks (Remastered)</p>
+      <a href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank" style="display:inline-block; margin-top:0.75rem; background-color:var(--purple); color:white; padding:0.5rem 1rem; border-radius:6px; text-decoration:none; font-weight:bold;">Listen on Bandcamp</a>
+    </div>
   </main>
-
-  
-
-  
 
   <footer>
     <div>
