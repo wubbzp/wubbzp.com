@@ -15,19 +15,18 @@
       --blue: #b7e9f5;
       --pink: #fcd8f7;
       --gold: #ffd966;
-      --font: 'Segoe UI', sans-serif;
+      --font: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       font-family: var(--font);
       background: var(--blue) url('BACKGROUND.png') no-repeat center top;
       background-size: cover;
       color: #1e1e1e;
-      display: flex;
-      flex-direction: column;
     }
 
     header {
@@ -38,181 +37,148 @@
       background: var(--pink);
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-
-    .logo img {
-      height: 40px;
-    }
-
+    .logo img { height: 40px; }
     nav a {
-      margin-left: 1rem;
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      font-size: 0.9rem;
+      margin-left: 1rem; text-decoration: none; color: #333; font-weight: 700; font-size: .95rem;
     }
 
     main {
-      flex: 1;
+      flex: 1 0 auto;
       padding: 2rem;
       max-width: 1200px;
-      margin: auto;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(260px, 380px) 1fr;
       gap: 2rem;
+      min-height: 0; /* allow scrolling columns */
     }
 
+    /* Left column - releases */
     .release-column {
-      flex: 1 1 300px;
-      max-width: 400px;
       overflow-y: auto;
-      max-height: 600px;
+      max-height: calc(100vh - 220px); /* keeps footer at bottom; tweak if needed */
+      padding-right: .25rem;
     }
 
-    .new-song-box {
-      background: white;
-      color: #1e1e1e;
-      padding: 1rem;
+    /* Cards */
+    .card {
+      background: #fff;
+      color: #111;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      margin-bottom: 1.5rem;
-      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    .release { padding: 1rem; text-align: center; margin-bottom: 1.5rem; }
+    .release h3 { margin: .25rem 0 .25rem; color: var(--purple); font-size: 1.25rem; }
+    .release p { margin: .25rem 0; }
+    .release img { width: 100%; border-radius: 8px; margin-top: .75rem; }
+    .btn {
+      display:inline-block; padding:.5rem 1rem; border-radius:6px; font-weight:700; text-decoration:none;
+      background: var(--purple); color:#fff;
+    }
+    .tracklist { text-align:left; font-size:.95rem; margin-top:.75rem; }
+
+    /* Right column - content */
+    .content-column { display: grid; gap: 1.5rem; align-content: start; }
+
+    .bio { padding: 1.5rem; }
+    .bio h2 { margin: 0 0 .75rem; color: var(--purple); }
+    .bio-flex { display:flex; flex-direction: column; gap: 1rem; }
+    .bio-flex img { max-width:100%; border-radius:8px; }
+    .caption { font-size:.8rem; color:#555; margin-top:.25rem; }
+    .project-icon { width:20px; height:20px; vertical-align:text-bottom; margin:0 4px; }
+
+    @media(min-width: 720px){
+      .bio-flex { flex-direction: row; align-items:flex-start; }
+      .bio-flex img { max-width: 300px; margin-right: 1rem; }
     }
 
-    .new-song-box h2 {
-      font-size: 1.5rem;
-      color: var(--purple);
-      margin-top: 0;
-    }
-
-    .new-song-box img {
-      width: 100%;
-      border-radius: 8px;
-      margin-top: 1rem;
-    }
-
-    .tracklist {
-      margin-top: 1rem;
-      text-align: left;
-      font-size: 0.95rem;
-    }
-
-    .bio-section {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      flex: 1 1 600px;
-    }
-
-    .bio-section h2 {
-      font-size: 1.5rem;
-      color: var(--purple);
-    }
-
-    .bio-flex {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .bio-flex img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-
-    @media (min-width: 700px) {
-      .bio-flex {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-      .bio-flex img {
-        max-width: 300px;
-        margin-right: 2rem;
-      }
-    }
-
-    .bio-flex p {
-      line-height: 1.7;
-    }
-
-    .caption {
-      font-size: 0.8rem;
-      color: #555;
-      text-align: center;
-      margin-top: -1rem;
-    }
-
-    .more-link {
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    .more-link a {
-      background: var(--purple);
-      color: white;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-
-    .project-icon {
-      width: 20px;
-      height: 20px;
-      vertical-align: text-bottom;
-      margin: 0 2px;
-    }
-
+    /* Footer */
     footer {
+      margin-top: auto;
       background: var(--pink);
       padding: 2rem;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      margin-top: auto;
+      gap: .5rem 1rem;
     }
-
-    .social-icons a {
-      margin-left: 0.75rem;
-      font-weight: bold;
-      color: #333;
-      text-decoration: none;
-    }
-
-    .social-icons a:hover {
-      text-decoration: underline;
-    }
+    .social-icons a { margin-left:.75rem; font-weight:700; color:#333; text-decoration:none; }
+    .social-icons a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="LOGO.png" alt="HuxP logo">
-    </div>
+    <div class="logo"><img src="LOGO.png" alt="HuxP logo"></div>
     <nav>
       <a href="#">home</a>
       <a href="https://shikitaigen.com" target="_blank">blog</a>
     </nav>
   </header>
 
-  <main>... (rest of the content stays the same)
+  <main>
+    <!-- Left: Releases -->
+    <aside class="release-column">
+      <section class="card release">
+        <h3>NEW RELEASE!</h3>
+        <p>Vocarips (Deluxe) – Bonus Tracks (Remastered)</p>
+        <a class="btn" href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank">Listen on Bandcamp</a>
+        <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28Deluxe%29_-_Bonus_Tracks_%28Remastered%29.png" alt="Vocarips (Deluxe) - Bonus Tracks (Remastered) cover">
+        <div class="tracklist">
+          <strong>Tracklist:</strong>
+          <ol>
+            <li>Bring Me to Life (Remastered)</li>
+            <li>You Belong with Me (Remastered)</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="card release">
+        <p>だいじょばない (Daijobanai)</p>
+        <a class="btn" href="https://miku.bandcamp.com/track/--74" target="_blank">Listen on Bandcamp</a>
+        <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Daijobanai.png" alt="Daijobanai cover">
+      </section>
+
+      <section class="card release">
+        <p>式大元カバーコレクション Vol. 2 (Shiki Taigen Cover Collection, Vol. 2)</p>
+        <a class="btn" href="https://miku.bandcamp.com/album/vol-2" target="_blank">Listen on Bandcamp</a>
+        <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._2.png" alt="Shiki Taigen Cover Collection, Vol. 2 cover">
+      </section>
+
+      <div style="text-align:center; margin:1rem 0 0;">
+        <a class="btn" href="https://miku.bandcamp.com/music" target="_blank">More…</a>
+      </div>
+    </aside>
+
+    <!-- Right: Content -->
+    <section class="content-column">
+      <article class="card bio">
+        <h2>About HuxP</h2>
+        <div class="bio-flex">
+          <img src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b" alt="HayBombYT and HuxP">
+          <div>
+            <p><strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. They have used the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
+            <p>HuxP is also a member of the side projects <strong>DOCHIMERA</strong><img src="DOCHIMERA small icon.png" class="project-icon" alt="DOCHIMERA icon"> and <strong>LockedStep</strong><img src="LockedStep small icon.png" class="project-icon" alt="LockedStep icon">, contributing vocals, arrangements, and collaborative covers in both collectives.</p>
+            <p class="caption">Pictured: <a href="https://haybombyt.com" target="_blank">HayBombYT</a> (left), HuxP (right)</p>
+          </div>
+        </div>
+      </article>
+    </section>
   </main>
 
   <footer>
     <div>
-      HuxP © 2025<br />
+      HuxP © 2025<br>
       <a href="mailto:huxpmusic@gmail.com">huxpmusic@gmail.com</a>
     </div>
     <div class="social-icons">
-      <a href="http://youtube.com/@huxpmusic">YouTube</a>
-      <a href="https://twitter.com/@huxpmusic">Twitter</a>
-      <a href="http://instagram.com/@huxpmusic">Instagram</a>
-      <a href="https://miku.bandcamp.com/">Bandcamp</a>
-      <a href="https://vocadb.net/Ar/125269">VocaDB</a>
-      <a href="https://last.fm/user/HuxP">Last.fm</a>
+      <a href="http://youtube.com/@huxpmusic" target="_blank">YouTube</a>
+      <a href="https://twitter.com/@huxpmusic" target="_blank">Twitter</a>
+      <a href="http://instagram.com/@huxpmusic" target="_blank">Instagram</a>
+      <a href="https://miku.bandcamp.com/" target="_blank">Bandcamp</a>
+      <a href="https://vocadb.net/Ar/125269" target="_blank">VocaDB</a>
+      <a href="https://last.fm/user/HuxP" target="_blank">Last.fm</a>
     </div>
   </footer>
 </body>
