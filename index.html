@@ -112,6 +112,33 @@
     .music-row a:hover { text-decoration: underline; }
     .colorchanger { color: var(--purple); }
 
+    /* Cute speech bubble linking to Last.fm profile */
+    .speech-bubble {
+      display: inline-block;
+      background: var(--pink);
+      color: #1e1e1e;
+      border-radius: 14px;
+      padding: .6rem .8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+      position: relative;
+      text-decoration: none;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .speech-bubble:hover { filter: brightness(0.98); }
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      bottom: -8px;
+      width: 0; height: 0;
+      border: 8px solid transparent;
+      border-top-color: var(--pink);
+    }
+    .speech-bubble .lastfm-logo {
+      width: 18px; height: 18px; vertical-align: text-bottom; margin: 0 .2rem;
+    }
+
     /* Footer */
     footer {
       margin-top: auto;
@@ -178,7 +205,7 @@
         <div class="bio-flex">
           <img src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b" alt="HayBombYT and HuxP">
           <div>
-            <p><strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. They have used the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
+            <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. He has used the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
             <p>HuxP is also involved with the side projects <strong>DOCHIMERA</strong> and <strong>LockedStep</strong>, contributing vocals, arrangements, and collaborative covers.</p>
             <p class="caption">Pictured: <a href="https://haybombyt.com" target="_blank">HayBombYT</a> (left), HuxP (right)</p>
           </div>
@@ -272,7 +299,16 @@
         var item = data.recenttracks.track[0];
         if (!item || !item["@attr"] || !item["@attr"].nowplaying) return;
 
-        let html = '<h3 class="colorchanger">Now Playing</h3>';
+        let html = '';
+        // Speech bubble with exact phrasing + Last.fm logo
+        html += '<div style="margin: 0 0 .75rem 0;">' +
+                  '<a class="speech-bubble" href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener" aria-label="Open my Last.fm profile">' +
+                  'Curious what I\'m listening to currently?<br>Via my ' +
+                  '<img class="lastfm-logo" src="https://www.last.fm/static/images/favicon.99ff6f44.ico" alt="Last.fm logo"> profile' +
+                  '</a>' +
+                '</div>';
+        html += '<h3 class="colorchanger">Now Playing</h3>';
+
         const itemid = item.mbid || "nowplaying";
 
         html += '<div class="music-row">';
