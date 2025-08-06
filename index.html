@@ -4,11 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HuxP</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Social -->
   <meta property="og:title" content="HuxP" />
   <meta property="og:description" content="Official site of HuxP, a vocal synth cover producer since 2017." />
   <meta property="og:image" content="LOGO.png" />
   <meta name="twitter:card" content="summary_large_image" />
+
   <style>
     :root {
       --purple: #a6a8ff;
@@ -205,7 +212,7 @@
         <div class="bio-flex">
           <img src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b" alt="HayBombYT and HuxP">
           <div>
-            <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. He has been using the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
+            <p><strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. They have used the VOCALOID4 engine since 2017 and started releasing covers in 2023. Their signature UTAU character is Shiki Taigen.</p>
             <p>HuxP is also involved with the side projects <strong>DOCHIMERA</strong> and <strong>LockedStep</strong>, contributing vocals, arrangements, and collaborative covers.</p>
             <p class="caption">Pictured: <a href="https://haybombyt.com" target="_blank">HayBombYT</a> (left), HuxP (right)</p>
           </div>
@@ -235,10 +242,10 @@
     </div>
   </footer>
 
-  <!-- jQuery (needed for your code) -->
+  <!-- jQuery (needed for the Last.fm widget) -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-  <!-- Last.fm section -->
+  <!-- Last.fm widget -->
   <script>
     const API_KEY = "9c8820e53700da319f46516475a119db";
     const USERNAME = "HuxP";
@@ -250,14 +257,11 @@
     }
 
     $(document).ready(function () {
-      function displayMusic() {
-        $("#music").show();
-      }
+      function displayMusic() { $("#music").show(); }
 
       function lastfmRequest(method, params) {
-        params["api_key"] = API_KEY;
-        params["format"] = "json";
-
+        params.api_key = API_KEY;
+        params.format  = "json";
         return fetch("https://ws.audioscrobbler.com/2.0/?method=" + method + "&" + urlencode(params) + "&format=json")
           .then((response) => {
             if (response.ok) return response.json();
@@ -266,13 +270,10 @@
       }
 
       function getImage(trackinfo) {
-        return lastfmRequest("track.getInfo", { autocorrect: 1, track: trackinfo["name"], artist: trackinfo["artist"]["name"] })
+        return lastfmRequest("track.getInfo", { autocorrect: 1, track: trackinfo.name, artist: trackinfo.artist.name })
           .then((data) => {
-            try {
-              return data.track.album.image[1]["#text"];
-            } catch (e) {
-              throw new Error("No image found");
-            }
+            try { return data.track.album.image[1]["#text"]; }
+            catch (e) { throw new Error("No image found"); }
           });
       }
 
@@ -281,14 +282,10 @@
         var html = '<h3 class="colorchanger">Top This Week</h3>';
         $.each(data.toptracks.track, function (i, item) {
           const itemid = item.mbid || ("toptrack-" + i);
-
           html += '<div class="music-row">';
           html += '<img id="' + itemid + '" src="' + (item.image && item.image[1] ? item.image[1]["#text"] : "") + '" alt="Album art">';
           html += '<div><a href="' + item.url + '" target="_blank">' + item.name + '</a> - ' + item.artist["name"] + '</div></div>';
-
-          getImage(item).then((img) => {
-            $("#" + itemid).attr("src", img);
-          }).catch(() => {/* leave fallback */});
+          getImage(item).then((img) => { $("#" + itemid).attr("src", img); }).catch(() => {});
         });
         displayMusic();
         $("#listening-to").append(html);
@@ -303,21 +300,20 @@
         // Speech bubble with exact phrasing + Last.fm SVG wordmark
         html += '<div style="margin: 0 0 .75rem 0;">' +
                   '<a class="speech-bubble" href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener" aria-label="Open my Last.fm profile">' +
-                  'Curious what I\'m listening to currently?<br>Via my ' +
-                  '<img class="lastfm-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lastfm_logo.svg" alt="Last.fm logo"> profile' +
+                    'Curious what I\\'m listening to currently?<br>Via my ' +
+                    '<img class="lastfm-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lastfm_logo.svg" alt="Last.fm logo"> profile' +
                   '</a>' +
                 '</div>';
         html += '<h3 class="colorchanger">Now Playing</h3>';
 
         const itemid = item.mbid || "nowplaying";
-
         html += '<div class="music-row">';
         html += '<img id="' + itemid + '" src="' + (item.image && item.image[1] ? item.image[1]["#text"] : "") + '" alt="Album art">';
         html += '<div><a href="' + item.url + '" target="_blank">' + item.name + '</a> - ' + item.artist["#text"] + '</div></div>';
 
-        getImage({ name: item["name"], artist: { name: item["artist"]["#text"] } }).then((img) => {
-          $("#" + itemid).attr("src", img);
-        }).catch(() => {/* leave fallback */});
+        getImage({ name: item.name, artist: { name: item.artist["#text"] } })
+          .then((img) => { $("#" + itemid).attr("src", img); })
+          .catch(() => {});
 
         displayMusic();
         $("#currently-playing").append(html);
