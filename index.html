@@ -85,12 +85,32 @@
     .bio-flex { display:flex; flex-direction: column; gap: 1rem; }
     .bio-flex img { max-width:100%; border-radius:8px; }
     .caption { font-size:.8rem; color:#555; margin-top:.25rem; }
-    .project-icon { width:20px; height:20px; vertical-align:text-bottom; margin:0 4px; }
 
     @media(min-width: 720px){
       .bio-flex { flex-direction: row; align-items:flex-start; }
       .bio-flex img { max-width: 300px; margin-right: 1rem; }
     }
+
+    /* Last.fm block */
+    #music.card { padding: 1rem; }
+    #music h3 { margin: 0 0 .75rem; color: var(--purple); font-size: 1.1rem; }
+    .music-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: .75rem;
+      align-items: center;
+      padding: .5rem;
+      border-radius: 10px;
+      background: rgba(166,168,255,0.08);
+      margin-bottom: .5rem;
+    }
+    .music-row img {
+      width: 56px; height: 56px; object-fit: cover; border-radius: 8px;
+      background: #eee;
+    }
+    .music-row a { color: #1e1e1e; text-decoration: none; font-weight: 700; }
+    .music-row a:hover { text-decoration: underline; }
+    .colorchanger { color: var(--purple); }
 
     /* Footer */
     footer {
@@ -159,11 +179,17 @@
           <img src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b" alt="HayBombYT and HuxP">
           <div>
             <p><strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. They have used the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
-            <p>HuxP is also a member of the side projects <strong>DOCHIMERA</strong><img src="DOCHIMERA small icon.png" class="project-icon" alt="DOCHIMERA icon"> and <strong>LockedStep</strong><img src="LockedStep small icon.png" class="project-icon" alt="LockedStep icon">, contributing vocals, arrangements, and collaborative covers in both collectives.</p>
+            <p>HuxP is also involved with the side projects <strong>DOCHIMERA</strong> and <strong>LockedStep</strong>, contributing vocals, arrangements, and collaborative covers.</p>
             <p class="caption">Pictured: <a href="https://haybombyt.com" target="_blank">HayBombYT</a> (left), HuxP (right)</p>
           </div>
         </div>
       </article>
+
+      <!-- Last.fm: Currently Listening -->
+      <section id="music" class="card" style="display:none;">
+        <div id="currently-playing"></div>
+        <div id="listening-to" style="margin-top: 1rem;"></div>
+      </section>
     </section>
   </main>
 
@@ -181,5 +207,86 @@
       <a href="https://last.fm/user/HuxP" target="_blank">Last.fm</a>
     </div>
   </footer>
+
+  <!-- jQuery (needed for your code) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <!-- Last.fm section -->
+  <script>
+    const API_KEY = "9c8820e53700da319f46516475a119db";
+    const USERNAME = "HuxP";
+
+    function urlencode(obj) {
+      var str = [];
+      for (var p in obj) str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      return str.join("&");
+    }
+
+    $(document).ready(function () {
+      function displayMusic() {
+        $("#music").show();
+      }
+
+      function lastfmRequest(method, params) {
+        params["api_key"] = API_KEY;
+        params["format"] = "json";
+
+        return fetch("https://ws.audioscrobbler.com/2.0/?method=" + method + "&" + urlencode(params) + "&format=json")
+          .then((response) => {
+            if (response.ok) return response.json();
+            throw new Error("Network response was not ok.");
+          });
+      }
+
+      function getImage(trackinfo) {
+        return lastfmRequest("track.getInfo", { autocorrect: 1, track: trackinfo["name"], artist: trackinfo["artist"]["name"] })
+          .then((data) => {
+            try {
+              return data.track.album.image[1]["#text"];
+            } catch (e) {
+              throw new Error("No image found");
+            }
+          });
+      }
+
+      // Top tracks (7 days)
+      lastfmRequest("user.gettoptracks", { user: USERNAME, limit: "3", period: "7day" }).then((data) => {
+        var html = '<h3 class="colorchanger">Top This Week</h3>';
+        $.each(data.toptracks.track, function (i, item) {
+          const itemid = item.mbid || ("toptrack-" + i);
+
+          html += '<div class="music-row">';
+          html += '<img id="' + itemid + '" src="' + (item.image && item.image[1] ? item.image[1]["#text"] : "") + '" alt="Album art">';
+          html += '<div><a href="' + item.url + '" target="_blank">' + item.name + '</a> - ' + item.artist["name"] + '</div></div>';
+
+          getImage(item).then((img) => {
+            $("#" + itemid).attr("src", img);
+          }).catch(() => {/* leave fallback */});
+        });
+        displayMusic();
+        $("#listening-to").append(html);
+      });
+
+      // Now playing
+      lastfmRequest("user.getrecenttracks", { user: USERNAME, limit: 1 }).then((data) => {
+        var item = data.recenttracks.track[0];
+        if (!item || !item["@attr"] || !item["@attr"].nowplaying) return;
+
+        let html = '<h3 class="colorchanger">Now Playing</h3>';
+        const itemid = item.mbid || "nowplaying";
+
+        html += '<div class="music-row">';
+        html += '<img id="' + itemid + '" src="' + (item.image && item.image[1] ? item.image[1]["#text"] : "") + '" alt="Album art">';
+        html += '<div><a href="' + item.url + '" target="_blank">' + item.name + '</a> - ' + item.artist["#text"] + '</div></div>';
+
+        getImage({ name: item["name"], artist: { name: item["artist"]["#text"] } }).then((img) => {
+          $("#" + itemid).attr("src", img);
+        }).catch(() => {/* leave fallback */});
+
+        displayMusic();
+        $("#currently-playing").append(html);
+      });
+    });
+  </script>
 </body>
 </html>
