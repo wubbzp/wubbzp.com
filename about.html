@@ -1,78 +1,129 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About – HuxP</title>
-  <link rel="icon" href="LOGO.png" type="image/png" />
+  <title>About - HuxP</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta property="og:title" content="HuxP - About" />
+  <meta property="og:description" content="Learn more about HuxP, a vocal synth cover producer since 2017." />
+  <meta property="og:image" content="LOGO.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root {
       --purple: #a6a8ff;
       --blue: #b7e9f5;
       --pink: #fcd8f7;
+      --gold: #ffd966;
       --font: 'Segoe UI', sans-serif;
     }
+
     body {
       margin: 0;
       font-family: var(--font);
-      background: var(--blue);
+      background: var(--blue) url('BACKGROUND.png') no-repeat center top;
+      background-size: cover;
       color: #1e1e1e;
+      overflow-x: hidden;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       background: var(--pink);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-    .logo img { height: 40px; }
+
+    .logo img {
+      height: 40px;
+    }
+
     nav a {
       margin-left: 1rem;
       text-decoration: none;
       color: #333;
       font-weight: bold;
+      font-size: 0.9rem;
     }
-    main {
+
+    section {
+      padding: 2rem;
       max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 2rem;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-    h1 { font-size: 2rem; color: var(--purple); margin-bottom: 1rem; }
-    .bio-item { margin-bottom: 1.5rem; }
-    .bio-item h2 { font-size: 1.3rem; color: var(--purple); margin-bottom: 0.3rem; }
+
+    section h1 {
+      font-size: 1.8rem;
+      color: var(--purple);
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    footer {
+      background: var(--pink);
+      padding: 2rem;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      margin-left: 0.75rem;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">
-      <a href="index.html"><img src="LOGO.png" alt="HuxP logo"></a>
+      <img src="LOGO.png" alt="HuxP logo">
     </div>
     <nav>
       <a href="index.html">home</a>
-      <a href="about.html">about</a>
-      <a href="https://vocadb.net/Ar/125269" target="_blank">discography</a>
+      <a href="#">about</a>
       <a href="https://shikitaigen.com" target="_blank">blog</a>
     </nav>
   </header>
+
   <main>
-    <h1>About HuxP</h1>
-    <div class="bio-item">
-      <h2>Profile</h2>
-      <p>Mitch “Michelle” Bentz (he/she), born March 22, 2008. Vocal synth cover producer since 2017, publishing covers publicly since 2023.</p>
-    </div>
-    <div class="bio-item">
-      <h2>Music & Style</h2>
-      <p>Known for producing covers with Hatsune Miku and Shiki Taigen. Albums include <em>Vocarips</em>, <em>Vocadiva</em>, and <em>Miku + Michelle</em>. Among the few actively using the Shiki Taigen voicebank.</p>
-    </div>
-    <div class="bio-item">
-      <h2>Highlights</h2>
-      <p>Cover of “初音ミクの消失” reached 50,000 Spotify plays. In April 2025, became a Fortnite-affiliated creator with Support‑A‑Creator code “HUXP”.</p>
-    </div>
-    <div class="bio-item">
-      <h2>Collaborations</h2>
-      <p>Frequently collaborates with twin brother HayBombYT. Co-creator of the band LockedStep.</p>
-    </div>
+    <section>
+      <h1>About HuxP</h1>
+      <p><strong>HuxP</strong>, also known as Mitch or Michelle, is an American VOCALOID and UTAU cover producer who has been active since 2017. They began publicly releasing covers in 2023 under the name HuxP (previously hux39). Their work is characterized by strong attention to detail, audio remastering, and personal reimaginings of popular and niche songs alike.</p>
+      <p>Since releasing their first album <em>Vocarips</em> in 2023, HuxP has published multiple projects across Bandcamp, with each release accompanied by cover artwork and character theming.</p>
+      <p>Outside of music production, HuxP maintains an organized discography via VocaDB, contributes metadata to MusicBrainz, and shares content through their personal websites. Their work often bridges fan culture, archival interest, and stylistic homage to early 2000s internet media.</p>
+    </section>
   </main>
+
+  <footer>
+    <div>
+      HuxP © 2025<br />
+      <a href="mailto:huxpmusic@gmail.com">huxpmusic@gmail.com</a>
+    </div>
+    <div class="social-icons">
+      <a href="http://youtube.com/@huxpmusic">YouTube</a>
+      <a href="https://twitter.com/@huxpmusic">Twitter</a>
+      <a href="http://instagram.com/@huxpmusic">Instagram</a>
+      <a href="https://miku.bandcamp.com/">Bandcamp</a>
+      <a href="https://vocadb.net/Ar/125269">VocaDB</a>
+      <a href="https://last.fm/user/HuxP">Last.fm</a>
+    </div>
+  </footer>
 </body>
 </html>
