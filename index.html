@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HuxP</title>
-  <link rel="icon" href="LOGO.png" type="image/png" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <meta property="og:title" content="HuxP" />
   <meta property="og:description" content="Official site of HuxP, a vocal synth cover producer since 2017." />
   <meta property="og:image" content="LOGO.png" />
@@ -21,7 +21,8 @@
     body {
       margin: 0;
       font-family: var(--font);
-      background: var(--blue);
+      background: var(--blue) url('BACKGROUND.png') no-repeat center center fixed;
+      background-size: cover;
       color: #1e1e1e;
       overflow-x: hidden;
     }
@@ -47,19 +48,30 @@
       font-size: 0.9rem;
     }
 
-    .main {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+    section {
       padding: 2rem;
-      flex-wrap: wrap;
+      max-width: 900px;
+      margin: auto;
     }
 
-    .main img {
-      max-width: 50%;
-      height: auto;
-      border-radius: 12px;
+    section h2 {
+      font-size: 1.8rem;
+      color: var(--purple);
+      margin-bottom: 1rem;
+    }
+
+    .discography ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .discography li {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: white;
+      border-left: 5px solid var(--purple);
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .new-song-box {
@@ -69,12 +81,20 @@
       border-radius: 12px;
       max-width: 320px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      margin: 2rem auto;
     }
 
     .new-song-box h2 {
       font-size: 1.5rem;
       color: var(--purple);
       margin-top: 0;
+    }
+
+    .new-song-box iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+      margin-top: 0.5rem;
     }
 
     footer {
@@ -113,7 +133,6 @@
   </header>
 
   <main class="main">
-    <img src="BACKGROUND.png" alt="HuxP Hero" />
     <div class="new-song-box">
       <h2>NEW RELEASE!</h2>
       <p>Vocarips (Deluxe) - Bonus Tracks (Remastered)</p>
