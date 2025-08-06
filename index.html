@@ -212,7 +212,7 @@
         <div class="bio-flex">
           <img src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b" alt="HayBombYT and HuxP">
           <div>
-            <p><strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. They have used the VOCALOID4 engine since 2017 and started releasing covers in 2023. Their signature UTAU character is Shiki Taigen.</p>
+            <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. He has been using the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
             <p>HuxP is also involved with the side projects <strong>DOCHIMERA</strong> and <strong>LockedStep</strong>, contributing vocals, arrangements, and collaborative covers.</p>
             <p class="caption">Pictured: <a href="https://haybombyt.com" target="_blank">HayBombYT</a> (left), HuxP (right)</p>
           </div>
@@ -251,95 +251,91 @@
     const USERNAME = "HuxP";
 
     function urlencode(obj) {
-      var str = [];
-      for (var p in obj) str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      const str = [];
+      for (const p in obj) str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
       return str.join("&");
     }
 
     $(document).ready(function () {
-      function displayMusic() { $("#music").show(); }
+      const bubbleHtml = `
+        <div style="margin: 0 0 .75rem 0;">
+          <a class="speech-bubble" href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener" aria-label="Open my Last.fm profile">
+            Curious what I'm listening to currently?<br>
+            Via my <img class="lastfm-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lastfm_logo.svg" alt="Last.fm logo"> profile
+          </a>
+        </div>`;
+
+      // Always show the card immediately with placeholders
+      $("#music").show();
+      $("#currently-playing").html(`${bubbleHtml}<h3 class="colorchanger">Now Playing</h3><div class="music-row"><div>Loading…</div></div>`);
 
       function lastfmRequest(method, params) {
         params.api_key = API_KEY;
         params.format  = "json";
-        return fetch("https://ws.audioscrobbler.com/2.0/?method=" + method + "&" + urlencode(params) + "&format=json")
-          .then((response) => {
-            if (response.ok) return response.json();
-            throw new Error("Network response was not ok.");
-          });
+        return fetch("https://ws.audioscrobbler.com/2.0/?method=" + method + "&" + urlencode(params) + "&format=json", { mode: "cors" })
+          .then((r) => { if (r.ok) return r.json(); throw new Error("Network response was not ok."); });
       }
 
       function getImage(trackinfo) {
         return lastfmRequest("track.getInfo", { autocorrect: 1, track: trackinfo.name, artist: trackinfo.artist.name })
           .then((data) => {
             try { return data.track.album.image[1]["#text"]; }
-            catch (e) { throw new Error("No image found"); }
+            catch (e) { return ""; }
           });
       }
 
       // Top tracks (7 days)
-      lastfmRequest("user.gettoptracks", { user: USERNAME, limit: "3", period: "7day" }).then((data) => {
-        var html = '<h3 class="colorchanger">Top This Week</h3>';
-        $.each(data.toptracks.track, function (i, item) {
-          const itemid = item.mbid || ("toptrack-" + i);
-          html += '<div class="music-row">';
-          html += '<img id="' + itemid + '" src="' + (item.image && item.image[1] ? item.image[1]["#text"] : "") + '" alt="Album art">';
-          html += '<div><a href="' + item.url + '" target="_blank">' + item.name + '</a> - ' + item.artist["name"] + '</div></div>';
-          getImage(item).then((img) => { $("#" + itemid).attr("src", img); }).catch(() => {});
+      lastfmRequest("user.gettoptracks", { user: USERNAME, limit: "3", period: "7day" })
+        .then((data) => {
+          let html = '<h3 class="colorchanger">Top This Week</h3>';
+          const tracks = data?.toptracks?.track || [];
+          tracks.slice(0,3).forEach((item, i) => {
+            const itemid = item.mbid || ("toptrack-" + i);
+            const img0 = item?.image?.[1]?.["#text"] || "";
+            html += `
+              <div class="music-row">
+                <img id="${itemid}" src="${img0}" alt="Album art">
+                <div><a href="${item.url}" target="_blank">${item.name}</a> - ${item.artist?.name || "Unknown Artist"}</div>
+              </div>`;
+            getImage({ name: item.name, artist: { name: item.artist?.name || "" } })
+              .then((img) => { if (img) $("#" + itemid).attr("src", img); });
+          });
+          $("#listening-to").html(html);
+        })
+        .catch(() => {
+          $("#listening-to").html('<div class="music-row"><div>Couldn\'t load Top Tracks.</div></div>');
         });
-        displayMusic();
-        $("#listening-to").append(html);
-      });
 
       // Now playing (fallback to last played if not live)
-      lastfmRequest("user.getrecenttracks", { user: USERNAME, limit: 1 }).then((data) => {
-        const item = data?.recenttracks?.track?.[0];
-        let html = '';
+      lastfmRequest("user.getrecenttracks", { user: USERNAME, limit: 1 })
+        .then((data) => {
+          const tracks = data?.recenttracks?.track;
+          const item = Array.isArray(tracks) ? tracks[0] : tracks;
+          if (!item) {
+            $("#currently-playing").html(`${bubbleHtml}<h3 class="colorchanger">Now Playing</h3><div class="music-row"><div>No scrobbles yet.</div></div>`);
+            return;
+          }
+          const isNow = !!(item['@attr'] && item['@attr'].nowplaying);
+          const header = isNow ? 'Now Playing' : 'Last Played';
+          const artistName = item.artist && (item.artist['#text'] || item.artist.name) ? (item.artist['#text'] || item.artist.name) : 'Unknown Artist';
+          const itemUrl = item.url || '#';
+          const img0 = (item.image && item.image[1] && item.image[1]['#text']) ? item.image[1]['#text'] : '';
+          const itemid = item.mbid || (isNow ? 'nowplaying' : 'lastplayed');
 
-        // Speech bubble (always shown)
-        html += '<div style="margin: 0 0 .75rem 0;">' +
-                  '<a class="speech-bubble" href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener" aria-label="Open my Last.fm profile">' +
-                    'Curious what I\\'m listening to currently?<br>Via my ' +
-                    '<img class="lastfm-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lastfm_logo.svg" alt="Last.fm logo"> profile' +
-                  '</a>' +
-                '</div>';
+          $("#currently-playing").html(`
+            ${bubbleHtml}
+            <h3 class="colorchanger">${header}</h3>
+            <div class="music-row">
+              <img id="${itemid}" src="${img0}" alt="Album art">
+              <div><a href="${itemUrl}" target="_blank">${item.name}</a> - ${artistName}</div>
+            </div>`);
 
-        if (!item) {
-          html += '<h3 class="colorchanger">Now Playing</h3>' +
-                  '<div class="music-row"><div>No scrobbles yet.</div></div>';
-          $("#currently-playing").append(html);
-          displayMusic();
-          return;
-        }
-
-        const isNow = !!(item['@attr'] && item['@attr'].nowplaying);
-        const header = isNow ? 'Now Playing' : 'Last Played';
-        const artistName = item.artist && (item.artist['#text'] || item.artist.name) ? (item.artist['#text'] || item.artist.name) : 'Unknown Artist';
-        const itemUrl = item.url || '#';
-        const img0 = (item.image && item.image[1] && item.image[1]['#text']) ? item.image[1]['#text'] : '';
-
-        html += '<h3 class="colorchanger">' + header + '</h3>';
-
-        const itemid = item.mbid || (isNow ? 'nowplaying' : 'lastplayed');
-
-        html += '<div class="music-row">';
-        html +=   '<img id="' + itemid + '" src="' + img0 + '" alt="Album art">';
-        html +=   '<div><a href="' + itemUrl + '" target="_blank">' + item.name + '</a> - ' + artistName + '</div>';
-        html += '</div>';
-
-        // Try to upgrade the image via track.getInfo (best-effort)
-        getImage({ name: item.name, artist: { name: artistName } })
-          .then((img) => { if (img) $("#" + itemid).attr("src", img); })
-          .catch(() => { /* keep fallback */ });
-
-        $("#currently-playing").append(html);
-        displayMusic();
-      }).catch(() => {
-        // API error – keep widget visible with a gentle message
-        const html = '<div class="music-row"><div>Couldn\\'t load Now Playing right now. Try refreshing in a bit.</div></div>';
-        $("#currently-playing").append(html);
-        displayMusic();
-      });
+          getImage({ name: item.name, artist: { name: artistName } })
+            .then((img) => { if (img) $("#" + itemid).attr("src", img); });
+        })
+        .catch(() => {
+          $("#currently-playing").html(`${bubbleHtml}<h3 class="colorchanger">Now Playing</h3><div class="music-row"><div>Couldn’t load Now Playing right now. Try refreshing.</div></div>`);
+        });
     });
   </script>
 </body>
