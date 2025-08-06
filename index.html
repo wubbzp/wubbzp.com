@@ -54,8 +54,19 @@
     main {
       flex: 1;
       padding: 2rem;
-      max-width: 900px;
+      max-width: 1200px;
       margin: auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .release-column {
+      flex: 1 1 300px;
+      max-width: 400px;
+      overflow-y: auto;
+      max-height: 600px;
     }
 
     .new-song-box {
@@ -63,9 +74,8 @@
       color: #1e1e1e;
       padding: 1rem;
       border-radius: 12px;
-      max-width: 100%;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      margin: 2rem auto;
+      margin-bottom: 1.5rem;
       text-align: center;
     }
 
@@ -90,9 +100,9 @@
     .bio-section {
       background: white;
       padding: 2rem;
-      margin-top: 2rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      flex: 1 1 600px;
     }
 
     .bio-section h2 {
@@ -124,6 +134,13 @@
 
     .bio-flex p {
       line-height: 1.7;
+    }
+
+    .caption {
+      font-size: 0.8rem;
+      color: #555;
+      text-align: center;
+      margin-top: -1rem;
     }
 
     footer {
@@ -160,17 +177,19 @@
   </header>
 
   <main>
-    <div class="new-song-box">
-      <h2>NEW RELEASE!</h2>
-      <p>Vocarips (Deluxe) - Bonus Tracks (Remastered)</p>
-      <a href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank" style="display:inline-block; margin-top:0.75rem; background-color:var(--purple); color:white; padding:0.5rem 1rem; border-radius:6px; text-decoration:none; font-weight:bold;">Listen on Bandcamp</a>
-      <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28Deluxe%29_-_Bonus_Tracks_%28Remastered%29.png" alt="Album Art">
-      <div class="tracklist">
-        <p><strong>Tracklist:</strong></p>
-        <ol>
-          <li>Bring Me to Life (Remastered)</li>
-          <li>You Belong With Me (Remastered)</li>
-        </ol>
+    <div class="release-column">
+      <div class="new-song-box">
+        <h2>NEW RELEASE!</h2>
+        <p>Vocarips (Deluxe) - Bonus Tracks (Remastered)</p>
+        <a href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank" style="display:inline-block; margin-top:0.75rem; background-color:var(--purple); color:white; padding:0.5rem 1rem; border-radius:6px; text-decoration:none; font-weight:bold;">Listen on Bandcamp</a>
+        <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28Deluxe%29_-_Bonus_Tracks_%28Remastered%29.png" alt="Album Art">
+        <div class="tracklist">
+          <p><strong>Tracklist:</strong></p>
+          <ol>
+            <li>Bring Me to Life (Remastered)</li>
+            <li>You Belong with Me (Remastered)</li>
+          </ol>
+        </div>
       </div>
     </div>
 
@@ -178,7 +197,10 @@
       <h2>About HuxP</h2>
       <div class="bio-flex">
         <img src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b" alt="HayBombYT and HuxP">
-        <p><strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. They have used the VOCALOID4 engine since 2017 and started releasing covers in 2023. Their signature UTAU character is Shiki Taigen.</p>
+        <div>
+          <p><strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. He has used the VOCALOID4 engine since 2017 and started releasing covers in 2023. The primary UTAU character they use is is Shiki Taigen.</p>
+          <p><small class="caption">Pictured: <a href="https://haybombyt.com" target="_blank">HayBombYT</a> (left), HuxP (right)</small></p>
+        </div>
       </div>
     </div>
   </main>
