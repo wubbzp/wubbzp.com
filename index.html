@@ -21,7 +21,7 @@
     body {
       margin: 0;
       font-family: var(--font);
-      background: var(--blue) url('BACKGROUND.png') no-repeat center center fixed;
+      background: var(--blue) url('BACKGROUND.png') no-repeat center top;
       background-size: cover;
       color: #1e1e1e;
       overflow-x: hidden;
@@ -60,28 +60,15 @@
       margin-bottom: 1rem;
     }
 
-    .discography ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .discography li {
-      margin-bottom: 1rem;
-      padding: 0.75rem;
-      background: white;
-      border-left: 5px solid var(--purple);
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
     .new-song-box {
       background: white;
       color: #1e1e1e;
       padding: 1rem;
       border-radius: 12px;
-      max-width: 320px;
+      max-width: 340px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       margin: 2rem auto;
+      text-align: center;
     }
 
     .new-song-box h2 {
@@ -90,11 +77,16 @@
       margin-top: 0;
     }
 
-    .new-song-box iframe {
+    .new-song-box img {
       width: 100%;
-      height: 180px;
-      border: none;
-      margin-top: 0.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .tracklist {
+      margin-top: 1rem;
+      text-align: left;
+      font-size: 0.95rem;
     }
 
     footer {
@@ -127,7 +119,6 @@
     <nav>
       <a href="#">home</a>
       <a href="about.html">about</a>
-      <a href="https://vocadb.net/Search?searchType=Album&artistId%5B0%5D=125269&artistParticipationStatus=Everything&childTags=false&childVoicebanks=false&discType=Unknown&draftsOnly=false&filter=&page=4&pageSize=10&sort=AdditionDate&viewMode=Details" target="_blank">discography</a>
       <a href="https://shikitaigen.com" target="_blank">blog</a>
     </nav>
   </header>
@@ -137,6 +128,14 @@
       <h2>NEW RELEASE!</h2>
       <p>Vocarips (Deluxe) - Bonus Tracks (Remastered)</p>
       <a href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank" style="display:inline-block; margin-top:0.75rem; background-color:var(--purple); color:white; padding:0.5rem 1rem; border-radius:6px; text-decoration:none; font-weight:bold;">Listen on Bandcamp</a>
+      <img src="d1469a5b-ff0c-4333-95a6-76a5b30f909f.png" alt="Album Art">
+      <div class="tracklist">
+        <p><strong>Tracklist:</strong></p>
+        <ol>
+          <li>Bring Me to Life (Remastered)</li>
+          <li>You Belong With Me (Remastered)</li>
+        </ol>
+      </div>
     </div>
   </main>
 
