@@ -291,32 +291,54 @@
         $("#listening-to").append(html);
       });
 
-      // Now playing
+      // Now playing (fallback to last played if not live)
       lastfmRequest("user.getrecenttracks", { user: USERNAME, limit: 1 }).then((data) => {
-        var item = data.recenttracks.track[0];
-        if (!item || !item["@attr"] || !item["@attr"].nowplaying) return;
-
+        const item = data?.recenttracks?.track?.[0];
         let html = '';
-        // Speech bubble with exact phrasing + Last.fm SVG wordmark
+
+        // Speech bubble (always shown)
         html += '<div style="margin: 0 0 .75rem 0;">' +
                   '<a class="speech-bubble" href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener" aria-label="Open my Last.fm profile">' +
                     'Curious what I\\'m listening to currently?<br>Via my ' +
                     '<img class="lastfm-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lastfm_logo.svg" alt="Last.fm logo"> profile' +
                   '</a>' +
                 '</div>';
-        html += '<h3 class="colorchanger">Now Playing</h3>';
 
-        const itemid = item.mbid || "nowplaying";
+        if (!item) {
+          html += '<h3 class="colorchanger">Now Playing</h3>' +
+                  '<div class="music-row"><div>No scrobbles yet.</div></div>';
+          $("#currently-playing").append(html);
+          displayMusic();
+          return;
+        }
+
+        const isNow = !!(item['@attr'] && item['@attr'].nowplaying);
+        const header = isNow ? 'Now Playing' : 'Last Played';
+        const artistName = item.artist && (item.artist['#text'] || item.artist.name) ? (item.artist['#text'] || item.artist.name) : 'Unknown Artist';
+        const itemUrl = item.url || '#';
+        const img0 = (item.image && item.image[1] && item.image[1]['#text']) ? item.image[1]['#text'] : '';
+
+        html += '<h3 class="colorchanger">' + header + '</h3>';
+
+        const itemid = item.mbid || (isNow ? 'nowplaying' : 'lastplayed');
+
         html += '<div class="music-row">';
-        html += '<img id="' + itemid + '" src="' + (item.image && item.image[1] ? item.image[1]["#text"] : "") + '" alt="Album art">';
-        html += '<div><a href="' + item.url + '" target="_blank">' + item.name + '</a> - ' + item.artist["#text"] + '</div></div>';
+        html +=   '<img id="' + itemid + '" src="' + img0 + '" alt="Album art">';
+        html +=   '<div><a href="' + itemUrl + '" target="_blank">' + item.name + '</a> - ' + artistName + '</div>';
+        html += '</div>';
 
-        getImage({ name: item.name, artist: { name: item.artist["#text"] } })
-          .then((img) => { $("#" + itemid).attr("src", img); })
-          .catch(() => {});
+        // Try to upgrade the image via track.getInfo (best-effort)
+        getImage({ name: item.name, artist: { name: artistName } })
+          .then((img) => { if (img) $("#" + itemid).attr("src", img); })
+          .catch(() => { /* keep fallback */ });
 
-        displayMusic();
         $("#currently-playing").append(html);
+        displayMusic();
+      }).catch(() => {
+        // API error – keep widget visible with a gentle message
+        const html = '<div class="music-row"><div>Couldn\\'t load Now Playing right now. Try refreshing in a bit.</div></div>';
+        $("#currently-playing").append(html);
+        displayMusic();
       });
     });
   </script>
