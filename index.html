@@ -18,13 +18,16 @@
       --font: 'Segoe UI', sans-serif;
     }
 
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      min-height: 100%;
       font-family: var(--font);
       background: var(--blue) url('BACKGROUND.png') no-repeat center top;
       background-size: cover;
       color: #1e1e1e;
-      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
@@ -48,16 +51,11 @@
       font-size: 0.9rem;
     }
 
-    section {
+    main {
+      flex: 1;
       padding: 2rem;
       max-width: 900px;
       margin: auto;
-    }
-
-    section h2 {
-      font-size: 1.8rem;
-      color: var(--purple);
-      margin-bottom: 1rem;
     }
 
     .new-song-box {
@@ -65,7 +63,7 @@
       color: #1e1e1e;
       padding: 1rem;
       border-radius: 12px;
-      max-width: 340px;
+      max-width: 100%;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       margin: 2rem auto;
       text-align: center;
@@ -87,6 +85,45 @@
       margin-top: 1rem;
       text-align: left;
       font-size: 0.95rem;
+    }
+
+    .bio-section {
+      background: white;
+      padding: 2rem;
+      margin-top: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .bio-section h2 {
+      font-size: 1.5rem;
+      color: var(--purple);
+    }
+
+    .bio-flex {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .bio-flex img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    @media (min-width: 700px) {
+      .bio-flex {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .bio-flex img {
+        max-width: 300px;
+        margin-right: 2rem;
+      }
+    }
+
+    .bio-flex p {
+      line-height: 1.7;
     }
 
     footer {
@@ -118,23 +155,30 @@
     </div>
     <nav>
       <a href="#">home</a>
-      <a href="about.html">about</a>
       <a href="https://shikitaigen.com" target="_blank">blog</a>
     </nav>
   </header>
 
-  <main class="main">
+  <main>
     <div class="new-song-box">
       <h2>NEW RELEASE!</h2>
       <p>Vocarips (Deluxe) - Bonus Tracks (Remastered)</p>
       <a href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank" style="display:inline-block; margin-top:0.75rem; background-color:var(--purple); color:white; padding:0.5rem 1rem; border-radius:6px; text-decoration:none; font-weight:bold;">Listen on Bandcamp</a>
-      <img src="d1469a5b-ff0c-4333-95a6-76a5b30f909f.png" alt="Album Art">
+      <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28Deluxe%29_-_Bonus_Tracks_%28Remastered%29.png" alt="Album Art">
       <div class="tracklist">
         <p><strong>Tracklist:</strong></p>
         <ol>
           <li>Bring Me to Life (Remastered)</li>
           <li>You Belong With Me (Remastered)</li>
         </ol>
+      </div>
+    </div>
+
+    <div class="bio-section">
+      <h2>About HuxP</h2>
+      <div class="bio-flex">
+        <img src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b" alt="HayBombYT and HuxP">
+        <p><strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. They have used the VOCALOID4 engine since 2017 and started releasing covers in 2023. Their signature UTAU character is Shiki Taigen.</p>
       </div>
     </div>
   </main>
