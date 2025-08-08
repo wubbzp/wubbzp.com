@@ -2,184 +2,223 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+/>
   <title>HuxP</title>
 
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- Favicons (ensure these exist at site root or adjust paths) -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fcd8f7" />
 
   <!-- Social -->
   <meta property="og:title" content="HuxP" />
   <meta property="og:description" content="Official site of HuxP, a vocal synth cover producer since 2017." />
-  <meta property="og:image" content="LOGO.png" />
+  <!-- Use an absolute URL for best results -->
+  <meta property="og:image" content="https://example.com/LOGO.png" />
+  <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Performance hints -->
+  <link rel="preconnect" href="https://ws.audioscrobbler.com" crossorigin>
+  <link rel="preconnect" href="https://lastfm.freetls.fastly.net" crossorigin>
+  <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
+  <link rel="preload" as="image" href="BACKGROUND.png" imagesrcset="BACKGROUND.png" imagesizes="100vw">
+
   <style>
-    :root {
-      --purple: #a6a8ff;
-      --blue: #b7e9f5;
-      --pink: #fcd8f7;
-      --gold: #ffd966;
-      --font: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    /* ====== Design tokens ====== */
+    :root{
+      --purple:#a6a8ff;
+      --blue:#b7e9f5;
+      --pink:#fcd8f7;
+      --gold:#ffd966;
+      --ink:#1e1e1e;
+      --card:#fff;
+      --font: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Helvetica, Arial, sans-serif;
+      --radius:12px;
+      --shadow:0 4px 12px rgba(0,0,0,.15);
+      --gap: clamp(.8rem, 1.6vw, 1.25rem);
     }
 
-    html, body { height: 100%; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: var(--font);
-      background: var(--blue) url('BACKGROUND.png') no-repeat center top;
-      background-size: cover;
-      color: #1e1e1e;
+    /* ====== Base ====== */
+    html, body { height:100%; }
+    * { box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--ink);
+      background: var(--blue) url("BACKGROUND.png") no-repeat center top / cover fixed;
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      text-rendering:optimizeLegibility;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: var(--pink);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-    .logo img { height: 40px; }
-    nav a {
-      margin-left: 1rem; text-decoration: none; color: #333; font-weight: 700; font-size: .95rem;
+    /* High-contrast focus */
+    :focus-visible{
+      outline:3px solid var(--purple);
+      outline-offset:3px;
+      border-radius:6px;
     }
 
-    main {
-      flex: 1 0 auto;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(260px, 380px) 1fr;
-      gap: 2rem;
-      min-height: 0; /* allow scrolling columns */
+    /* ====== Header / Nav ====== */
+    .skip-link{
+      position:absolute; left:-9999px; top:auto;
+    }
+    .skip-link:focus{ left:1rem; top:1rem; background:#fff; padding:.5rem .75rem; border-radius:8px; z-index:1000; box-shadow:var(--shadow); }
+
+    header{
+      position:sticky; top:0; z-index:10;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; padding: .75rem clamp(1rem, 3vw, 2rem);
+      background: color-mix(in srgb, var(--pink) 90%, white 10%);
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+      backdrop-filter:saturate(1.2);
+    }
+    .logo{ display:flex; align-items:center; gap:.75rem; }
+    .logo img{ height:40px; width:auto; aspect-ratio:1/1; image-rendering:auto; }
+
+    nav a{
+      text-decoration:none; font-weight:700; color:#333; font-size:.96rem;
+      padding:.4rem .6rem; border-radius:8px;
+    }
+    nav a:hover{ background:rgba(0,0,0,.05); }
+
+    /* ====== Main layout ====== */
+    main{
+      width:min(1200px, 100%);
+      margin:0 auto;
+      padding: clamp(1rem, 3vw, 2rem);
+      display:grid;
+      grid-template-columns: 1fr; /* mobile-first: single column */
+      gap: var(--gap);
+      flex:1 0 auto;
     }
 
-    /* Left column - releases */
-    .release-column {
-      overflow-y: auto;
-      max-height: calc(100vh - 220px); /* keeps footer at bottom; tweak if needed */
-      padding-right: .25rem;
+    /* At ≥900px, use two columns */
+    @media (min-width: 900px){
+      main{ grid-template-columns: minmax(260px,380px) 1fr; }
     }
 
-    /* Cards */
-    .card {
-      background: #fff;
-      color: #111;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,.15);
-    }
-    .release { padding: 1rem; text-align: center; margin-bottom: 1.5rem; }
-    .release h3 { margin: .25rem 0 .25rem; color: var(--purple); font-size: 1.25rem; }
-    .release p { margin: .25rem 0; }
-    .release img { width: 100%; border-radius: 8px; margin-top: .75rem; }
-    .btn {
-      display:inline-block; padding:.5rem 1rem; border-radius:6px; font-weight:700; text-decoration:none;
-      background: var(--purple); color:#fff;
-    }
-    .tracklist { text-align:left; font-size:.95rem; margin-top:.75rem; }
-
-    /* Right column - content */
-    .content-column { display: grid; gap: 1.5rem; align-content: start; }
-
-    .bio { padding: 1.5rem; }
-    .bio h2 { margin: 0 0 .75rem; color: var(--purple); }
-    .bio-flex { display:flex; flex-direction: column; gap: 1rem; }
-    .bio-flex img { max-width:100%; border-radius:8px; }
-    .caption { font-size:.8rem; color:#555; margin-top:.25rem; }
-
-    @media(min-width: 720px){
-      .bio-flex { flex-direction: row; align-items:flex-start; }
-      .bio-flex img { max-width: 300px; margin-right: 1rem; }
+    /* ====== Cards ====== */
+    .card{
+      background:var(--card);
+      color:#111;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
-    /* Last.fm block */
-    #music.card { padding: 1rem; }
-    #music h3 { margin: 0 0 .75rem; color: var(--purple); font-size: 1.1rem; }
-    .music-row {
-      display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: .75rem;
-      align-items: center;
-      padding: .5rem;
-      border-radius: 10px;
-      background: rgba(166,168,255,0.08);
-      margin-bottom: .5rem;
+    /* ====== Releases left column ====== */
+    .release-column{ display:grid; gap:1rem; align-content:start; }
+    @media (min-width:900px){
+      .release-column{ max-height: calc(100vh - 220px); overflow:auto; padding-right:.25rem; }
     }
-    .music-row img {
-      width: 56px; height: 56px; object-fit: cover; border-radius: 8px;
-      background: #eee;
+
+    .release{ padding:1rem; text-align:center; }
+    .release h3{ margin:.25rem 0; color:var(--purple); font-size:1.2rem; }
+    .release p{ margin:.25rem 0; }
+    .release img{
+      width:100%; height:auto; border-radius:8px; margin-top:.75rem;
+      aspect-ratio:1/1; object-fit:cover; background:#eee;
     }
-    .music-row a { color: #1e1e1e; text-decoration: none; font-weight: 700; }
-    .music-row a:hover { text-decoration: underline; }
-    .colorchanger { color: var(--purple); }
+    .btn{
+      display:inline-block; padding:.6rem 1rem; border-radius:8px; font-weight:800; text-decoration:none;
+      background:var(--purple); color:#fff;
+      transition:filter .15s ease;
+    }
+    .btn:hover{ filter:brightness(.96); }
+    .tracklist{ text-align:left; font-size:.95rem; margin-top:.75rem; }
+
+    /* ====== Right content column ====== */
+    .content-column{ display:grid; gap:1rem; align-content:start; }
+
+    .bio{ padding: clamp(1rem, 2vw, 1.5rem); }
+    .bio h1{ margin:0 0 .5rem; color:var(--purple); font-size:clamp(1.25rem, 3vw, 1.6rem); }
+    .bio-flex{ display:flex; flex-direction:column; gap:1rem; }
+    .bio-flex img{
+      width:100%; max-width:560px; height:auto; border-radius:8px; background:#eee;
+      aspect-ratio: 16/9; object-fit:cover;
+    }
+    .caption{ font-size:.85rem; color:#555; margin-top:.25rem; }
+
+    @media(min-width:720px){
+      .bio-flex{ flex-direction:row; align-items:flex-start; }
+      .bio-flex img{ max-width:300px; margin-right:1rem; }
+    }
+
+    /* ====== Last.fm block ====== */
+    #music.card{ padding:1rem; }
+    #music h2{ margin:0 0 .75rem; color:var(--purple); font-size:1.1rem; }
+    .music-row{
+      display:grid; grid-template-columns:56px 1fr;
+      gap:.75rem; align-items:center;
+      padding:.5rem; border-radius:10px;
+      background: rgba(166,168,255,.08);
+      margin-bottom:.5rem;
+    }
+    .music-row img{
+      width:56px; height:56px; border-radius:8px; object-fit:cover; background:#eee;
+    }
+    .music-row a{ color:var(--ink); text-decoration:none; font-weight:700; }
+    .music-row a:hover{ text-decoration:underline; }
+    .colorchanger{ color:var(--purple); }
 
     /* Cute speech bubble linking to Last.fm profile */
-    .speech-bubble {
-      display: inline-block;
-      background: var(--pink);
-      color: #1e1e1e;
-      border-radius: 14px;
-      padding: .6rem .8rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,.1);
-      position: relative;
-      text-decoration: none;
-      font-weight: 700;
-      line-height: 1.25;
+    .speech-bubble{
+      display:inline-block; background:var(--pink); color:var(--ink);
+      border-radius:14px; padding:.6rem .8rem; box-shadow:var(--shadow);
+      text-decoration:none; font-weight:700; line-height:1.25;
     }
-    .speech-bubble:hover { filter: brightness(0.98); }
-    .speech-bubble::after {
-      content: "";
-      position: absolute;
-      left: 18px;
-      bottom: -8px;
-      width: 0; height: 0;
-      border: 8px solid transparent;
-      border-top-color: var(--pink);
+    .speech-bubble:hover{ filter:brightness(.98); }
+    .speech-bubble::after{
+      content:""; position:relative; display:inline-block; margin-left:.3rem; top:.35rem;
+      width:0; height:0; border:8px solid transparent; border-top-color:var(--pink);
     }
-    .speech-bubble .lastfm-logo {
-      height: 18px; width: auto; vertical-align: text-bottom; margin: 0 .2rem;
-    }
+    .speech-bubble .lastfm-logo{ height:18px; width:auto; vertical-align:text-bottom; margin:0 .2rem; }
 
-    /* Footer */
-    footer {
-      margin-top: auto;
-      background: var(--pink);
-      padding: 2rem;
-      font-size: 0.85rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: .5rem 1rem;
+    /* ====== Footer ====== */
+    footer{
+      margin-top:auto; background:var(--pink);
+      padding: clamp(1rem, 2.5vw, 2rem);
+      font-size:.92rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem 1rem;
     }
-    .social-icons a { margin-left:.75rem; font-weight:700; color:#333; text-decoration:none; }
-    .social-icons a:hover { text-decoration: underline; }
+    .social-icons a{ margin-left:.75rem; font-weight:700; color:#333; text-decoration:none; }
+    .social-icons a:hover{ text-decoration:underline; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo"><img src="LOGO.png" alt="HuxP logo"></div>
-    <nav>
-      <a href="#">home</a>
-      <a href="https://shikitaigen.com" target="_blank">blog</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header role="banner">
+    <div class="logo">
+      <img src="LOGO.png" alt="HuxP logo" width="160" height="160" decoding="async" fetchpriority="high">
+      <span class="sr-only" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Primary">
+      <a href="/" aria-current="page">home</a>
+      <a href="https://shikitaigen.com" target="_blank" rel="noopener">blog</a>
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <!-- Left: Releases -->
-    <aside class="release-column">
+    <aside class="release-column" aria-labelledby="releases-heading">
+      <h2 id="releases-heading" class="sr-only" style="position:absolute;left:-9999px;">Latest releases</h2>
+
       <section class="card release">
         <h3>NEW RELEASE!</h3>
-        <p>Vocarips (Deluxe) – Bonus Tracks (Remastered)</p>
-        <a class="btn" href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank">Listen on Bandcamp</a>
-        <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28Deluxe%29_-_Bonus_Tracks_%28Remastered%29.png" alt="Vocarips (Deluxe) - Bonus Tracks (Remastered) cover">
-        <div class="tracklist">
+        <p><strong>Vocarips (Deluxe) – Bonus Tracks (Remastered)</strong></p>
+        <a class="btn" href="https://miku.bandcamp.com/album/vocarips-deluxe-bonus-tracks-remastered" target="_blank" rel="noopener">Listen on Bandcamp</a>
+        <img
+          src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28Deluxe%29_-_Bonus_Tracks_%28Remastered%29.png"
+          alt="Cover of “Vocarips (Deluxe) – Bonus Tracks (Remastered)”"
+          loading="lazy" decoding="async">
+        <div class="tracklist" aria-label="Tracklist">
           <strong>Tracklist:</strong>
           <ol>
             <li>Bring Me to Life (Remastered)</li>
@@ -189,130 +228,148 @@
       </section>
 
       <section class="card release">
-        <p>だいじょばない (Daijobanai)</p>
-        <a class="btn" href="https://miku.bandcamp.com/track/--74" target="_blank">Listen on Bandcamp</a>
-        <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Daijobanai.png" alt="Daijobanai cover">
+        <p><strong>だいじょばない (Daijobanai)</strong></p>
+        <a class="btn" href="https://miku.bandcamp.com/track/--74" target="_blank" rel="noopener">Listen on Bandcamp</a>
+        <img
+          src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Daijobanai.png"
+          alt="Cover of “だいじょばない (Daijobanai)”"
+          loading="lazy" decoding="async">
       </section>
 
       <section class="card release">
-        <p>式大元カバーコレクション Vol. 2 (Shiki Taigen Cover Collection, Vol. 2)</p>
-        <a class="btn" href="https://miku.bandcamp.com/album/vol-2" target="_blank">Listen on Bandcamp</a>
-        <img src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._2.png" alt="Shiki Taigen Cover Collection, Vol. 2 cover">
+        <p><strong>式大元カバーコレクション Vol. 2 (Shiki Taigen Cover Collection, Vol. 2)</strong></p>
+        <a class="btn" href="https://miku.bandcamp.com/album/vol-2" target="_blank" rel="noopener">Listen on Bandcamp</a>
+        <img
+          src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._2.png"
+          alt="Cover of “Shiki Taigen Cover Collection, Vol. 2”"
+          loading="lazy" decoding="async">
       </section>
 
       <div style="text-align:center; margin:1rem 0 0;">
-        <a class="btn" href="https://miku.bandcamp.com/music" target="_blank">More…</a>
+        <a class="btn" href="https://miku.bandcamp.com/music" target="_blank" rel="noopener">More…</a>
       </div>
     </aside>
 
     <!-- Right: Content -->
-    <section class="content-column">
+    <section class="content-column" aria-label="About and activity">
       <article class="card bio">
-        <h2>About HuxP</h2>
+        <h1>About HuxP</h1>
         <div class="bio-flex">
-          <img src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b" alt="HayBombYT and HuxP">
+          <img
+            src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b"
+            alt="HayBombYT (left) and HuxP (right)"
+            loading="lazy" decoding="async">
           <div>
-            <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong> is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. He has been using the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
+            <p>Mitch “Michelle” Bentz, known online as <strong>HuxP</strong>, is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. He has been using the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
             <p>HuxP is also involved with the side projects <strong>DOCHIMERA</strong> and <strong>LockedStep</strong>, contributing vocals, arrangements, and collaborative covers.</p>
-            <p class="caption">Pictured: <a href="https://haybombyt.com" target="_blank">HayBombYT</a> (left), HuxP (right)</p>
+            <p class="caption">Pictured: <a href="https://haybombyt.com" target="_blank" rel="noopener">HayBombYT</a> (left), HuxP (right)</p>
           </div>
         </div>
       </article>
 
       <!-- Last.fm: Currently Listening -->
-      <section id="music" class="card" style="display:none;">
+      <section id="music" class="card" aria-live="polite" aria-busy="true" hidden>
         <div id="currently-playing"></div>
         <div id="listening-to" style="margin-top: 1rem;"></div>
+        <noscript>
+          <div style="padding:.75rem">Enable JavaScript to see Now Playing and Top Tracks.</div>
+        </noscript>
       </section>
     </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo">
     <div>
       HuxP © 2025<br>
       <a href="mailto:huxpmusic@gmail.com">huxpmusic@gmail.com</a>
     </div>
-    <div class="social-icons">
-      <a href="http://youtube.com/@huxpmusic" target="_blank">YouTube</a>
-      <a href="https://twitter.com/@huxpmusic" target="_blank">Twitter</a>
-      <a href="http://instagram.com/@huxpmusic" target="_blank">Instagram</a>
-      <a href="https://miku.bandcamp.com/" target="_blank">Bandcamp</a>
-      <a href="https://vocadb.net/Ar/125269" target="_blank">VocaDB</a>
-      <a href="https://last.fm/user/HuxP" target="_blank">Last.fm</a>
+    <div class="social-icons" aria-label="Social links">
+      <a href="https://youtube.com/@huxpmusic" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
+      <a href="https://x.com/huxpmusic" target="_blank" rel="noopener" aria-label="Twitter / X">Twitter</a>
+      <a href="https://instagram.com/huxpmusic" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      <a href="https://miku.bandcamp.com/" target="_blank" rel="noopener" aria-label="Bandcamp">Bandcamp</a>
+      <a href="https://vocadb.net/Ar/125269" target="_blank" rel="noopener" aria-label="VocaDB">VocaDB</a>
+      <a href="https://last.fm/user/HuxP" target="_blank" rel="noopener" aria-label="Last.fm">Last.fm</a>
     </div>
   </footer>
 
-  <!-- jQuery (needed for the Last.fm widget) -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <!-- jQuery (kept for your existing pattern) -->
+  <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
 
   <!-- Last.fm widget -->
-  <script>
+  <script defer>
     const API_KEY = "9c8820e53700da319f46516475a119db";
     const USERNAME = "HuxP";
 
-    function urlencode(obj) {
-      const str = [];
-      for (const p in obj) str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    function urlencode(obj){
+      const str=[]; for(const p in obj){ str.push(encodeURIComponent(p)+"="+encodeURIComponent(obj[p])); }
       return str.join("&");
     }
 
-    $(document).ready(function () {
+    function lastfmRequest(method, params){
+      params.api_key = API_KEY;
+      params.format = "json";
+      const url = "https://ws.audioscrobbler.com/2.0/?method=" + method + "&" + urlencode(params) + "&format=json";
+      return fetch(url, { mode:"cors", cache:"no-cache" })
+        .then(r => { if(r.ok) return r.json(); throw new Error("Network response was not ok."); });
+    }
+
+    function getImage(trackinfo){
+      return lastfmRequest("track.getInfo", { autocorrect:1, track:trackinfo.name, artist:trackinfo.artist.name })
+        .then((data)=> {
+          try { return data.track?.album?.image?.[1]?.["#text"] || ""; }
+          catch { return ""; }
+        })
+        .catch(()=> "");
+    }
+
+    function initLastFm(){
+      const card = document.getElementById("music");
       const bubbleHtml = `
         <div style="margin: 0 0 .75rem 0;">
-          <a class="speech-bubble" href="https://www.last.fm/user/HuxP" target="_blank" rel="noopener" aria-label="Open my Last.fm profile">
+          <a class="speech-bubble" href="https://www.last.fm/user/${USERNAME}" target="_blank" rel="noopener" aria-label="Open my Last.fm profile">
             Curious what I'm listening to currently?<br>
-            Via my <img class="lastfm-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lastfm_logo.svg" alt="Last.fm logo"> profile
+            Via my <img class="lastfm-logo" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Lastfm_logo.svg" alt="Last.fm logo" width="60" height="18"> profile
           </a>
         </div>`;
 
-      // Always show the card immediately with placeholders
-      $("#music").show();
-      $("#currently-playing").html(`${bubbleHtml}<h3 class="colorchanger">Now Playing</h3><div class="music-row"><div>Loading…</div></div>`);
-
-      function lastfmRequest(method, params) {
-        params.api_key = API_KEY;
-        params.format  = "json";
-        return fetch("https://ws.audioscrobbler.com/2.0/?method=" + method + "&" + urlencode(params) + "&format=json", { mode: "cors" })
-          .then((r) => { if (r.ok) return r.json(); throw new Error("Network response was not ok."); });
-      }
-
-      function getImage(trackinfo) {
-        return lastfmRequest("track.getInfo", { autocorrect: 1, track: trackinfo.name, artist: trackinfo.artist.name })
-          .then((data) => {
-            try { return data.track.album.image[1]["#text"]; }
-            catch (e) { return ""; }
-          });
-      }
+      // Show the card immediately with placeholders
+      card.hidden = false;
+      card.setAttribute("aria-busy","true");
+      $("#currently-playing").html(`${bubbleHtml}<h2 class="colorchanger">Now Playing</h2><div class="music-row"><div>Loading…</div></div>`);
 
       // Top tracks (7 days)
-      lastfmRequest("user.gettoptracks", { user: USERNAME, limit: "3", period: "7day" })
-        .then((data) => {
-          let html = '<h3 class="colorchanger">Top This Week</h3>';
+      lastfmRequest("user.gettoptracks", { user: USERNAME, limit:"3", period:"7day" })
+        .then((data)=>{
+          let html = '<h2 class="colorchanger">Top This Week</h2>';
           const tracks = data?.toptracks?.track || [];
-          tracks.slice(0,3).forEach((item, i) => {
+          tracks.slice(0,3).forEach((item, i)=>{
             const itemid = item.mbid || ("toptrack-" + i);
             const img0 = item?.image?.[1]?.["#text"] || "";
             html += `
               <div class="music-row">
-                <img id="${itemid}" src="${img0}" alt="Album art">
-                <div><a href="${item.url}" target="_blank">${item.name}</a> - ${item.artist?.name || "Unknown Artist"}</div>
+                <img id="${itemid}" src="${img0}" alt="Album art" loading="lazy" decoding="async">
+                <div><a href="${item.url}" target="_blank" rel="noopener">${item.name}</a> — ${item.artist?.name || "Unknown Artist"}</div>
               </div>`;
-            getImage({ name: item.name, artist: { name: item.artist?.name || "" } })
-              .then((img) => { if (img) $("#" + itemid).attr("src", img); });
+            getImage({ name:item.name, artist:{ name:item.artist?.name || "" } })
+              .then((img)=> { if(img) $("#" + itemid).attr("src", img); });
           });
           $("#listening-to").html(html);
         })
-        .catch(() => {
-          $("#listening-to").html('<div class="music-row"><div>Couldn\'t load Top Tracks.</div></div>');
+        .catch(()=>{
+          $("#listening-to").html('<div class="music-row"><div>Couldn’t load Top Tracks.</div></div>');
         });
 
       // Now playing (fallback to last played if not live)
-      lastfmRequest("user.getrecenttracks", { user: USERNAME, limit: 1 })
-        .then((data) => {
+      lastfmRequest("user.getrecenttracks", { user: USERNAME, limit:1 })
+        .then((data)=>{
           const tracks = data?.recenttracks?.track;
           const item = Array.isArray(tracks) ? tracks[0] : tracks;
-          if (!item) {
-            $("#currently-playing").html(`${bubbleHtml}<h3 class="colorchanger">Now Playing</h3><div class="music-row"><div>No scrobbles yet.</div></div>`);
+          if(!item){
+            $("#currently-playing").html(`${bubbleHtml}<h2 class="colorchanger">Now Playing</h2><div class="music-row"><div>No scrobbles yet.</div></div>`);
+            card.removeAttribute("aria-busy");
             return;
           }
           const isNow = !!(item['@attr'] && item['@attr'].nowplaying);
@@ -324,18 +381,32 @@
 
           $("#currently-playing").html(`
             ${bubbleHtml}
-            <h3 class="colorchanger">${header}</h3>
+            <h2 class="colorchanger">${header}</h2>
             <div class="music-row">
-              <img id="${itemid}" src="${img0}" alt="Album art">
-              <div><a href="${itemUrl}" target="_blank">${item.name}</a> - ${artistName}</div>
+              <img id="${itemid}" src="${img0}" alt="Album art" width="56" height="56" decoding="async">
+              <div><a href="${itemUrl}" target="_blank" rel="noopener">${item.name}</a> — ${artistName}</div>
             </div>`);
 
-          getImage({ name: item.name, artist: { name: artistName } })
-            .then((img) => { if (img) $("#" + itemid).attr("src", img); });
+          getImage({ name:item.name, artist:{ name:artistName } })
+            .then((img)=> { if(img) $("#" + itemid).attr("src", img); });
         })
-        .catch(() => {
-          $("#currently-playing").html(`${bubbleHtml}<h3 class="colorchanger">Now Playing</h3><div class="music-row"><div>Couldn’t load Now Playing right now. Try refreshing.</div></div>`);
-        });
+        .catch(()=>{
+          $("#currently-playing").html(`${bubbleHtml}<h2 class="colorchanger">Now Playing</h2><div class="music-row"><div>Couldn’t load Now Playing right now. Try refreshing.</div></div>`);
+        })
+        .finally(()=> card.removeAttribute("aria-busy"));
+    }
+
+    // Respect reduced data: only fetch Last.fm when visible
+    const musicObserver = new IntersectionObserver((entries)=>{
+      if(entries.some(e=>e.isIntersecting)){
+        initLastFm();
+        musicObserver.disconnect();
+      }
+    }, { root:null, threshold:.1 });
+
+    window.addEventListener("DOMContentLoaded", ()=>{
+      const musicCard = document.getElementById("music");
+      musicObserver.observe(musicCard);
     });
   </script>
 </body>
