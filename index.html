@@ -8,18 +8,19 @@
 />
   <title>HuxP</title>
 
-  <!-- Favicons (ensure these exist at site root or adjust paths) -->
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
+  <!-- Favicons / PWA -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#a6a8ff">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#fcd8f7" />
 
   <!-- Social -->
   <meta property="og:title" content="HuxP" />
   <meta property="og:description" content="Official site of HuxP, a vocal synth cover producer since 2017." />
-  <!-- Use an absolute URL for best results -->
-  <meta property="og:image" content="https://example.com/LOGO.png" />
+  <meta property="og:image" content="/og-image.png" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -97,7 +98,12 @@
       grid-template-columns: 1fr; /* mobile-first: single column */
       gap: var(--gap);
       flex:1 0 auto;
+
+      /* allow internal scrolling in grid children */
+      min-height: 0;
     }
+    /* let grid children shrink so columns can scroll */
+    .release-column, .content-column { min-height: 0; }
 
     /* At ≥900px, use two columns */
     @media (min-width: 900px){
@@ -116,8 +122,12 @@
     /* ====== Releases left column ====== */
     .release-column{ display:grid; gap:1rem; align-content:start; }
     @media (min-width:900px){
-      .release-column{ max-height: calc(100vh - 220px); overflow:auto; padding-right:.25rem; }
+      .release-column{
+        overflow:auto;         /* scrolls on desktop */
+        padding-right:.25rem;
+      }
     }
+    .release-column { overscroll-behavior: contain; }
 
     .release{ padding:1rem; text-align:center; }
     .release h3{ margin:.25rem 0; color:var(--purple); font-size:1.2rem; }
@@ -197,7 +207,6 @@
   <header role="banner">
     <div class="logo">
       <img src="LOGO.png" alt="HuxP logo" width="160" height="160" decoding="async" fetchpriority="high">
-      <span class="sr-only" aria-hidden="true"></span>
     </div>
     <nav aria-label="Primary">
       <a href="/" aria-current="page">home</a>
@@ -396,7 +405,7 @@
         .finally(()=> card.removeAttribute("aria-busy"));
     }
 
-    // Respect reduced data: only fetch Last.fm when visible
+    // Lazy-init the Last.fm widget when visible
     const musicObserver = new IntersectionObserver((entries)=>{
       if(entries.some(e=>e.isIntersecting)){
         initLastFm();
