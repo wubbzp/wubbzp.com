@@ -48,10 +48,10 @@
 
     html, body{ font-family:"Nunito", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Helvetica, Arial, sans-serif; height:100%; }
     * { box-sizing:border-box; }
-    body{
+body{
   margin:0; font-family:var(--font); color:var(--ink);
-  background: var(--blue) url("BACKGROUND.png") no-repeat center center fixed; /* Changed 'top' to 'center' */
-  background-size: cover; /* This is the main fix */
+  background: var(--blue) url("BACKGROUND.png") no-repeat center top fixed;
+  background-size: clamp(900px, 90vw, 1600px) 100vh; /* Original width, but height is now 100vh */
   display:flex; flex-direction:column; min-height:100vh; text-rendering:optimizeLegibility;
 }
 :focus-visible{ outline:3px solid var(--purple); outline-offset:3px; border-radius:6px; }
