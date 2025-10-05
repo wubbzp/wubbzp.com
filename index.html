@@ -1,38 +1,34 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <title>HuxP</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400..700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Favicons / PWA -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=7">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=7">
-  <link rel="icon" href="/favicon.ico?v=7" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#898eca">
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#898eca" />
-
-  <!-- Social -->
-  <meta property="og:title" content="HuxP" />
-  <meta property="og:description" content="Official site of HuxP, a vocal synth cover producer since 2017." />
-  <meta property="og:image" content="/og-image.png" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Performance hints -->
-  <link rel="preconnect" href="https://ws.audioscrobbler.com" crossorigin>
-  <link rel="preconnect" href="https://lastfm.freetls.fastly.net" crossorigin>
-  <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
-  <link rel="preload" as="image" href="BACKGROUND.png" imagesrcset="BACKGROUND.png" imagesizes="100vw">
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>HuxP</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400..700&amp;family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Favicons / PWA -->
+<link href="/favicon-32x32.png?v=7" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/favicon-16x16.png?v=7" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/favicon.ico?v=7" rel="icon" sizes="any"/>
+<link href="/apple-touch-icon.png?v=7" rel="apple-touch-icon"/>
+<link color="#898eca" href="/safari-pinned-tab.svg" rel="mask-icon"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<meta content="#898eca" name="theme-color"/>
+<!-- Social -->
+<meta content="HuxP" property="og:title"/>
+<meta content="Official site of HuxP, a vocal synth cover producer since 2017." property="og:description"/>
+<meta content="/og-image.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<!-- Performance hints -->
+<link crossorigin="" href="https://ws.audioscrobbler.com" rel="preconnect"/>
+<link crossorigin="" href="https://lastfm.freetls.fastly.net" rel="preconnect"/>
+<link crossorigin="" href="https://upload.wikimedia.org" rel="preconnect"/>
+<link as="image" href="BACKGROUND.png" imagesizes="100vw" imagesrcset="BACKGROUND.png" rel="preload"/>
+<style>
     /* Base palette + variables */
     :root{
       --primary:#898eca; /* anchor */
@@ -72,11 +68,11 @@
 
       /* Background (reduced zoom) */
       background-color: var(--blue);
-      background-image: url("BACKGROUND.png");
+      background-image: linear-gradient(180deg, rgba(255,255,255,.85) 0%, rgba(255,248,254,.85) 100%), url("BACKGROUND.png");
       background-repeat: no-repeat;
       background-position: center top;
       background-attachment: fixed;
-      background-size: clamp(900px, 90vw, 1600px) auto;
+      background-size: cover;
 
       display:flex; flex-direction:column; min-height:100vh;
       text-rendering: optimizeLegibility;
@@ -163,115 +159,136 @@
     .project-btn img{ width:24px; height:24px; border-radius:6px; }
     .project-btn .sub{ font-weight:600; opacity:.75; font-family:var(--font-body); }
     .project-btn[aria-current="page"]{ background:var(--primary); color:#fff; }
-  </style>
+  
+
+/* Discography */
+#discography { padding: clamp(1rem, 2vw, 1.5rem); }
+#discography .discography-grid{
+  display:grid; gap:1rem;
+  grid-template-columns: 1fr;
+}
+@media(min-width:700px){
+  #discography .discography-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media(min-width:1024px){
+  #discography .discography-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+.album-card{
+  background:#fff; border-radius: var(--radius); border: var(--bubble-border) solid #00000010;
+  box-shadow:var(--shadow); padding:1rem;
+}
+.album-card h3{
+  margin:.25rem 0 0; font-size:1.15rem;
+}
+.album-card .subtitle{
+  font-family: var(--font-body); font-weight:600; opacity:.7; margin-bottom:.5rem;
+}
+.album-card .cover-strip{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:.5rem; margin:.5rem 0 .75rem;
+}
+.album-card .cover-strip img{
+  width:100%; height:auto; border-radius:10px; background:#eee;
+}
+.album-card .meta{ font-size:.95rem; }
+.album-card .meta-row{ margin-bottom:.25rem; }
+
+
+.album-card .cover-strip a{ display:block; border-radius:10px; overflow:hidden; }
+.album-card .cover-strip a:hover img{ transform:scale(1.03); }
+.album-card .cover-strip img{ transition: transform .2s ease; }
+
+.album-card .album-cta{
+  display:inline-block; margin-top:.5rem; padding:.5rem .8rem;
+  border-radius:999px; background:var(--primary); color:#fff; text-decoration:none; font-weight:700;
+  box-shadow:0 2px 0 #00000020;
+}
+.album-card .album-cta:hover{ filter:brightness(.98); }
+
+
+/* Inline logo in Biography */
+.logo-inline{ display:flex; align-items:center; gap:.5rem; margin-bottom:.25rem; }
+.logo-inline img{ height:48px; width:auto; }
+
+/* Footer styles */
+.site-footer{
+  margin-top:2rem; padding:1rem clamp(1rem, 3vw, 2rem);
+  background: #ffffffaa; backdrop-filter: blur(2px) saturate(1.1);
+  border-radius: var(--bubble-radius); border: var(--bubble-border) solid #00000010;
+}
+.footer-inner{
+  max-width: 1100px; margin: 0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+}
+.site-footer a{ color: var(--ink); text-decoration: none; font-weight: 700; }
+.site-footer a:hover{ text-decoration: underline; }
+.site-footer .social-icons{ display:flex; gap:.75rem; flex-wrap:wrap; }
+.site-footer .social-icons a{
+  padding:.35rem .6rem; border-radius:999px; background:#fff; box-shadow:0 2px 0 #00000010;
+  border: var(--bubble-border) solid #00000010;
+}
+
+/* Align "More info" button look with other CTAs */
+.more-info-btn{ margin-top:.25rem; }
+
+/* Improve card spacing at the top since header is removed */
+main{ padding-top: clamp(.5rem, 2vw, 1rem); }
+
+/* Reduce visual noise behind cards */
+.card{ background:var(--card); }
+
+/* Typography improvements */
+p{ line-height:1.65; }
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" role="banner">
-    <div class="logo">
-      <img src="HuxP Logo.svg" alt="HuxP logo" decoding="async" fetchpriority="high">
-    </div>
-    <nav aria-label="Primary">
-      <a href="/" aria-current="page">home</a>
-      <a href="https://shikitaigen.com" target="_blank" rel="noopener">blog</a>
-      <a href="https://iwubbzy.com" target="_blank" rel="noopener">iWubbzy</a>
-      <a href="https://huxp.wiki" target="_blank" rel="noopener">HuxP Wiki</a>
-    </nav>
-  </header>
-
-  <main id="main">
-    <!-- Right: Content -->
-    <section class="content-column" aria-label="About and activity">
-      <article class="card bio">
-        <h1>About HuxP</h1>
-        <div class="bio-flex">
-          <img
-            src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b"
-            alt="HayBombYT (left) and HuxP (right)"
-            loading="lazy" decoding="async">
-          <div>
-            <p>Mitch “Michelle” Bentz, known online as <strong>HuxP</strong>, is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. He has been using the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
-            <p>HuxP is also involved with the side projects <strong>DOCHIMERA</strong> and <strong>LockedStep</strong>, contributing vocals, arrangements, and collaborative covers.</p>
-            <p class="caption">Pictured: <a href="https://haybombyt.com" target="_blank" rel="noopener">HayBombYT</a> (left), HuxP (right)</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Video Spotlight -->
-      <section id="video-spotlight" class="card video" aria-labelledby="video-spotlight-heading">
-        <h2 id="video-spotlight-heading" class="hero-title">Video Spotlight</h2>
-        <div class="video-frame" style="aspect-ratio:16/9; position:relative; overflow:hidden;">
-          <iframe
-            src="https://www.youtube.com/embed/3WnzDRtr5vI"
-            title="【式大元・Shiki Taigen】 「Light-headed / きゅうくらりん」 【UTAUカバー】"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            style="position:absolute; inset:0; width:100%; height:100%; border:0; border-radius:var(--bubble-radius); box-shadow:0 6px 0 #00000010;"></iframe>
-        </div>
-        <p style="padding: .75rem 1rem 1rem;">
+<main id="main">
+<!-- Right: Content -->
+<section aria-label="About and activity" class="content-column">
+<article class="card bio">
+<div class="logo-inline"><img alt="HuxP logo inline" decoding="async" src="HuxP Logo.svg"/></div><h1>Biography</h1>
+<div class="bio-flex">
+<img alt="HayBombYT (left) and HuxP (right)" decoding="async" loading="lazy" src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b"/>
+<div>
+<p>Mitch “Michelle” Bentz, known online as <strong>HuxP</strong>, is an American cover producer who primarily uses VOCALOID and UTAU voicebanks. He has been using the VOCALOID4 engine since 2017 and started releasing covers in 2023.</p>
+<p>HuxP is also involved with the side projects <strong>DOCHIMERA</strong> and <strong>LockedStep</strong>, contributing vocals, arrangements, and collaborative covers.</p>
+<p class="caption">Pictured: <a href="https://haybombyt.com" rel="noopener" target="_blank">HayBombYT</a> (left), HuxP (right)</p><a class="album-cta more-info-btn" href="https://huxp.wiki/wiki/Main_Page" rel="noopener" target="_blank">More info on HuxP Wiki</a>
+</div>
+</div>
+</article>
+<!-- Video Spotlight -->
+<section aria-labelledby="video-spotlight-heading" class="card video" id="video-spotlight">
+<h2 class="hero-title" id="video-spotlight-heading">Video Spotlight</h2>
+<div class="video-frame" style="aspect-ratio:16/9; position:relative; overflow:hidden;">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" src="https://www.youtube.com/embed/3WnzDRtr5vI" style="position:absolute; inset:0; width:100%; height:100%; border:0; border-radius:var(--bubble-radius); box-shadow:0 6px 0 #00000010;" title="【式大元・Shiki Taigen】 「Light-headed / きゅうくらりん」 【UTAUカバー】"></iframe>
+</div>
+<p style="padding: .75rem 1rem 1rem;">
           【式大元・Shiki Taigen】 「Light-headed / きゅうくらりん」 【UTAUカバー】
         </p>
-      </section>
+</section>
+<!-- Project Buttons -->
+<!-- Last.fm: Currently Listening -->
+<section class="card" id="discography"><h2 class="hero-title">Discography</h2><div class="discography-grid"><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">Vocarips</a></h3><div class="subtitle">cover and remix album</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank"><img alt="Vocarips - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28original_cover%29.png"/></a><a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank"><img alt="Vocarips - Original edition (Re-release)" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28re-release_cover%29.png"/></a><a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank"><img alt="Vocarips - Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28deluxe_cover%29.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> September 14, 2023</div><div class="meta-row"><strong>Tracks:</strong> 8 / 10</div><a class="album-cta" href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">Vocadiva</a></h3><div class="subtitle">cover album</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank"><img alt="Vocadiva - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocadiva.png"/></a><a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank"><img alt="Vocadiva - Remastered edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocadiva_%28Remastered%29.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> Original: January 17, 2024<br/>Remastered: October 16, 2024</div><div class="meta-row"><strong>Tracks:</strong> 10</div><a class="album-cta" href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">Miku + Michelle</a></h3><div class="subtitle">cover album</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank"><img alt="Miku + Michelle - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle.png"/></a><a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank"><img alt="Miku + Michelle - Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle_%28Deluxe%29.png"/></a><a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank"><img alt="Miku + Michelle - Super Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle_%28Super_Deluxe%29.jpg"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> Original: April 5, 2024<br/>Deluxe: April 5, 2025<br/>Super Deluxe: June 16, 2025</div><div class="meta-row"><strong>Tracks:</strong> 16 / 28 / 32</div><a class="album-cta" href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">Shiki Taigen Cover Collection, Vol. 1</a></h3><div class="subtitle">compilation</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank"><img alt="Shiki Taigen Cover Collection, Vol. 1 - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._1.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> December 25, 2024</div><div class="meta-row"><strong>Tracks:</strong> 11</div><a class="album-cta" href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">Vocarips + Vocadiva</a></h3><div class="subtitle">compilation</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank"><img alt="Vocarips + Vocadiva - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%2B_Vocadiva.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> April 23, 2025</div><div class="meta-row"><strong>Tracks:</strong> 18</div><a class="album-cta" href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">Shiki Taigen Cover Collection, Vol. 2</a></h3><div class="subtitle">compilation</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank"><img alt="Shiki Taigen Cover Collection, Vol. 2 - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._2.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> July 22, 2025</div><div class="meta-row"><strong>Tracks:</strong> 16</div><a class="album-cta" href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">View album page</a></div></article></div></section></section>
+</main>
+<footer class="site-footer" role="contentinfo">
 
-      <!-- Project Buttons -->
-      <section id="projects" class="card" aria-labelledby="projects-heading">
-        <h2 id="projects-heading" class="hero-title">Projects</h2>
-        <div class="project-buttons">
-          <a class="project-btn" href="https://iwubbzy.com" target="_blank" rel="noopener">
-            <img src="/assets/iwubbzy-icon.png" alt="iWubbzy icon" loading="lazy">
-            <div>
-              <div>iWubbzy</div>
-              <div class="sub">Fan site and archive of <i>Wow! Wow! Wubbzy!</i> media</div>
-            </div>
-          </a>
-          <a class="project-btn" href="https://mitchbentz.com" target="_blank" rel="noopener">
-            <div style="width:24px;height:24px;border-radius:6px;border:2px solid #00000020;display:flex;align-items:center;justify-content:center;font-size:.8rem;">MB</div>
-            <div>
-              <div>MitchBentz.com</div>
-              <div class="sub">Personal portfolio & links</div>
-            </div>
-          </a>
-          <span class="project-btn" aria-current="page" title="You are here">
-            <img src="/favicon.ico" alt="HuxP icon">
-            <div>
-              <div>HuxPMusic.com</div>
-              <div class="sub">You are here</div>
-            </div>
-          </span>
-        </div>
-      </section>
 
-      <!-- Last.fm: Currently Listening -->
-      <section id="music" class="card" aria-live="polite" aria-busy="true">
-        <div id="currently-playing"></div>
-        <div id="listening-to" style="margin-top: 1rem;"></div>
-        <noscript><div style="padding:.75rem">Enable JavaScript to see Now Playing and Top Tracks.</div></noscript>
-      </section>
-    </section>
-  </main>
-
-  <footer role="contentinfo">
-    <div>
-      HuxP © 2025<br>
-      <a href="mailto:huxpmusic@gmail.com">huxpmusic@gmail.com</a>
-    </div>
-    <div class="social-icons" aria-label="Social links">
-      <a href="https://youtube.com/@huxpmusic" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
-      <a href="https://twitter.com/huxpmusic" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a>
-      <a href="https://instagram.com/huxpmusic" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-      <a href="https://miku.bandcamp.com/" target="_blank" rel="noopener" aria-label="Bandcamp">Bandcamp</a>
-      <a href="https://vocadb.net/Ar/125269" target="_blank" rel="noopener" aria-label="VocaDB">VocaDB</a>
-      <a href="https://last.fm/user/HuxP" target="_blank" rel="noopener" aria-label="Last.fm">Last.fm</a>
-    </div>
-  </footer>
-
-  <!-- jQuery -->
-  <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-  <!-- JS: Last.fm widget -->
-  <script defer>
+<div class="footer-inner"><div>
+      HuxP © 2025<br/>
+<a href="mailto:huxpmusic@gmail.com">huxpmusic@gmail.com</a>
+</div><div aria-label="Social links" class="social-icons">
+<a aria-label="YouTube" href="https://youtube.com/@huxpmusic" rel="noopener" target="_blank">YouTube</a>
+<a aria-label="Twitter" href="https://twitter.com/huxpmusic" rel="noopener" target="_blank">Twitter</a>
+<a aria-label="Instagram" href="https://instagram.com/huxpmusic" rel="noopener" target="_blank">Instagram</a>
+<a aria-label="Bandcamp" href="https://miku.bandcamp.com/" rel="noopener" target="_blank">Bandcamp</a>
+<a aria-label="VocaDB" href="https://vocadb.net/Ar/125269" rel="noopener" target="_blank">VocaDB</a>
+<a aria-label="Last.fm" href="https://last.fm/user/HuxP" rel="noopener" target="_blank">Last.fm</a>
+</div></div></footer>
+<!-- jQuery -->
+<script crossorigin="anonymous" defer="" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- JS: Last.fm widget -->
+<script defer="">
     const API_KEY = "9c8820e53700da319f46516475a119db";
     const USERNAME = "HuxP";
 
