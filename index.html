@@ -239,15 +239,33 @@ main{ padding-top: clamp(.5rem, 2vw, 1rem); }
 
 /* Typography improvements */
 p{ line-height:1.65; }
+
+
+/* Force Biography heading and text to black for consistency */
+.bio h1{ color: var(--ink) !important; }
+.bio, .bio p, .bio .caption{ color: var(--ink) !important; }
+
+
+/* Global: hero headings to black */
+.hero-title{ color: var(--ink) !important; }
+
+/* Masthead logo section */
+.masthead{
+  display:flex; align-items:center; justify-content:center;
+  padding: clamp(1rem, 5vw, 2.5rem) 0 .25rem;
+}
+.masthead img{
+  height: clamp(56px, 8vw, 96px); width:auto;
+}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<main id="main">
+<main id="main"><section aria-label="Site masthead" class="masthead"><img alt="HuxP logo" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/></section>
 <!-- Right: Content -->
 <section aria-label="About and activity" class="content-column">
 <article class="card bio">
-<div class="logo-inline"><img alt="HuxP logo inline" decoding="async" src="HuxP Logo.svg"/></div><h1>Biography</h1>
+<h1>Biography</h1>
 <div class="bio-flex">
 <img alt="HayBombYT (left) and HuxP (right)" decoding="async" loading="lazy" src="https://lastfm.freetls.fastly.net/i/u/770x0/288ad6d9411a4353167f12326a2f7d3b.jpg#288ad6d9411a4353167f12326a2f7d3b"/>
 <div>
