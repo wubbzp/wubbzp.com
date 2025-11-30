@@ -8,26 +8,28 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400..700&amp;family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&amp;family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- Favicons / PWA -->
 <link href="/favicon-32x32.png?v=7" rel="icon" sizes="32x32" type="image/png"/>
 <link href="/favicon-16x16.png?v=7" rel="icon" sizes="16x16" type="image/png"/>
 <link href="/favicon.ico?v=7" rel="icon" sizes="any"/>
 <link href="/apple-touch-icon.png?v=7" rel="apple-touch-icon"/>
-<link color="#898eca" href="/safari-pinned-tab.svg" rel="mask-icon"/>
-<link href="/site.webmanifest" rel="manifest"/>
-<meta content="#898eca" name="theme-color"/>
-<!-- Social -->
+<link color="#898eca" href="/safari-pinned-tab.svg?v=7" rel="mask-icon"/>
+<link href="/site.webmanifest?v=7" rel="manifest"/>
+<meta content="#15151c" name="msapplication-TileColor"/>
+<meta content="#15151c" name="theme-color"/>
+<!-- Open Graph -->
 <meta content="HuxP" property="og:title"/>
-<meta content="Official site of HuxP, a vocal synth cover producer since 2017." property="og:description"/>
-<meta content="/og-image.png" property="og:image"/>
+<meta content="HuxP Music - Vocal synth covers, albums and UTAU projects." property="og:description"/>
 <meta content="website" property="og:type"/>
+<meta content="https://huxpmusic.com/" property="og:url"/>
+<meta content="https://huxpmusic.com/social-card.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<!-- Performance hints -->
-<link crossorigin="" href="https://ws.audioscrobbler.com" rel="preconnect"/>
-<link crossorigin="" href="https://lastfm.freetls.fastly.net" rel="preconnect"/>
-<link crossorigin="" href="https://upload.wikimedia.org" rel="preconnect"/>
-<link as="image" href="BACKGROUND.png" imagesizes="100vw" imagesrcset="BACKGROUND.png" rel="preload"/>
+<meta content="@HuxPMusic" name="twitter:site"/>
+<meta content="@HuxPMusic" name="twitter:creator"/>
+<meta content="HuxP" name="twitter:title"/>
+<meta content="HuxP Music - Vocal synth covers, albums and UTAU projects." name="twitter:description"/>
+<meta content="https://huxpmusic.com/social-card.png" name="twitter:image"/>
 <style>
 
 :root{
@@ -108,9 +110,31 @@ main{
   image-rendering:auto;
 }
 
-/* Content */
-.content-column{
+/* Two-column layout */
+.columns{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
   margin-top:10px;
+}
+
+.content-column{
+  margin-top:0;
+}
+
+.content-left{
+  flex:2 1 0;
+}
+
+.content-right{
+  flex:3 1 0;
+}
+
+@media (min-width:900px){
+  .columns{
+    flex-direction:row;
+    align-items:flex-start;
+  }
 }
 
 /* Generic cards */
@@ -120,6 +144,10 @@ main{
   box-shadow:2px 2px 0 #000000;
   padding:10px;
   margin-bottom:10px;
+}
+
+.card:last-child{
+  margin-bottom:0;
 }
 
 .card h1,
@@ -211,6 +239,11 @@ main{
 
 @media (min-width:700px){
   .discography-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media (min-width:1040px){
+  .discography-grid{
     grid-template-columns:repeat(3,1fr);
   }
 }
@@ -249,6 +282,75 @@ main{
 }
 .meta-row{
   margin-bottom:2px;
+}
+
+/* Blinkies and buttons */
+#blinkies.card{
+  padding-bottom:8px;
+}
+
+.blinkies-grid{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:8px;
+}
+
+.blinkies-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  padding:4px;
+  border:1px dotted #000080;
+  border-radius:6px;
+}
+
+.blinkies-row img{
+  display:block;
+  image-rendering:pixelated;
+}
+
+.blinkies-nd{
+  background:#fbe4d5;
+  border-color:#c55a11;
+}
+
+.blinkies-cartoons{
+  background:#fffbe0;
+  border-color:#d4b000;
+}
+
+.blinkies-games{
+  background:#e0f3ff;
+  border-color:#2e75b5;
+}
+
+.blinkies-nature{
+  background:#e2f6e2;
+  border-color:#548235;
+}
+
+.blinkies-romance{
+  background:#ffe6f4;
+  border-color:#c0006f;
+}
+
+.blinkies-music{
+  background:#e5e5ff;
+  border-color:#5b9bd5;
+}
+
+.button-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-top:4px;
+  justify-content:flex-start;
+}
+
+.button-strip img{
+  display:block;
+  image-rendering:pixelated;
 }
 
 /* Footer */
@@ -302,77 +404,17 @@ a:visited{
 a:hover{
   text-decoration:underline;
 }
-
-/* Blinkies and buttons */
-.blinkies-grid{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  margin-bottom:6px;
-}
-
-.blinkies-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px;
-  padding:4px;
-  border:1px dotted #000080;
-}
-
-.blinkies-row img{
-  display:block;
-  image-rendering:pixelated;
-}
-
-.blinkies-nd{
-  background:#fbe4d5;
-  border-color:#c55a11;
-}
-
-.blinkies-cartoons{
-  background:#fffbe0;
-  border-color:#d4b000;
-}
-
-.blinkies-games{
-  background:#e0f3ff;
-  border-color:#2e75b5;
-}
-
-.blinkies-nature{
-  background:#e2f6e2;
-  border-color:#548235;
-}
-
-.blinkies-romance{
-  background:#ffe6f4;
-  border-color:#c0006f;
-}
-
-.blinkies-music{
-  background:#e5e5ff;
-  border-color:#5b9bd5;
-}
-
-.button-strip{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px;
-  margin-top:6px;
-}
-
-.button-strip img{
-  display:block;
-  image-rendering:pixelated;
-}
-
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<main id="main"><section aria-label="Site masthead" class="masthead"><img alt="HuxP logo" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/></section>
-<!-- Right: Content -->
-<section aria-label="About and activity" class="content-column">
+<a class="skip-link" href="#content">Skip to main content</a>
+<main id="main"><section aria-label="Site masthead" class="masthead">
+<picture>
+<source srcset="HuxP Logo.svg" type="image/svg+xml"/>
+<img alt="HuxP" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/></picture>
+</section>
+<div class="columns">
+<section aria-label="About and activity" class="content-column content-left">
 
 <article class="card bio">
   <h1>Biography</h1>
@@ -396,96 +438,222 @@ a:hover{
           【式大元・Shiki Taigen】 「pip puppet / ピプパペット」 【UTAUカバー】
         </p>
 </section>
-<!-- Project Buttons -->
-<!-- Last.fm: Currently Listening -->
-<section class="card" id="discography"><h2 class="hero-title">Discography</h2><p class="discography-intro">This summary follows the releases listed on the <a href="https://huxp.wiki/wiki/HuxP" rel="noopener" target="_blank">HuxP Wiki discography table</a>: three main studio cover albums (<em>Vocarips</em>, <em>Vocadiva</em> and <em>Miku + Michelle</em>) and compilation albums.</p><div class="discography-grid"><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">Vocarips</a></h3><div class="subtitle">cover and remix album</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank"><img alt="Vocarips - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28original_cover%29.png"/></a><a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank"><img alt="Vocarips - Original edition (Re-release)" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28re-release_cover%29.png"/></a><a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank"><img alt="Vocarips - Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28deluxe_cover%29.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> September 14, 2023</div><div class="meta-row"><strong>Tracks:</strong> 8 / 10</div><a class="album-cta" href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">Vocadiva</a></h3><div class="subtitle">cover album</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank"><img alt="Vocadiva - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocadiva.png"/></a><a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank"><img alt="Vocadiva - Remastered edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocadiva_%28Remastered%29.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> Original: January 17, 2024<br/>Remastered: October 16, 2024</div><div class="meta-row"><strong>Tracks:</strong> 10</div><a class="album-cta" href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">Miku + Michelle</a></h3><div class="subtitle">cover album</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank"><img alt="Miku + Michelle - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle.png"/></a><a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank"><img alt="Miku + Michelle - Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle_%28Deluxe%29.png"/></a><a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank"><img alt="Miku + Michelle - Super Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle_%28Super_Deluxe%29.jpg"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> Original: April 5, 2024<br/>Deluxe: April 5, 2025<br/>Super Deluxe: June 16, 2025</div><div class="meta-row"><strong>Tracks:</strong> 16 / 28 / 32</div><a class="album-cta" href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">Shiki Taigen Cover Collection, Vol. 1</a></h3><div class="subtitle">compilation</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank"><img alt="Shiki Taigen Cover Collection, Vol. 1 - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._1.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> December 25, 2024</div><div class="meta-row"><strong>Tracks:</strong> 11</div><a class="album-cta" href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">Vocarips + Vocadiva</a></h3><div class="subtitle">compilation</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank"><img alt="Vocarips + Vocadiva - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%2B_Vocadiva.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> April 23, 2025</div><div class="meta-row"><strong>Tracks:</strong> 18</div><a class="album-cta" href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">View album page</a></div></article><article class="album-card"><h3><a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">Shiki Taigen Cover Collection, Vol. 2</a></h3><div class="subtitle">compilation</div><div class="cover-strip"><a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank"><img alt="Shiki Taigen Cover Collection, Vol. 2 - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._2.png"/></a></div><div class="meta"><div class="meta-row"><strong>Released:</strong> July 22, 2025</div><div class="meta-row"><strong>Tracks:</strong> 16</div><a class="album-cta" href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">View album page</a></div></article></div></section></section>
-</main>
 
 <section class="card" id="blinkies">
   <h2>Blinkies and buttons</h2>
   <div class="blinkies-grid">
 
     <div class="blinkies-row blinkies-nd">
-      <img src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif" alt="ADHD">
-      <img src="https://adriansblinkiecollection.neocities.org/n3.gif" alt="Autistic">
-      <img src="https://adriansblinkiecollection.neocities.org/g44.gif" alt="FUCK AI ART">
-      <img src="https://adriansblinkiecollection.neocities.org/m5.gif" alt="Save the Dragons">
-      <img src="https://adriansblinkiecollection.neocities.org/44.gif" alt="Do what makes you happy">
+      <img src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif" alt="ADHD"/>
+      <img src="https://adriansblinkiecollection.neocities.org/n3.gif" alt="Autistic"/>
+      <img src="https://adriansblinkiecollection.neocities.org/g44.gif" alt="FUCK AI ART"/>
+      <img src="https://adriansblinkiecollection.neocities.org/m5.gif" alt="Save the Dragons"/>
+      <img src="https://adriansblinkiecollection.neocities.org/44.gif" alt="Do what makes you happy"/>
     </div>
 
     <div class="blinkies-row blinkies-cartoons">
-      <img src="https://adriansblinkiecollection.neocities.org/c39.gif" alt="Pinkie Pie Smile Smile Smile">
-      <img src="https://adriansblinkiecollection.neocities.org/s12.gif" alt="SpongeBob SquarePants">
-      <img src="https://adriansblinkiecollection.neocities.org/z41.gif" alt="Smiling Friends Charlie">
+      <img src="https://adriansblinkiecollection.neocities.org/c39.gif" alt="Pinkie Pie Smile Smile Smile"/>
+      <img src="https://adriansblinkiecollection.neocities.org/s12.gif" alt="SpongeBob SquarePants"/>
+      <img src="https://adriansblinkiecollection.neocities.org/z41.gif" alt="Smiling Friends Charlie"/>
     </div>
 
     <div class="blinkies-row blinkies-games">
-      <img src="https://adriansblinkiecollection.neocities.org/d1.gif" alt="Animal Jam Classic">
-      <img src="https://adriansblinkiecollection.neocities.org/e93.gif" alt="I love my 3DS">
-      <img src="https://adriansblinkiecollection.neocities.org/i6.gif" alt="Portal 2 Spaaaaace">
-      <img src="https://adriansblinkiecollection.neocities.org/i5.gif" alt="Portal the cake is a lie">
-      <img src="https://adriansblinkiecollection.neocities.org/x37.gif" alt="I love UTAU">
+      <img src="https://adriansblinkiecollection.neocities.org/d1.gif" alt="Animal Jam Classic"/>
+      <img src="https://adriansblinkiecollection.neocities.org/e93.gif" alt="I love my 3DS"/>
+      <img src="https://adriansblinkiecollection.neocities.org/i6.gif" alt="Portal 2 Spaaaaace"/>
+      <img src="https://adriansblinkiecollection.neocities.org/i5.gif" alt="Portal the cake is a lie"/>
+      <img src="https://adriansblinkiecollection.neocities.org/x37.gif" alt="I love UTAU"/>
     </div>
 
     <div class="blinkies-row blinkies-nature">
-      <img src="https://adriansblinkiecollection.neocities.org/d72.gif" alt="iNaturalist fiend">
-      <img src="https://adriansblinkiecollection.neocities.org/e115.gif" alt="I love the sea">
-      <img src="https://adriansblinkiecollection.neocities.org/e100.gif" alt="I love winter">
-      <img src="https://adriansblinkiecollection.neocities.org/v37.gif" alt="Underwater creatures">
-      <img src="https://adriansblinkiecollection.neocities.org/g42.gif" alt="Daisies">
+      <img src="https://adriansblinkiecollection.neocities.org/d72.gif" alt="iNaturalist fiend"/>
+      <img src="https://adriansblinkiecollection.neocities.org/e115.gif" alt="I love the sea"/>
+      <img src="https://adriansblinkiecollection.neocities.org/e100.gif" alt="I love winter"/>
+      <img src="https://adriansblinkiecollection.neocities.org/v37.gif" alt="Underwater creatures"/>
+      <img src="https://adriansblinkiecollection.neocities.org/g42.gif" alt="Daisies"/>
     </div>
 
     <div class="blinkies-row blinkies-romance">
-      <img src="https://adriansblinkiecollection.neocities.org/v14.gif" alt="Werewolf kisser">
-      <img src="https://adriansblinkiecollection.neocities.org/v71.gif" alt="Hearts boys">
-      <img src="https://adriansblinkiecollection.neocities.org/g65.gif" alt="I love guys in sweaters">
+      <img src="https://adriansblinkiecollection.neocities.org/v14.gif" alt="Werewolf kisser"/>
+      <img src="https://adriansblinkiecollection.neocities.org/v71.gif" alt="Hearts boys"/>
+      <img src="https://adriansblinkiecollection.neocities.org/g65.gif" alt="I love guys in sweaters"/>
     </div>
 
     <div class="blinkies-row blinkies-music">
-      <img src="https://adriansblinkiecollection.neocities.org/d30.gif" alt="TMBG Flood">
-      <img src="https://adriansblinkiecollection.neocities.org/e10.gif" alt="They Might Be Giants">
-      <img src="https://adriansblinkiecollection.neocities.org/e17.gif" alt="TMBG Lincoln">
-      <img src="https://adriansblinkiecollection.neocities.org/g16.gif" alt="Ween GodWeenSatan">
-      <img src="https://adriansblinkiecollection.neocities.org/e42.gif" alt="Ween">
-      <img src="https://adriansblinkiecollection.neocities.org/e43.gif" alt="Ween Ocean Man">
-      <img src="https://adriansblinkiecollection.neocities.org/h11.gif" alt="TMBG Apollo 18">
-      <img src="https://adriansblinkiecollection.neocities.org/s6.gif" alt="TMBG I Like Fun">
-      <img src="https://adriansblinkiecollection.neocities.org/u2.gif" alt="TMBG Here Comes Science">
-      <img src="https://adriansblinkiecollection.neocities.org/x18.gif" alt="TMBG Join Us">
-      <img src="https://adriansblinkiecollection.neocities.org/x27.gif" alt="Remember That I Love You">
-      <img src="https://adriansblinkiecollection.neocities.org/x31.gif" alt="Music is my thing">
-      <img src="https://adriansblinkiecollection.neocities.org/e116.gif" alt="Miku fan">
+      <img src="https://adriansblinkiecollection.neocities.org/d30.gif" alt="TMBG Flood"/>
+      <img src="https://adriansblinkiecollection.neocities.org/e10.gif" alt="They Might Be Giants"/>
+      <img src="https://adriansblinkiecollection.neocities.org/e17.gif" alt="TMBG Lincoln"/>
+      <img src="https://adriansblinkiecollection.neocities.org/g16.gif" alt="Ween GodWeenSatan"/>
+      <img src="https://adriansblinkiecollection.neocities.org/e42.gif" alt="Ween"/>
+      <img src="https://adriansblinkiecollection.neocities.org/e43.gif" alt="Ween Ocean Man"/>
+      <img src="https://adriansblinkiecollection.neocities.org/h11.gif" alt="TMBG Apollo 18"/>
+      <img src="https://adriansblinkiecollection.neocities.org/s6.gif" alt="TMBG I Like Fun"/>
+      <img src="https://adriansblinkiecollection.neocities.org/u2.gif" alt="TMBG Here Comes Science"/>
+      <img src="https://adriansblinkiecollection.neocities.org/x18.gif" alt="TMBG Join Us"/>
+      <img src="https://adriansblinkiecollection.neocities.org/x27.gif" alt="Remember That I Love You"/>
+      <img src="https://adriansblinkiecollection.neocities.org/x31.gif" alt="Music is my thing"/>
+      <img src="https://adriansblinkiecollection.neocities.org/e116.gif" alt="Miku fan"/>
     </div>
 
   </div>
 
   <div class="button-strip">
-    <img src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif" alt="Firefox now">
-    <img src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif" alt="Old man yaoi now">
+    <img src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif" alt="Firefox now"/>
+    <img src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif" alt="Old man yaoi now"/>
     <a href="https://archive.org/details/@huxp" rel="noopener" target="_blank">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history">
+      <img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history"/>
     </a>
-    <img src="https://adriansblinkiecollection.neocities.org/buttons/c2.png" alt="I hate Squarespace">
-    <img src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif" alt="Team Fortress now">
+    <img src="https://adriansblinkiecollection.neocities.org/buttons/c2.png" alt="I hate Squarespace"/>
+    <img src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif" alt="Team Fortress now"/>
   </div>
 </section>
-
-
-<footer class="site-footer" role="contentinfo">
-<div class="footer-inner"><div>
-      HuxP © 2025<br/>
-<a href="mailto:huxpmusic@gmail.com">huxpmusic@gmail.com</a>
-</div><div aria-label="Social links" class="social-icons">
-<a aria-label="YouTube" href="https://youtube.com/@huxpmusic" rel="noopener" target="_blank">YouTube</a>
-<a aria-label="Twitter" href="https://twitter.com/huxpmusic" rel="noopener" target="_blank">Twitter</a>
-<a aria-label="Instagram" href="https://instagram.com/huxpmusic" rel="noopener" target="_blank">Instagram</a>
-<a aria-label="Bandcamp" href="https://miku.bandcamp.com/" rel="noopener" target="_blank">Bandcamp</a>
-<a aria-label="VocaDB" href="https://vocadb.net/Ar/125269" rel="noopener" target="_blank">VocaDB</a>
-<a aria-label="Last.fm" href="https://last.fm/user/HuxP" rel="noopener" target="_blank">Last.fm</a>
-</div></div></footer>
-<!-- jQuery -->
-<script crossorigin="anonymous" defer="" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<!-- JS: Last.fm widget -->
-
+</section>
+<section class="content-column content-right">
+<section class="card" id="discography"><h2 class="hero-title">Discography</h2><p class="discography-intro">This summary follows the releases listed on the <a href="https://huxp.wiki/wiki/HuxP" rel="noopener" target="_blank">HuxP Wiki discography table</a>: three main studio cover albums (<em>Vocarips</em>, <em>Vocadiva</em> and <em>Miku + Michelle</em>) and compilation albums.</p><div class="discography-grid"><article class="album-card">
+<h3>
+<a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">Vocarips</a>
+</h3>
+<div class="subtitle">cover and remix album</div>
+<div class="cover-strip">
+<a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">
+<img alt="Vocarips - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28original_cover%29.png"/>
+</a>
+<a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">
+<img alt="Vocarips - Original edition (Re-release)" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28re-release_cover%29.png"/>
+</a>
+<a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">
+<img alt="Vocarips - Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28deluxe_cover%29.png"/>
+</a>
+</div>
+<div class="meta">
+<div class="meta-row">
+<strong>Released:</strong> September 14, 2023</div>
+<div class="meta-row">
+<strong>Tracks:</strong> 8 / 10</div>
+<a class="album-cta" href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">View album page</a>
+</div>
+</article>
+<article class="album-card">
+<h3>
+<a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">Vocadiva</a>
+</h3>
+<div class="subtitle">cover album</div>
+<div class="cover-strip">
+<a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">
+<img alt="Vocadiva - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocadiva.png"/>
+</a>
+<a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">
+<img alt="Vocadiva - Remastered edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocadiva_%28Remastered%29.png"/>
+</a>
+</div>
+<div class="meta">
+<div class="meta-row">
+<strong>Released:</strong> Original: January 17, 2024<br/>Remastered: October 16, 2024</div>
+<div class="meta-row">
+<strong>Tracks:</strong> 10</div>
+<a class="album-cta" href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">View album page</a>
+</div>
+</article>
+<article class="album-card">
+<h3>
+<a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">Miku + Michelle</a>
+</h3>
+<div class="subtitle">cover album</div>
+<div class="cover-strip">
+<a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">
+<img alt="Miku + Michelle - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle.png"/>
+</a>
+<a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">
+<img alt="Miku + Michelle - Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle_%28Deluxe%29.png"/>
+</a>
+<a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">
+<img alt="Miku + Michelle - Super Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle_%28Super_Deluxe%29.jpg"/>
+</a>
+</div>
+<div class="meta">
+<div class="meta-row">
+<strong>Released:</strong> November 22, 2024</div>
+<div class="meta-row">
+<strong>Tracks:</strong> 13 / 15 / 18</div>
+<a class="album-cta" href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">View album page</a>
+</div>
+</article>
+<article class="album-card">
+<h3>
+<a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">Shiki Taigen Cover Collection, Vol. 1</a>
+</h3>
+<div class="subtitle">compilation</div>
+<div class="cover-strip">
+<a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">
+<img alt="Shiki Taigen Cover Collection, Vol. 1 - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._1.png"/>
+</a>
+</div>
+<div class="meta">
+<div class="meta-row">
+<strong>Released:</strong> December 25, 2024</div>
+<div class="meta-row">
+<strong>Tracks:</strong> 11</div>
+<a class="album-cta" href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">View album page</a>
+</div>
+</article>
+<article class="album-card">
+<h3>
+<a href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">Vocarips + Vocadiva</a>
+</h3>
+<div class="subtitle">compilation</div>
+<div class="cover-strip">
+<a href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">
+<img alt="Vocarips + Vocadiva - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%2B_Vocadiva.png"/>
+</a>
+</div>
+<div class="meta">
+<div class="meta-row">
+<strong>Released:</strong> April 23, 2025</div>
+<div class="meta-row">
+<strong>Tracks:</strong> 18</div>
+<a class="album-cta" href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">View album page</a>
+</div>
+</article>
+<article class="album-card">
+<h3>
+<a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">Shiki Taigen Cover Collection, Vol. 2</a>
+</h3>
+<div class="subtitle">compilation</div>
+<div class="cover-strip">
+<a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">
+<img alt="Shiki Taigen Cover Collection, Vol. 2 - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._2.png"/>
+</a>
+</div>
+<div class="meta">
+<div class="meta-row">
+<strong>Released:</strong> July 22, 2025</div>
+<div class="meta-row">
+<strong>Tracks:</strong> 16</div>
+<a class="album-cta" href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">View album page</a>
+</div>
+</article>
+</div>
+</section>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div>
+<div>© <span id="year">2025</span> HuxP.</div>
+<div class="sub">All trademarks mentioned on this site are property of their respective owners.</div>
+</div>
+<div class="social-icons">
+<a href="mailto:hello@huxpmusic.com" rel="me">Email</a>
+<a href="https://huxp.wiki/wiki/HuxP" rel="me">Wiki</a>
+<a href="https://github.com/huxpmusic" rel="me">GitHub</a>
+<a href="https://www.youtube.com/@HuxPMusic" rel="me">YouTube</a>
+<a href="https://x.com/HuxPMusic" rel="me">X</a>
+</div>
+</div>
+</footer>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
