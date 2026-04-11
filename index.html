@@ -16,7 +16,7 @@
 <meta content="#15151c" name="msapplication-TileColor"/>
 <meta content="#15151c" name="theme-color"/>
 <meta content="HuxP" property="og:title"/>
-<meta content="Vocal synth covers and UTAU projects." property="og:description"/>
+<meta content="Vocal synth covers, archive projects, and iWubbzy." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://huxpmusic.com/" property="og:url"/>
 <meta content="https://huxpmusic.com/social-card.png" property="og:image"/>
@@ -24,7 +24,7 @@
 <meta content="@HuxPMusic" name="twitter:site"/>
 <meta content="@HuxPMusic" name="twitter:creator"/>
 <meta content="HuxP" name="twitter:title"/>
-<meta content="Vocal synth covers and UTAU projects." name="twitter:description"/>
+<meta content="Vocal synth covers, archive projects, and iWubbzy." name="twitter:description"/>
 <meta content="https://huxpmusic.com/social-card.png" name="twitter:image"/>
 <style>
 :root{
@@ -93,7 +93,7 @@ main{
   text-shadow:1px 1px 0 #000000;
 }
 .card h1{font-size:18px;}
-.bio p{margin:6px 0;line-height:1.45;font-size:13px;}
+.bio p,.card p{margin:6px 0;line-height:1.45;font-size:13px;}
 .caption{font-size:11px;color:var(--ink-muted);}
 .video-frame{
   width:100%;
@@ -101,6 +101,34 @@ main{
   border:1px inset #808080;
 }
 .video-frame iframe{width:100%;height:100%;border:0;}
+.bandcamp-embed{margin-top:10px;}
+.section-media{
+  display:block;
+  max-width:100%;
+  height:auto;
+  margin:8px auto;
+  border:1px solid #000080;
+}
+.link-list{
+  margin:8px 0 0;
+  padding-left:18px;
+}
+.link-list li{
+  margin:4px 0;
+  font-size:13px;
+}
+.discord-box{
+  margin-top:8px;
+  padding:8px;
+  background:#f3f0ff;
+  border:1px solid #000080;
+}
+.lastfm-box{
+  margin-top:8px;
+  padding:8px;
+  background:#fafafa;
+  border:1px dashed #000080;
+}
 #blinkies.card{padding-bottom:8px;}
 .blinkies-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
 .blinkies-row{
@@ -163,16 +191,49 @@ a:hover{text-decoration:underline;}
   <div class="stack">
     <article class="card bio">
       <h1>Biography</h1>
-      <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is an American vocal synth cover artist and producer. Active with VOCALOID since 2017, he began releasing covers under the HuxP name in 2023.</p>
-      <p>His work focuses on J-POP, pop, and rock, with releases built around Hatsune Miku, Shiki Taigen, and other vocal synths. New videos and projects continue through <strong>HuxP Music</strong>.</p>
+      <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is an American vocal synth cover artist, producer, webmaster, and digital creative. He has been active with vocal synth software since 2017 and began publicly releasing covers under the HuxP name in 2023.</p>
+      <p>His music work centers on VOCALOID and UTAU, especially projects featuring Hatsune Miku and Shiki Taigen. Across his covers, videos, and independent releases, HuxP focuses on J-POP, pop, rock, and internet-era music culture, with an emphasis on presentation, archiving, and clean metadata.</p>
+      <p>Outside of music, he also builds fan and personal web projects, maintains online archives, and works across art, design, and site development. HuxP Music serves as the home for current releases, videos, and related projects.</p>
     </article>
 
     <section aria-labelledby="video-spotlight-heading" class="card video" id="video-spotlight">
-      <h2 id="video-spotlight-heading">Video Spotlight</h2>
+      <h2 id="video-spotlight-heading">New Release!</h2>
       <div class="video-frame" style="aspect-ratio:16/9; position:relative; overflow:hidden;">
-        <iframe src="https://www.youtube.com/embed/0sBtbHpmukU" title="【Shiki Taigen】 pip puppet / ピプパペット UTAU cover" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/2l5WXp_nirw" title="【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <p style="padding:.75rem 1rem 0; margin:0;">【式大元・Shiki Taigen】 「pip puppet / ピプパペット」 【UTAUカバー】</p>
+      <p style="padding:.75rem 1rem 0; margin:0;">【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】</p>
+      <p style="padding:0 1rem; margin:6px 0 0;"><a href="https://youtu.be/2l5WXp_nirw" rel="noopener" target="_blank">Watch on YouTube</a></p>
+      <div class="bandcamp-embed">
+        <iframe style="border:0; width:100%; height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=3417567890/size=large/bgcol=ffffff/linkcol=63b2cc/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://miku.bandcamp.com/track/love-is-all-around">Love Is All Around by HuxP</a></iframe>
+      </div>
+    </section>
+
+    <section class="card" id="iwubbzy">
+      <h2>iWubbzy</h2>
+      <p><a href="https://iwubbzy.com" rel="noopener" target="_blank">iWubbzy.com</a> is my fan archive and preservation project centered on <em>Wow! Wow! Wubbzy!</em>. The site is focused on collecting and organizing media, music, game material, and related information in one place.</p>
+      <img class="section-media" src="https://c.tenor.com/YsddRDZqVZwAAAAC/tenor.gif" alt="Animated Wow! Wow! Wubbzy! GIF"/>
+      <div class="discord-box">
+        <strong>Discord:</strong> <a href="https://discord.gg/wubbzy" rel="noopener" target="_blank">iWubbzy Central</a><br/>
+        A shared server for both iWubbzy and HuxP related updates and community discussion.
+      </div>
+    </section>
+
+    <section class="card" id="youtube-channels">
+      <h2>YouTube Channels</h2>
+      <ul class="link-list">
+        <li><a href="https://www.youtube.com/@WowWowMitchy" rel="noopener" target="_blank">Wow! Wow! Mitchy!</a> - my second channel</li>
+        <li><a href="https://www.youtube.com/@mitch-archive" rel="noopener" target="_blank">Mitch's Archive</a> - my archival channel</li>
+        <li><a href="https://www.youtube.com/@iWubbzy" rel="noopener" target="_blank">iWubbzy</a></li>
+      </ul>
+    </section>
+
+    <section class="card" id="lastfm">
+      <h2>Now Playing on Last.fm</h2>
+      <p>Live scrobble activity from my Last.fm profile.</p>
+      <div class="lastfm-box">
+        <script src="https://recentfm.rknight.me/now.js?u=HuxP"></script>
+        <noscript><a href="https://www.last.fm/user/HuxP" rel="noopener" target="_blank">View HuxP on Last.fm</a></noscript>
+      </div>
     </section>
 
     <section class="card" id="blinkies">
@@ -254,6 +315,7 @@ a:hover{text-decoration:underline;}
       <a href="https://github.com/HuxPMusic" rel="me">GitHub</a>
       <a href="https://youtube.com/@HuxPMusic" rel="me">YouTube</a>
       <a href="https://twitter.com/HuxPMusic" rel="me">Twitter</a>
+      <a href="https://discord.gg/wubbzy" rel="me">Discord</a>
     </div>
   </div>
 </footer>
