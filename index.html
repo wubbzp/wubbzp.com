@@ -13,8 +13,8 @@
 <link href="/apple-touch-icon.png?v=7" rel="apple-touch-icon"/>
 <link color="#898eca" href="/safari-pinned-tab.svg?v=7" rel="mask-icon"/>
 <link href="/site.webmanifest?v=7" rel="manifest"/>
-<meta content="#15151c" name="msapplication-TileColor"/>
-<meta content="#15151c" name="theme-color"/>
+<meta content="#1a1730" name="msapplication-TileColor"/>
+<meta content="#1a1730" name="theme-color"/>
 <meta content="HuxP" property="og:title"/>
 <meta content="Vocal synth covers, archive projects, and iWubbzy." property="og:description"/>
 <meta content="website" property="og:type"/>
@@ -28,297 +28,501 @@
 <meta content="https://huxpmusic.com/social-card.png" name="twitter:image"/>
 <style>
 :root{
-  --bg-main:#002b36;
-  --bg-pane:#ffffff;
-  --bg-pane-alt:#f5f5ff;
-  --border-pane:#000080;
-  --ink-main:#000000;
-  --ink-muted:#333333;
-  --link:#0000ee;
-  --link-visited:#551a8b;
+  --bg:#1a1730;
+  --bg-panel:#f8f4ff;
+  --bg-panel-soft:#fffaff;
+  --bg-accent:#efe7ff;
+  --bg-accent-2:#e8f8ff;
+  --border:#5d4ea1;
+  --border-strong:#30255f;
+  --ink:#1d1730;
+  --ink-soft:#51486b;
+  --link:#5140b4;
+  --link-hover:#7c2db6;
+  --shadow:0 10px 24px rgba(21,16,48,.18);
+  --radius:20px;
 }
 *,*::before,*::after{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
 body{
   min-height:100vh;
   font-family:"Verdana","Geneva",system-ui,-apple-system,sans-serif;
-  color:var(--ink-main);
-  background-color:#001f33;
-  background-image:url("BACKGROUND.png");
-  background-repeat:repeat;
-  background-attachment:fixed;
-  image-rendering:pixelated;
+  color:var(--ink);
+  background:
+    linear-gradient(rgba(26,23,48,.78),rgba(26,23,48,.78)),
+    url("BACKGROUND.png") repeat;
 }
+img{max-width:100%;height:auto;display:block;}
+a{color:var(--link);}
+a:hover{color:var(--link-hover);}
+a:visited{color:var(--link);}
 .skip-link{
   position:absolute;
   left:-9999px;
   top:0;
-  padding:4px 8px;
-  background:#ffff00;
+  padding:6px 10px;
+  background:#fff;
   color:#000;
   font-weight:bold;
-  text-decoration:none;
-  z-index:1000;
+  z-index:999;
 }
-.skip-link:focus{left:8px;top:8px;}
-main{
-  max-width:980px;
-  margin:12px auto;
-  padding:10px;
-  background:var(--bg-pane-alt);
-  border:3px solid #000080;
-  box-shadow:4px 4px 0 #000000;
+.skip-link:focus{left:10px;top:10px;}
+.page{
+  width:min(1160px,calc(100% - 24px));
+  margin:14px auto;
+  padding:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.18));
+  border:2px solid rgba(255,255,255,.32);
+  border-radius:28px;
+  backdrop-filter:blur(4px);
 }
 .masthead{
-  text-align:center;
-  padding:8px 0 14px;
-  border-bottom:2px solid #000080;
-  background:linear-gradient(to bottom,#000080,#4b0082);
+  background:linear-gradient(135deg,#2c2457 0%,#47338c 52%,#6a56d4 100%);
+  border:2px solid var(--border-strong);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:20px 18px 18px;
+  margin-bottom:12px;
 }
-.masthead img{max-width:260px;height:auto;image-rendering:auto;}
-.stack{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+.masthead-inner{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.masthead-logo img{
+  max-width:290px;
+  margin:0 auto;
+}
+.masthead-copy{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:18px;
+  padding:12px 14px;
+  color:#fff;
+}
+.masthead-copy p{
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+}
+.quick-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+.quick-links a{
+  text-decoration:none;
+  padding:7px 12px;
+  border-radius:999px;
+  background:#fff;
+  color:#312762;
+  border:1px solid rgba(48,37,95,.22);
+  font-size:12px;
+  font-weight:bold;
+}
+.dashboard{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
 .card{
-  background:#ffffff;
-  border:2px solid var(--border-pane);
-  box-shadow:2px 2px 0 #000000;
-  padding:10px;
+  background:linear-gradient(180deg,var(--bg-panel-soft),var(--bg-panel));
+  border:2px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
 }
-.card h1,.card h2{
+.card-header{
+  padding:11px 14px;
+  background:linear-gradient(90deg,#6958c7,#8a75e8 70%,#b8aef7);
+  color:#fff;
+  border-bottom:2px solid var(--border);
+}
+.card-header h1,.card-header h2{
+  margin:0;
+  font-family:"Fredoka","Nunito",sans-serif;
+  font-size:20px;
+  font-weight:700;
+}
+.card-body{
+  padding:14px;
+}
+.card-body p{
+  margin:0 0 10px;
+  font-size:13px;
+  line-height:1.6;
+}
+.card-body p:last-child{margin-bottom:0;}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+.bio-intro{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+.mini-panel{
+  background:var(--bg-accent);
+  border:1px solid #c8bbf0;
+  border-radius:16px;
+  padding:10px 12px;
+}
+.mini-panel h3{
   margin:0 0 6px;
-  padding:3px 6px;
-  font-size:16px;
-  background:linear-gradient(to right,#000080,#4b0082);
-  color:#ffffff;
-  border:1px solid #000000;
-  text-shadow:1px 1px 0 #000000;
+  font-size:13px;
+  font-family:"Fredoka","Nunito",sans-serif;
 }
-.card h1{font-size:18px;}
-.bio p,.card p{margin:6px 0;line-height:1.45;font-size:13px;}
-.caption{font-size:11px;color:var(--ink-muted);}
-.video-frame{
-  width:100%;
-  background:#000000;
-  border:1px inset #808080;
-}
-.video-frame iframe{width:100%;height:100%;border:0;}
-.bandcamp-embed{margin-top:10px;}
-.section-media{
-  display:block;
-  max-width:100%;
-  height:auto;
-  margin:8px auto;
-  border:1px solid #000080;
-}
-.link-list{
-  margin:8px 0 0;
+.mini-panel ul{
+  margin:0;
   padding-left:18px;
 }
-.link-list li{
+.mini-panel li{
   margin:4px 0;
   font-size:13px;
 }
-.discord-box{
-  margin-top:8px;
-  padding:8px;
-  background:#f3f0ff;
-  border:1px solid #000080;
+.video-frame{
+  width:100%;
+  border:2px solid #2f265d;
+  border-radius:16px;
+  overflow:hidden;
+  background:#000;
+}
+.video-frame iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+.release-title{
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+.meta-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:10px;
+}
+.meta-chip{
+  padding:6px 10px;
+  border-radius:999px;
+  background:#efeaff;
+  border:1px solid #cabff4;
+  font-size:12px;
+}
+.bandcamp-embed{
+  margin-top:10px;
+}
+.section-media{
+  border:2px solid var(--border);
+  border-radius:16px;
+  margin-top:10px;
+}
+.section-split{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+.link-list{
+  margin:0;
+  padding-left:18px;
+}
+.link-list li{
+  margin:6px 0;
+  font-size:13px;
+}
+.note-box{
+  background:var(--bg-accent);
+  border:1px solid #c8bbf0;
+  border-radius:16px;
+  padding:10px 12px;
+  margin-top:10px;
+  font-size:13px;
+  line-height:1.6;
 }
 .lastfm-box{
-  margin-top:8px;
-  padding:8px;
-  background:#fafafa;
-  border:1px dashed #000080;
+  background:var(--bg-accent-2);
+  border:1px solid #baddeb;
+  border-radius:16px;
+  padding:12px;
 }
-#blinkies.card{padding-bottom:8px;}
-.blinkies-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
+.blinkies-grid{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
 .blinkies-row{
   display:flex;
   flex-wrap:wrap;
   gap:4px;
-  padding:4px;
-  border:1px dotted #000080;
-  border-radius:6px;
+  padding:8px;
+  border-radius:14px;
+  border:1px solid #d5cdee;
 }
-.blinkies-row img{display:block;image-rendering:pixelated;}
-.blinkies-nd{background:#fbe4d5;border-color:#c55a11;}
-.blinkies-cartoons{background:#fffbe0;border-color:#d4b000;}
-.blinkies-games{background:#e0f3ff;border-color:#2e75b5;}
-.blinkies-nature{background:#e2f6e2;border-color:#548235;}
-.blinkies-romance{background:#ffe6f4;border-color:#c0006f;}
-.blinkies-music{background:#e5e5ff;border-color:#5b9bd5;}
-.button-strip{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;justify-content:flex-start;}
-.button-strip img{display:block;image-rendering:pixelated;}
-.site-footer{margin-top:10px;}
+.blinkies-row img{image-rendering:pixelated;}
+.blinkies-nd{background:#fbe4d5;border-color:#d2a07b;}
+.blinkies-cartoons{background:#fff7d9;border-color:#dec86a;}
+.blinkies-games{background:#def4ff;border-color:#8bc2df;}
+.blinkies-nature{background:#e3f7e2;border-color:#8ec48b;}
+.blinkies-romance{background:#ffe8f5;border-color:#d79cbc;}
+.blinkies-music{background:#ebe7ff;border-color:#b9acea;}
+.button-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
+.button-strip img{image-rendering:pixelated;}
+.site-footer{
+  margin-top:12px;
+  padding:10px 14px;
+  background:rgba(19,15,39,.78);
+  border:2px solid rgba(255,255,255,.15);
+  border-radius:20px;
+  color:#fff;
+  box-shadow:var(--shadow);
+}
 .footer-inner{
   display:flex;
   flex-direction:column;
-  gap:6px;
-  padding:6px 8px;
-  background:#00000080;
-  color:#ffffff;
-  font-size:12px;
+  gap:10px;
 }
-.footer-inner a{color:#ffff66;text-decoration:underline;}
-.social-icons{display:flex;flex-wrap:wrap;gap:6px;}
+.footer-inner a{color:#fff1a9;}
+.social-icons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
 .social-icons a{
-  padding:2px 6px;
+  text-decoration:none;
+  padding:6px 10px;
   border-radius:999px;
-  background:#222244;
-  border:1px solid #ffffff80;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
 }
-@media (min-width:640px){
+@media (min-width:760px){
+  .masthead-inner{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    align-items:center;
+  }
+  .hero-grid{
+    grid-template-columns:1.1fr .9fr;
+  }
+  .section-split{
+    grid-template-columns:1fr .92fr;
+  }
   .footer-inner{
     flex-direction:row;
     justify-content:space-between;
     align-items:center;
   }
 }
-a{color:var(--link);} 
-a:visited{color:var(--link-visited);} 
-a:hover{text-decoration:underline;}
+@media (min-width:960px){
+  .dashboard{
+    grid-template-columns:1.08fr .92fr;
+    align-items:start;
+  }
+  .span-2{grid-column:1 / -1;}
+}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#content">Skip to main content</a>
-<main id="content">
-  <section aria-label="Site masthead" class="masthead">
-    <picture>
-      <source srcset="HuxP Logo.svg" type="image/svg+xml"/>
-      <img alt="HuxP" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/>
-    </picture>
-  </section>
-
-  <div class="stack">
-    <article class="card bio">
-      <h1>Biography</h1>
-      <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is an American vocal synth cover artist, producer, webmaster, and digital creative. He has been active with vocal synth software since 2017 and began publicly releasing covers under the HuxP name in 2023.</p>
-      <p>His music work centers on VOCALOID and UTAU, especially projects featuring Hatsune Miku and Shiki Taigen. Across his covers, videos, and independent releases, HuxP focuses on J-POP, pop, rock, and internet-era music culture, with an emphasis on presentation, archiving, and clean metadata.</p>
-      <p>Outside of music, he also builds fan and personal web projects, maintains online archives, and works across art, design, and site development. HuxP Music serves as the home for current releases, videos, and related projects.</p>
-    </article>
-
-    <section aria-labelledby="video-spotlight-heading" class="card video" id="video-spotlight">
-      <h2 id="video-spotlight-heading">New Release!</h2>
-      <div class="video-frame" style="aspect-ratio:16/9; position:relative; overflow:hidden;">
-        <iframe src="https://www.youtube.com/embed/2l5WXp_nirw" title="【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <p style="padding:.75rem 1rem 0; margin:0;">【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】</p>
-      <p style="padding:0 1rem; margin:6px 0 0;"><a href="https://youtu.be/2l5WXp_nirw" rel="noopener" target="_blank">Watch on YouTube</a></p>
-      <div class="bandcamp-embed">
-        <iframe style="border:0; width:100%; height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=3417567890/size=large/bgcol=ffffff/linkcol=63b2cc/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://miku.bandcamp.com/track/love-is-all-around">Love Is All Around by HuxP</a></iframe>
+<div class="page">
+  <main id="content">
+    <section class="masthead" aria-label="Site header">
+      <div class="masthead-inner">
+        <div class="masthead-logo">
+          <picture>
+            <source srcset="HuxP Logo.svg" type="image/svg+xml"/>
+            <img alt="HuxP" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/>
+          </picture>
+        </div>
+        <div class="masthead-copy">
+          <p>Music, archive work, web projects, and everything else that ties it together. This homepage is set up more like a personal hub, with current releases, side projects, and links grouped into one place.</p>
+          <div class="quick-links">
+            <a href="#about">About</a>
+            <a href="#new-release">New Release</a>
+            <a href="#iwubbzy">iWubbzy</a>
+            <a href="#youtube-channels">YouTube</a>
+            <a href="#lastfm">Last.fm</a>
+            <a href="#blinkies">Blinkies</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="card" id="iwubbzy">
-      <h2>iWubbzy</h2>
-      <p><a href="https://iwubbzy.com" rel="noopener" target="_blank">iWubbzy.com</a> is my fan archive and preservation project centered on <em>Wow! Wow! Wubbzy!</em>. The site is focused on collecting and organizing media, music, game material, and related information in one place.</p>
-      <img class="section-media" src="https://c.tenor.com/YsddRDZqVZwAAAAC/tenor.gif" alt="Animated Wow! Wow! Wubbzy! GIF"/>
-      <div class="discord-box">
-        <strong>Discord:</strong> <a href="https://discord.gg/wubbzy" rel="noopener" target="_blank">iWubbzy Central</a><br/>
-        A shared server for both iWubbzy and HuxP related updates and community discussion.
-      </div>
-    </section>
-
-    <section class="card" id="youtube-channels">
-      <h2>YouTube Channels</h2>
-      <ul class="link-list">
-        <li><a href="https://www.youtube.com/@WowWowMitchy" rel="noopener" target="_blank">Wow! Wow! Mitchy!</a> - my second channel</li>
-        <li><a href="https://www.youtube.com/@mitch-archive" rel="noopener" target="_blank">Mitch's Archive</a> - my archival channel</li>
-        <li><a href="https://www.youtube.com/@iWubbzy" rel="noopener" target="_blank">iWubbzy</a></li>
-      </ul>
-    </section>
-
-    <section class="card" id="lastfm">
-      <h2>Now Playing on Last.fm</h2>
-      <p>Live scrobble activity from my Last.fm profile.</p>
-      <div class="lastfm-box">
-        <script src="https://recentfm.rknight.me/now.js?u=HuxP"></script>
-        <noscript><a href="https://www.last.fm/user/HuxP" rel="noopener" target="_blank">View HuxP on Last.fm</a></noscript>
-      </div>
-    </section>
-
-    <section class="card" id="blinkies">
-      <h2>Blinkies and Buttons</h2>
-      <div class="blinkies-grid">
-        <div class="blinkies-row blinkies-nd">
-          <img src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif" alt="ADHD"/>
-          <img src="https://adriansblinkiecollection.neocities.org/n3.gif" alt="Autistic"/>
-          <img src="https://adriansblinkiecollection.neocities.org/g44.gif" alt="FUCK AI ART"/>
-          <img src="https://adriansblinkiecollection.neocities.org/x27.gif" alt="Remember That I Love You"/>
-          <img src="https://adriansblinkiecollection.neocities.org/x31.gif" alt="Music is my thing"/>
-          <img src="https://adriansblinkiecollection.neocities.org/44.gif" alt="Do what makes you happy"/>
-          <img src="https://adriansblinkiecollection.neocities.org/m5.gif" alt="Save the Dragons"/>
+    <div class="dashboard">
+      <section class="card" id="about">
+        <div class="card-header"><h1>Biography</h1></div>
+        <div class="card-body">
+          <div class="bio-intro">
+            <div>
+              <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is an American vocal synth cover artist, producer, webmaster, and digital creative. He has been active with vocal synth software since 2017 and began publicly releasing covers under the HuxP name in 2023.</p>
+              <p>His music work centers on VOCALOID and UTAU, especially projects featuring Hatsune Miku and Shiki Taigen. Across his covers, videos, and independent releases, HuxP focuses on J-POP, pop, rock, and internet-era music culture, with a strong interest in presentation, archiving, and clean metadata.</p>
+              <p>Outside of music, he also builds fan and personal web projects, maintains online archives, and works across art, design, and site development. HuxP Music serves as the main home for current releases, videos, and connected projects.</p>
+            </div>
+            <div class="mini-panel">
+              <h3>At a glance</h3>
+              <ul>
+                <li>Vocal synth covers and UTAU work</li>
+                <li>Archive and preservation projects</li>
+                <li>Personal and fan website development</li>
+                <li>Current community hub: <a href="https://discord.gg/wubbzy" rel="noopener" target="_blank">iWubbzy Central</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="blinkies-row blinkies-cartoons">
-          <img src="https://adriansblinkiecollection.neocities.org/c39.gif" alt="Pinkie Pie Smile Smile Smile"/>
-          <img src="https://adriansblinkiecollection.neocities.org/e116.gif" alt="Miku fan"/>
-          <img src="https://adriansblinkiecollection.neocities.org/s12.gif" alt="SpongeBob SquarePants"/>
-          <img src="https://adriansblinkiecollection.neocities.org/z41.gif" alt="Smiling Friends Charlie"/>
+      <section class="card" id="new-release">
+        <div class="card-header"><h2>New Release!</h2></div>
+        <div class="card-body">
+          <div class="release-title">【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】</div>
+          <div class="meta-row">
+            <span class="meta-chip">Featured video</span>
+            <span class="meta-chip">Bandcamp single included</span>
+          </div>
+          <div class="video-frame" style="aspect-ratio:16/9;">
+            <iframe src="https://www.youtube.com/embed/2l5WXp_nirw" title="【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <p style="margin-top:10px;"><a href="https://youtu.be/2l5WXp_nirw" rel="noopener" target="_blank">Watch on YouTube</a></p>
+          <div class="bandcamp-embed">
+            <iframe style="border:0; width:100%; height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=3417567890/size=large/bgcol=ffffff/linkcol=63b2cc/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://miku.bandcamp.com/track/love-is-all-around">Love Is All Around by HuxP</a></iframe>
+          </div>
         </div>
+      </section>
 
-        <div class="blinkies-row blinkies-games">
-          <img src="https://adriansblinkiecollection.neocities.org/d1.gif" alt="Animal Jam Classic"/>
-          <img src="https://adriansblinkiecollection.neocities.org/e93.gif" alt="I love my 3DS"/>
-          <img src="https://adriansblinkiecollection.neocities.org/i6.gif" alt="Portal 2 Spaaaaace"/>
-          <img src="https://adriansblinkiecollection.neocities.org/i5.gif" alt="Portal the cake is a lie"/>
-          <img src="https://adriansblinkiecollection.neocities.org/x37.gif" alt="I love UTAU"/>
+      <section class="card" id="iwubbzy">
+        <div class="card-header"><h2>iWubbzy</h2></div>
+        <div class="card-body section-split">
+          <div>
+            <p><a href="https://iwubbzy.com" rel="noopener" target="_blank">iWubbzy.com</a> is my fan archive and preservation project centered on <em>Wow! Wow! Wubbzy!</em>. The site is focused on collecting and organizing media, music, game material, and related information in one place.</p>
+            <div class="note-box">
+              <strong>Discord:</strong> <a href="https://discord.gg/wubbzy" rel="noopener" target="_blank">iWubbzy Central</a><br/>
+              A shared server for both iWubbzy and HuxP related updates and community discussion.
+            </div>
+          </div>
+          <div>
+            <img class="section-media" src="https://c.tenor.com/YsddRDZqVZwAAAAC/tenor.gif" alt="Animated Wow! Wow! Wubbzy! GIF"/>
+          </div>
         </div>
+      </section>
 
-        <div class="blinkies-row blinkies-nature">
-          <img src="https://adriansblinkiecollection.neocities.org/d72.gif" alt="iNaturalist fiend"/>
-          <img src="https://adriansblinkiecollection.neocities.org/e115.gif" alt="I love the sea"/>
-          <img src="https://adriansblinkiecollection.neocities.org/e100.gif" alt="I love winter"/>
-          <img src="https://adriansblinkiecollection.neocities.org/v37.gif" alt="Underwater creatures"/>
-          <img src="https://adriansblinkiecollection.neocities.org/g42.gif" alt="Daisies"/>
+      <section class="card" id="youtube-channels">
+        <div class="card-header"><h2>YouTube Channels</h2></div>
+        <div class="card-body">
+          <ul class="link-list">
+            <li><a href="https://www.youtube.com/@WowWowMitchy" rel="noopener" target="_blank">Wow! Wow! Mitchy!</a> - my second channel</li>
+            <li><a href="https://www.youtube.com/@mitch-archive" rel="noopener" target="_blank">Mitch's Archive</a> - my archival channel</li>
+            <li><a href="https://www.youtube.com/@iWubbzy" rel="noopener" target="_blank">iWubbzy</a></li>
+          </ul>
         </div>
+      </section>
 
-        <div class="blinkies-row blinkies-romance">
-          <img src="https://adriansblinkiecollection.neocities.org/v14.gif" alt="Werewolf kisser"/>
-          <img src="https://adriansblinkiecollection.neocities.org/v71.gif" alt="Hearts boys"/>
-          <img src="https://adriansblinkiecollection.neocities.org/g65.gif" alt="I love guys in sweaters"/>
+      <section class="card" id="lastfm">
+        <div class="card-header"><h2>Now Playing on Last.fm</h2></div>
+        <div class="card-body">
+          <p>Live scrobble activity from my Last.fm profile.</p>
+          <div class="lastfm-box">
+            <script src="https://recentfm.rknight.me/now.js?u=HuxP"></script>
+            <noscript><a href="https://www.last.fm/user/HuxP" rel="noopener" target="_blank">View HuxP on Last.fm</a></noscript>
+          </div>
         </div>
+      </section>
 
-        <div class="blinkies-row blinkies-music">
-          <img src="https://adriansblinkiecollection.neocities.org/d30.gif" alt="TMBG Flood"/>
-          <img src="https://adriansblinkiecollection.neocities.org/e10.gif" alt="They Might Be Giants"/>
-          <img src="https://adriansblinkiecollection.neocities.org/e17.gif" alt="TMBG Lincoln"/>
-          <img src="https://adriansblinkiecollection.neocities.org/g16.gif" alt="Ween GodWeenSatan"/>
-          <img src="https://adriansblinkiecollection.neocities.org/e42.gif" alt="Ween"/>
-          <img src="https://adriansblinkiecollection.neocities.org/e43.gif" alt="Ween Ocean Man"/>
-          <img src="https://adriansblinkiecollection.neocities.org/h11.gif" alt="TMBG Apollo 18"/>
-          <img src="https://adriansblinkiecollection.neocities.org/s6.gif" alt="TMBG I Like Fun"/>
-          <img src="https://adriansblinkiecollection.neocities.org/u2.gif" alt="TMBG Here Comes Science"/>
-          <img src="https://adriansblinkiecollection.neocities.org/x18.gif" alt="TMBG Join Us"/>
+      <section class="card span-2" id="blinkies">
+        <div class="card-header"><h2>Blinkies and Buttons</h2></div>
+        <div class="card-body">
+          <div class="blinkies-grid">
+            <div class="blinkies-row blinkies-nd">
+              <img src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif" alt="ADHD"/>
+              <img src="https://adriansblinkiecollection.neocities.org/n3.gif" alt="Autistic"/>
+              <img src="https://adriansblinkiecollection.neocities.org/g44.gif" alt="FUCK AI ART"/>
+              <img src="https://adriansblinkiecollection.neocities.org/x27.gif" alt="Remember That I Love You"/>
+              <img src="https://adriansblinkiecollection.neocities.org/x31.gif" alt="Music is my thing"/>
+              <img src="https://adriansblinkiecollection.neocities.org/44.gif" alt="Do what makes you happy"/>
+              <img src="https://adriansblinkiecollection.neocities.org/m5.gif" alt="Save the Dragons"/>
+            </div>
+
+            <div class="blinkies-row blinkies-cartoons">
+              <img src="https://adriansblinkiecollection.neocities.org/c39.gif" alt="Pinkie Pie Smile Smile Smile"/>
+              <img src="https://adriansblinkiecollection.neocities.org/e116.gif" alt="Miku fan"/>
+              <img src="https://adriansblinkiecollection.neocities.org/s12.gif" alt="SpongeBob SquarePants"/>
+              <img src="https://adriansblinkiecollection.neocities.org/z41.gif" alt="Smiling Friends Charlie"/>
+            </div>
+
+            <div class="blinkies-row blinkies-games">
+              <img src="https://adriansblinkiecollection.neocities.org/d1.gif" alt="Animal Jam Classic"/>
+              <img src="https://adriansblinkiecollection.neocities.org/e93.gif" alt="I love my 3DS"/>
+              <img src="https://adriansblinkiecollection.neocities.org/i6.gif" alt="Portal 2 Spaaaaace"/>
+              <img src="https://adriansblinkiecollection.neocities.org/i5.gif" alt="Portal the cake is a lie"/>
+              <img src="https://adriansblinkiecollection.neocities.org/x37.gif" alt="I love UTAU"/>
+            </div>
+
+            <div class="blinkies-row blinkies-nature">
+              <img src="https://adriansblinkiecollection.neocities.org/d72.gif" alt="iNaturalist fiend"/>
+              <img src="https://adriansblinkiecollection.neocities.org/e115.gif" alt="I love the sea"/>
+              <img src="https://adriansblinkiecollection.neocities.org/e100.gif" alt="I love winter"/>
+              <img src="https://adriansblinkiecollection.neocities.org/v37.gif" alt="Underwater creatures"/>
+              <img src="https://adriansblinkiecollection.neocities.org/g42.gif" alt="Daisies"/>
+            </div>
+
+            <div class="blinkies-row blinkies-romance">
+              <img src="https://adriansblinkiecollection.neocities.org/v14.gif" alt="Werewolf kisser"/>
+              <img src="https://adriansblinkiecollection.neocities.org/v71.gif" alt="Hearts boys"/>
+              <img src="https://adriansblinkiecollection.neocities.org/g65.gif" alt="I love guys in sweaters"/>
+            </div>
+
+            <div class="blinkies-row blinkies-music">
+              <img src="https://adriansblinkiecollection.neocities.org/d30.gif" alt="TMBG Flood"/>
+              <img src="https://adriansblinkiecollection.neocities.org/e10.gif" alt="They Might Be Giants"/>
+              <img src="https://adriansblinkiecollection.neocities.org/e17.gif" alt="TMBG Lincoln"/>
+              <img src="https://adriansblinkiecollection.neocities.org/g16.gif" alt="Ween GodWeenSatan"/>
+              <img src="https://adriansblinkiecollection.neocities.org/e42.gif" alt="Ween"/>
+              <img src="https://adriansblinkiecollection.neocities.org/e43.gif" alt="Ween Ocean Man"/>
+              <img src="https://adriansblinkiecollection.neocities.org/h11.gif" alt="TMBG Apollo 18"/>
+              <img src="https://adriansblinkiecollection.neocities.org/s6.gif" alt="TMBG I Like Fun"/>
+              <img src="https://adriansblinkiecollection.neocities.org/u2.gif" alt="TMBG Here Comes Science"/>
+              <img src="https://adriansblinkiecollection.neocities.org/x18.gif" alt="TMBG Join Us"/>
+            </div>
+          </div>
+
+          <div class="button-strip">
+            <img src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif" alt="Firefox now"/>
+            <img src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif" alt="Old man yaoi now"/>
+            <a href="https://archive.org/details/@huxp" rel="noopener" target="_blank">
+              <img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history"/>
+            </a>
+            <img src="https://adriansblinkiecollection.neocities.org/buttons/c2.png" alt="I hate Squarespace"/>
+            <img src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif" alt="Team Fortress now"/>
+          </div>
         </div>
-      </div>
-
-      <div class="button-strip">
-        <img src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif" alt="Firefox now"/>
-        <img src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif" alt="Old man yaoi now"/>
-        <a href="https://archive.org/details/@huxp" rel="noopener" target="_blank">
-          <img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history"/>
-        </a>
-        <img src="https://adriansblinkiecollection.neocities.org/buttons/c2.png" alt="I hate Squarespace"/>
-        <img src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif" alt="Team Fortress now"/>
-      </div>
-    </section>
-  </div>
-</main>
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div>
-      <div>© <span id="year">2025</span> HuxP.</div>
-      <div class="sub">All trademarks mentioned on this site are property of their respective owners.</div>
+      </section>
     </div>
-    <div class="social-icons">
-      <a href="mailto:huxpmusic@gmail.com" rel="me">Email</a>
-      <a href="https://github.com/HuxPMusic" rel="me">GitHub</a>
-      <a href="https://youtube.com/@HuxPMusic" rel="me">YouTube</a>
-      <a href="https://twitter.com/HuxPMusic" rel="me">Twitter</a>
-      <a href="https://discord.gg/wubbzy" rel="me">Discord</a>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div>© <span id="year">2025</span> HuxP.</div>
+        <div>All trademarks mentioned on this site are property of their respective owners.</div>
+      </div>
+      <div class="social-icons">
+        <a href="mailto:huxpmusic@gmail.com" rel="me">Email</a>
+        <a href="https://github.com/HuxPMusic" rel="me">GitHub</a>
+        <a href="https://youtube.com/@HuxPMusic" rel="me">YouTube</a>
+        <a href="https://twitter.com/HuxPMusic" rel="me">Twitter</a>
+        <a href="https://discord.gg/wubbzy" rel="me">Discord</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
+</div>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
