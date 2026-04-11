@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>HuxP</title>
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&amp;family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Favicons / PWA -->
 <link href="/favicon-32x32.png?v=7" rel="icon" sizes="32x32" type="image/png"/>
 <link href="/favicon-16x16.png?v=7" rel="icon" sizes="16x16" type="image/png"/>
 <link href="/favicon.ico?v=7" rel="icon" sizes="any"/>
@@ -18,9 +15,8 @@
 <link href="/site.webmanifest?v=7" rel="manifest"/>
 <meta content="#15151c" name="msapplication-TileColor"/>
 <meta content="#15151c" name="theme-color"/>
-<!-- Open Graph -->
 <meta content="HuxP" property="og:title"/>
-<meta content="HuxP Music - Vocal synth covers, albums and UTAU projects." property="og:description"/>
+<meta content="Vocal synth covers and UTAU projects." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://huxpmusic.com/" property="og:url"/>
 <meta content="https://huxpmusic.com/social-card.png" property="og:image"/>
@@ -28,36 +24,21 @@
 <meta content="@HuxPMusic" name="twitter:site"/>
 <meta content="@HuxPMusic" name="twitter:creator"/>
 <meta content="HuxP" name="twitter:title"/>
-<meta content="HuxP Music - Vocal synth covers, albums and UTAU projects." name="twitter:description"/>
+<meta content="Vocal synth covers and UTAU projects." name="twitter:description"/>
 <meta content="https://huxpmusic.com/social-card.png" name="twitter:image"/>
 <style>
-
 :root{
   --bg-main:#002b36;
   --bg-pane:#ffffff;
   --bg-pane-alt:#f5f5ff;
   --border-pane:#000080;
-  --accent-strong:#ff0080;
-  --accent-soft:#ffccff;
   --ink-main:#000000;
   --ink-muted:#333333;
   --link:#0000ee;
   --link-visited:#551a8b;
 }
-
-/* Box model reset */
-*,
-*::before,
-*::after{
-  box-sizing:border-box;
-}
-
-html, body{
-  margin:0;
-  padding:0;
-}
-
-/* Classic tiled background */
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
 body{
   min-height:100vh;
   font-family:"Verdana","Geneva",system-ui,-apple-system,sans-serif;
@@ -68,8 +49,6 @@ body{
   background-attachment:fixed;
   image-rendering:pixelated;
 }
-
-/* Skip link */
 .skip-link{
   position:absolute;
   left:-9999px;
@@ -81,12 +60,7 @@ body{
   text-decoration:none;
   z-index:1000;
 }
-.skip-link:focus{
-  left:8px;
-  top:8px;
-}
-
-/* Layout shell */
+.skip-link:focus{left:8px;top:8px;}
 main{
   max-width:980px;
   margin:12px auto;
@@ -95,63 +69,21 @@ main{
   border:3px solid #000080;
   box-shadow:4px 4px 0 #000000;
 }
-
-/* Masthead */
 .masthead{
   text-align:center;
   padding:8px 0 14px;
   border-bottom:2px solid #000080;
   background:linear-gradient(to bottom,#000080,#4b0082);
 }
-
-.masthead img{
-  max-width:260px;
-  height:auto;
-  image-rendering:auto;
-}
-
-/* Two-column layout */
-.columns{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-top:10px;
-}
-
-.content-column{
-  margin-top:0;
-}
-
-.content-left{
-  flex:2 1 0;
-}
-
-.content-right{
-  flex:3 1 0;
-}
-
-@media (min-width:900px){
-  .columns{
-    flex-direction:row;
-    align-items:flex-start;
-  }
-}
-
-/* Generic cards */
+.masthead img{max-width:260px;height:auto;image-rendering:auto;}
+.stack{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
 .card{
   background:#ffffff;
   border:2px solid var(--border-pane);
   box-shadow:2px 2px 0 #000000;
   padding:10px;
-  margin-bottom:10px;
 }
-
-.card:last-child{
-  margin-bottom:0;
-}
-
-.card h1,
-.card h2{
+.card h1,.card h2{
   margin:0 0 6px;
   padding:3px 6px;
   font-size:16px;
@@ -160,142 +92,17 @@ main{
   border:1px solid #000000;
   text-shadow:1px 1px 0 #000000;
 }
-
-.card h1{
-  font-size:18px;
-}
-
-.hero-title{
-  /* keep hook for headings */
-}
-
-/* Bio */
-.bio p{
-  margin:6px 0;
-  line-height:1.4;
-  font-size:13px;
-}
-
-.bio-flex{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.bio-main{
-  flex:1 1 0;
-}
-
-.caption{
-  font-size:11px;
-  color:var(--ink-muted);
-}
-
-/* Video spotlight */
+.card h1{font-size:18px;}
+.bio p{margin:6px 0;line-height:1.45;font-size:13px;}
+.caption{font-size:11px;color:var(--ink-muted);}
 .video-frame{
   width:100%;
   background:#000000;
   border:1px inset #808080;
 }
-
-.video-frame iframe{
-  width:100%;
-  height:100%;
-  border:0;
-}
-
-/* Project buttons (if used) */
-.project-buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:4px;
-}
-
-.project-btn{
-  display:inline-block;
-  padding:4px 8px;
-  font-size:12px;
-  background:#000080;
-  color:#ffffff;
-  border:2px outset #ffffff;
-  text-decoration:none;
-}
-.project-btn:hover{
-  filter:brightness(1.15);
-}
-
-/* Discography */
-.discography-intro{
-  font-size:13px;
-  margin:6px 0 10px;
-}
-
-.discography-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:8px;
-}
-
-@media (min-width:700px){
-  .discography-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-@media (min-width:1040px){
-  .discography-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-.album-card{
-  background:#f8f8ff;
-  border:1px solid #000080;
-  padding:6px;
-  font-size:12px;
-}
-
-.album-card h3{
-  margin:4px 0;
-  font-size:13px;
-}
-
-.album-card .subtitle{
-  font-size:11px;
-  color:var(--ink-muted);
-}
-
-.cover-strip{
-  display:block;
-  margin-bottom:4px;
-}
-
-.cover-strip img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-/* Meta rows */
-.meta{
-  font-size:11px;
-}
-.meta-row{
-  margin-bottom:2px;
-}
-
-/* Blinkies and Buttons */
-#blinkies.card{
-  padding-bottom:8px;
-}
-
-.blinkies-grid{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-bottom:8px;
-}
-
+.video-frame iframe{width:100%;height:100%;border:0;}
+#blinkies.card{padding-bottom:8px;}
+.blinkies-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
 .blinkies-row{
   display:flex;
   flex-wrap:wrap;
@@ -304,60 +111,16 @@ main{
   border:1px dotted #000080;
   border-radius:6px;
 }
-
-.blinkies-row img{
-  display:block;
-  image-rendering:pixelated;
-}
-
-.blinkies-nd{
-  background:#fbe4d5;
-  border-color:#c55a11;
-}
-
-.blinkies-cartoons{
-  background:#fffbe0;
-  border-color:#d4b000;
-}
-
-.blinkies-games{
-  background:#e0f3ff;
-  border-color:#2e75b5;
-}
-
-.blinkies-nature{
-  background:#e2f6e2;
-  border-color:#548235;
-}
-
-.blinkies-romance{
-  background:#ffe6f4;
-  border-color:#c0006f;
-}
-
-.blinkies-music{
-  background:#e5e5ff;
-  border-color:#5b9bd5;
-}
-
-.button-strip{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px;
-  margin-top:4px;
-  justify-content:flex-start;
-}
-
-.button-strip img{
-  display:block;
-  image-rendering:pixelated;
-}
-
-/* Footer */
-.site-footer{
-  margin-top:10px;
-}
-
+.blinkies-row img{display:block;image-rendering:pixelated;}
+.blinkies-nd{background:#fbe4d5;border-color:#c55a11;}
+.blinkies-cartoons{background:#fffbe0;border-color:#d4b000;}
+.blinkies-games{background:#e0f3ff;border-color:#2e75b5;}
+.blinkies-nature{background:#e2f6e2;border-color:#548235;}
+.blinkies-romance{background:#ffe6f4;border-color:#c0006f;}
+.blinkies-music{background:#e5e5ff;border-color:#5b9bd5;}
+.button-strip{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;justify-content:flex-start;}
+.button-strip img{display:block;image-rendering:pixelated;}
+.site-footer{margin-top:10px;}
 .footer-inner{
   display:flex;
   flex-direction:column;
@@ -367,25 +130,14 @@ main{
   color:#ffffff;
   font-size:12px;
 }
-
-.footer-inner a{
-  color:#ffff66;
-  text-decoration:underline;
-}
-
-.social-icons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-}
-
+.footer-inner a{color:#ffff66;text-decoration:underline;}
+.social-icons{display:flex;flex-wrap:wrap;gap:6px;}
 .social-icons a{
   padding:2px 6px;
   border-radius:999px;
   background:#222244;
   border:1px solid #ffffff80;
 }
-
 @media (min-width:640px){
   .footer-inner{
     flex-direction:row;
@@ -393,264 +145,117 @@ main{
     align-items:center;
   }
 }
-
-/* Links */
-a{
-  color:var(--link);
-}
-a:visited{
-  color:var(--link-visited);
-}
-a:hover{
-  text-decoration:underline;
-}
+a{color:var(--link);} 
+a:visited{color:var(--link-visited);} 
+a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#content">Skip to main content</a>
-<main id="main"><section aria-label="Site masthead" class="masthead">
-<picture>
-<source srcset="HuxP Logo.svg" type="image/svg+xml"/>
-<img alt="HuxP" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/></picture>
-</section>
-<div class="columns">
-<section aria-label="About and activity" class="content-column content-left">
+<main id="content">
+  <section aria-label="Site masthead" class="masthead">
+    <picture>
+      <source srcset="HuxP Logo.svg" type="image/svg+xml"/>
+      <img alt="HuxP" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/>
+    </picture>
+  </section>
 
-<article class="card bio">
-  <h1>Biography</h1>
-  <div class="bio-flex">
-    <div class="bio-main">
-      <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is a genderfluid American vocal synth cover artist and producer. Active with the VOCALOID4 engine since 2017, he began releasing covers under the HuxP name in 2023.</p>
-      <p>Working mainly in J-POP, pop and rock, he releases music through his own label <strong>HuxP Music</strong>. He is the twin brother of video creator <a href="https://haybombyt.com" rel="noopener" target="_blank">HayBombYT</a>. HuxP is best known for covers featuring <a href="https://vocaloid.fandom.com/wiki/Hatsune_Miku" rel="noopener" target="_blank">Hatsune Miku</a> and the UTAU voicebank <a href="https://huxp.wiki/wiki/Shiki_Taigen" rel="noopener" target="_blank">Shiki Taigen</a>, and is one of only two Shiki Taigen producers still actively releasing music.</p>
-      <p>Across three studio cover albums and several compilations, HuxP has recorded more than 90 songs. His work has reached milestones such as a Spotify "This Is" playlist, tens of thousands of streams on key tracks and a Support a Creator partnership in Fortnite using the code <strong>HUXP</strong>. In mid 2025, his catalog was removed from major streaming services for editorial reasons outside of his control, but new projects continue on.</p>
-      <p class="caption">Quick overview based on the <a href="https://huxp.wiki/wiki/HuxP" rel="noopener" target="_blank">HuxP Wiki article</a>.</p>
-    </div>
+  <div class="stack">
+    <article class="card bio">
+      <h1>Biography</h1>
+      <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is an American vocal synth cover artist and producer. Active with VOCALOID since 2017, he began releasing covers under the HuxP name in 2023.</p>
+      <p>His work focuses on J-POP, pop, and rock, with releases built around Hatsune Miku, Shiki Taigen, and other vocal synths. New videos and projects continue through <strong>HuxP Music</strong>.</p>
+    </article>
+
+    <section aria-labelledby="video-spotlight-heading" class="card video" id="video-spotlight">
+      <h2 id="video-spotlight-heading">Video Spotlight</h2>
+      <div class="video-frame" style="aspect-ratio:16/9; position:relative; overflow:hidden;">
+        <iframe src="https://www.youtube.com/embed/0sBtbHpmukU" title="【Shiki Taigen】 pip puppet / ピプパペット UTAU cover" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p style="padding:.75rem 1rem 0; margin:0;">【式大元・Shiki Taigen】 「pip puppet / ピプパペット」 【UTAUカバー】</p>
+    </section>
+
+    <section class="card" id="blinkies">
+      <h2>Blinkies and Buttons</h2>
+      <div class="blinkies-grid">
+        <div class="blinkies-row blinkies-nd">
+          <img src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif" alt="ADHD"/>
+          <img src="https://adriansblinkiecollection.neocities.org/n3.gif" alt="Autistic"/>
+          <img src="https://adriansblinkiecollection.neocities.org/g44.gif" alt="FUCK AI ART"/>
+          <img src="https://adriansblinkiecollection.neocities.org/x27.gif" alt="Remember That I Love You"/>
+          <img src="https://adriansblinkiecollection.neocities.org/x31.gif" alt="Music is my thing"/>
+          <img src="https://adriansblinkiecollection.neocities.org/44.gif" alt="Do what makes you happy"/>
+          <img src="https://adriansblinkiecollection.neocities.org/m5.gif" alt="Save the Dragons"/>
+        </div>
+
+        <div class="blinkies-row blinkies-cartoons">
+          <img src="https://adriansblinkiecollection.neocities.org/c39.gif" alt="Pinkie Pie Smile Smile Smile"/>
+          <img src="https://adriansblinkiecollection.neocities.org/e116.gif" alt="Miku fan"/>
+          <img src="https://adriansblinkiecollection.neocities.org/s12.gif" alt="SpongeBob SquarePants"/>
+          <img src="https://adriansblinkiecollection.neocities.org/z41.gif" alt="Smiling Friends Charlie"/>
+        </div>
+
+        <div class="blinkies-row blinkies-games">
+          <img src="https://adriansblinkiecollection.neocities.org/d1.gif" alt="Animal Jam Classic"/>
+          <img src="https://adriansblinkiecollection.neocities.org/e93.gif" alt="I love my 3DS"/>
+          <img src="https://adriansblinkiecollection.neocities.org/i6.gif" alt="Portal 2 Spaaaaace"/>
+          <img src="https://adriansblinkiecollection.neocities.org/i5.gif" alt="Portal the cake is a lie"/>
+          <img src="https://adriansblinkiecollection.neocities.org/x37.gif" alt="I love UTAU"/>
+        </div>
+
+        <div class="blinkies-row blinkies-nature">
+          <img src="https://adriansblinkiecollection.neocities.org/d72.gif" alt="iNaturalist fiend"/>
+          <img src="https://adriansblinkiecollection.neocities.org/e115.gif" alt="I love the sea"/>
+          <img src="https://adriansblinkiecollection.neocities.org/e100.gif" alt="I love winter"/>
+          <img src="https://adriansblinkiecollection.neocities.org/v37.gif" alt="Underwater creatures"/>
+          <img src="https://adriansblinkiecollection.neocities.org/g42.gif" alt="Daisies"/>
+        </div>
+
+        <div class="blinkies-row blinkies-romance">
+          <img src="https://adriansblinkiecollection.neocities.org/v14.gif" alt="Werewolf kisser"/>
+          <img src="https://adriansblinkiecollection.neocities.org/v71.gif" alt="Hearts boys"/>
+          <img src="https://adriansblinkiecollection.neocities.org/g65.gif" alt="I love guys in sweaters"/>
+        </div>
+
+        <div class="blinkies-row blinkies-music">
+          <img src="https://adriansblinkiecollection.neocities.org/d30.gif" alt="TMBG Flood"/>
+          <img src="https://adriansblinkiecollection.neocities.org/e10.gif" alt="They Might Be Giants"/>
+          <img src="https://adriansblinkiecollection.neocities.org/e17.gif" alt="TMBG Lincoln"/>
+          <img src="https://adriansblinkiecollection.neocities.org/g16.gif" alt="Ween GodWeenSatan"/>
+          <img src="https://adriansblinkiecollection.neocities.org/e42.gif" alt="Ween"/>
+          <img src="https://adriansblinkiecollection.neocities.org/e43.gif" alt="Ween Ocean Man"/>
+          <img src="https://adriansblinkiecollection.neocities.org/h11.gif" alt="TMBG Apollo 18"/>
+          <img src="https://adriansblinkiecollection.neocities.org/s6.gif" alt="TMBG I Like Fun"/>
+          <img src="https://adriansblinkiecollection.neocities.org/u2.gif" alt="TMBG Here Comes Science"/>
+          <img src="https://adriansblinkiecollection.neocities.org/x18.gif" alt="TMBG Join Us"/>
+        </div>
+      </div>
+
+      <div class="button-strip">
+        <img src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif" alt="Firefox now"/>
+        <img src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif" alt="Old man yaoi now"/>
+        <a href="https://archive.org/details/@huxp" rel="noopener" target="_blank">
+          <img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history"/>
+        </a>
+        <img src="https://adriansblinkiecollection.neocities.org/buttons/c2.png" alt="I hate Squarespace"/>
+        <img src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif" alt="Team Fortress now"/>
+      </div>
+    </section>
   </div>
-</article>
-
-<!-- Video Spotlight -->
-<section aria-labelledby="video-spotlight-heading" class="card video" id="video-spotlight">
-<h2 class="hero-title" id="video-spotlight-heading">Video Spotlight</h2>
-<div class="video-frame" style="aspect-ratio:16/9; position:relative; overflow:hidden;">
-<iframe src="https://www.youtube.com/embed/0sBtbHpmukU" title="【Shiki Taigen】 pip puppet / ピプパペット UTAU cover" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-<p style="padding: .75rem 1rem 1rem;">
-          【式大元・Shiki Taigen】 「pip puppet / ピプパペット」 【UTAUカバー】
-        </p>
-</section>
-
-<section class="card" id="blinkies">
-  <h2>Blinkies and Buttons</h2>
-  <div class="blinkies-grid">
-
-    <div class="blinkies-row blinkies-nd">
-      <img src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif" alt="ADHD"/>
-      <img src="https://adriansblinkiecollection.neocities.org/n3.gif" alt="Autistic"/>
-      <img src="https://adriansblinkiecollection.neocities.org/g44.gif" alt="FUCK AI ART"/>
-      <img src="https://adriansblinkiecollection.neocities.org/x27.gif" alt="Remember That I Love You"/>
-      <img src="https://adriansblinkiecollection.neocities.org/x31.gif" alt="Music is my thing"/>
-      <img src="https://adriansblinkiecollection.neocities.org/44.gif" alt="Do what makes you happy"/>
-      <img src="https://adriansblinkiecollection.neocities.org/m5.gif" alt="Save the Dragons"/>
-    </div>
-
-    <div class="blinkies-row blinkies-cartoons">
-      <img src="https://adriansblinkiecollection.neocities.org/c39.gif" alt="Pinkie Pie Smile Smile Smile"/>
-      <img src="https://adriansblinkiecollection.neocities.org/e116.gif" alt="Miku fan"/>
-      <img src="https://adriansblinkiecollection.neocities.org/s12.gif" alt="SpongeBob SquarePants"/>
-      <img src="https://adriansblinkiecollection.neocities.org/z41.gif" alt="Smiling Friends Charlie"/>
-    </div>
-
-    <div class="blinkies-row blinkies-games">
-      <img src="https://adriansblinkiecollection.neocities.org/d1.gif" alt="Animal Jam Classic"/>
-      <img src="https://adriansblinkiecollection.neocities.org/e93.gif" alt="I love my 3DS"/>
-      <img src="https://adriansblinkiecollection.neocities.org/i6.gif" alt="Portal 2 Spaaaaace"/>
-      <img src="https://adriansblinkiecollection.neocities.org/i5.gif" alt="Portal the cake is a lie"/>
-      <img src="https://adriansblinkiecollection.neocities.org/x37.gif" alt="I love UTAU"/>
-    </div>
-
-    <div class="blinkies-row blinkies-nature">
-      <img src="https://adriansblinkiecollection.neocities.org/d72.gif" alt="iNaturalist fiend"/>
-      <img src="https://adriansblinkiecollection.neocities.org/e115.gif" alt="I love the sea"/>
-      <img src="https://adriansblinkiecollection.neocities.org/e100.gif" alt="I love winter"/>
-      <img src="https://adriansblinkiecollection.neocities.org/v37.gif" alt="Underwater creatures"/>
-      <img src="https://adriansblinkiecollection.neocities.org/g42.gif" alt="Daisies"/>
-    </div>
-
-    <div class="blinkies-row blinkies-romance">
-      <img src="https://adriansblinkiecollection.neocities.org/v14.gif" alt="Werewolf kisser"/>
-      <img src="https://adriansblinkiecollection.neocities.org/v71.gif" alt="Hearts boys"/>
-      <img src="https://adriansblinkiecollection.neocities.org/g65.gif" alt="I love guys in sweaters"/>
-    </div>
-
-    <div class="blinkies-row blinkies-music">
-      <img src="https://adriansblinkiecollection.neocities.org/d30.gif" alt="TMBG Flood"/>
-      <img src="https://adriansblinkiecollection.neocities.org/e10.gif" alt="They Might Be Giants"/>
-      <img src="https://adriansblinkiecollection.neocities.org/e17.gif" alt="TMBG Lincoln"/>
-      <img src="https://adriansblinkiecollection.neocities.org/g16.gif" alt="Ween GodWeenSatan"/>
-      <img src="https://adriansblinkiecollection.neocities.org/e42.gif" alt="Ween"/>
-      <img src="https://adriansblinkiecollection.neocities.org/e43.gif" alt="Ween Ocean Man"/>
-      <img src="https://adriansblinkiecollection.neocities.org/h11.gif" alt="TMBG Apollo 18"/>
-      <img src="https://adriansblinkiecollection.neocities.org/s6.gif" alt="TMBG I Like Fun"/>
-      <img src="https://adriansblinkiecollection.neocities.org/u2.gif" alt="TMBG Here Comes Science"/>
-      <img src="https://adriansblinkiecollection.neocities.org/x18.gif" alt="TMBG Join Us"/>
-    </div>
-
-  </div>
-
-  <div class="button-strip">
-    <img src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif" alt="Firefox now"/>
-    <img src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif" alt="Old man yaoi now"/>
-    <a href="https://archive.org/details/@huxp" rel="noopener" target="_blank">
-      <img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history"/>
-    </a>
-    <img src="https://adriansblinkiecollection.neocities.org/buttons/c2.png" alt="I hate Squarespace"/>
-    <img src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif" alt="Team Fortress now"/>
-  </div>
-</section>
-</section>
-<section class="content-column content-right">
-<section class="card" id="discography"><h2 class="hero-title">Discography</h2><p class="discography-intro">This summary follows the releases listed on the <a href="https://huxp.wiki/wiki/HuxP" rel="noopener" target="_blank">HuxP Wiki discography table</a>: three main studio cover albums (<em>Vocarips</em>, <em>Vocadiva</em> and <em>Miku + Michelle</em>) and compilation albums.</p><div class="discography-grid"><article class="album-card">
-<h3>
-<a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">Vocarips</a>
-</h3>
-<div class="subtitle">cover and remix album</div>
-<div class="cover-strip">
-<a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">
-<img alt="Vocarips - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28original_cover%29.png"/>
-</a>
-<a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">
-<img alt="Vocarips - Original edition (Re-release)" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28re-release_cover%29.png"/>
-</a>
-<a href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">
-<img alt="Vocarips - Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%28deluxe_cover%29.png"/>
-</a>
-</div>
-<div class="meta">
-<div class="meta-row">
-<strong>Released:</strong> September 14, 2023</div>
-<div class="meta-row">
-<strong>Tracks:</strong> 8 / 10</div>
-<a class="album-cta" href="https://huxp.wiki/wiki/Vocarips" rel="noopener" target="_blank">View album page</a>
-</div>
-</article>
-<article class="album-card">
-<h3>
-<a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">Vocadiva</a>
-</h3>
-<div class="subtitle">cover album</div>
-<div class="cover-strip">
-<a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">
-<img alt="Vocadiva - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocadiva.png"/>
-</a>
-<a href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">
-<img alt="Vocadiva - Remastered edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocadiva_%28Remastered%29.png"/>
-</a>
-</div>
-<div class="meta">
-<div class="meta-row">
-<strong>Released:</strong> Original: January 17, 2024<br/>Remastered: October 16, 2024</div>
-<div class="meta-row">
-<strong>Tracks:</strong> 10</div>
-<a class="album-cta" href="https://huxp.wiki/wiki/Vocadiva" rel="noopener" target="_blank">View album page</a>
-</div>
-</article>
-<article class="album-card">
-<h3>
-<a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">Miku + Michelle</a>
-</h3>
-<div class="subtitle">cover album</div>
-<div class="cover-strip">
-<a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">
-<img alt="Miku + Michelle - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle.png"/>
-</a>
-<a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">
-<img alt="Miku + Michelle - Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle_%28Deluxe%29.png"/>
-</a>
-<a href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">
-<img alt="Miku + Michelle - Super Deluxe edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Miku_%2B_Michelle_%28Super_Deluxe%29.jpg"/>
-</a>
-</div>
-<div class="meta">
-<div class="meta-row">
-<strong>Released:</strong> Original: April 5, 2024<br/>Deluxe: April 5, 2025<br/>Super Deluxe: June 16, 2025</div>
-<div class="meta-row">
-<strong>Tracks:</strong> 16 / 28 / 32</div>
-<a class="album-cta" href="https://huxp.wiki/wiki/Miku_%2B_Michelle" rel="noopener" target="_blank">View album page</a>
-</div>
-</article>
-<article class="album-card">
-<h3>
-<a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">Shiki Taigen Cover Collection, Vol. 1</a>
-</h3>
-<div class="subtitle">compilation</div>
-<div class="cover-strip">
-<a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">
-<img alt="Shiki Taigen Cover Collection, Vol. 1 - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._1.png"/>
-</a>
-</div>
-<div class="meta">
-<div class="meta-row">
-<strong>Released:</strong> December 25, 2024</div>
-<div class="meta-row">
-<strong>Tracks:</strong> 11</div>
-<a class="album-cta" href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._1" rel="noopener" target="_blank">View album page</a>
-</div>
-</article>
-<article class="album-card">
-<h3>
-<a href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">Vocarips + Vocadiva</a>
-</h3>
-<div class="subtitle">compilation</div>
-<div class="cover-strip">
-<a href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">
-<img alt="Vocarips + Vocadiva - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Vocarips_%2B_Vocadiva.png"/>
-</a>
-</div>
-<div class="meta">
-<div class="meta-row">
-<strong>Released:</strong> April 23, 2025</div>
-<div class="meta-row">
-<strong>Tracks:</strong> 18</div>
-<a class="album-cta" href="https://huxp.wiki/wiki/Vocarips_%2B_Vocadiva" rel="noopener" target="_blank">View album page</a>
-</div>
-</article>
-<article class="album-card">
-<h3>
-<a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">Shiki Taigen Cover Collection, Vol. 2</a>
-</h3>
-<div class="subtitle">compilation</div>
-<div class="cover-strip">
-<a href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">
-<img alt="Shiki Taigen Cover Collection, Vol. 2 - Original edition" decoding="async" loading="lazy" src="https://mywikis-wiki-media.s3.us-central-1.wasabisys.com/huxp/Shiki_Taigen_Cover_Collection%2C_Vol._2.png"/>
-</a>
-</div>
-<div class="meta">
-<div class="meta-row">
-<strong>Released:</strong> July 22, 2025</div>
-<div class="meta-row">
-<strong>Tracks:</strong> 16</div>
-<a class="album-cta" href="https://huxp.wiki/wiki/Shiki_Taigen_Cover_Collection,_Vol._2" rel="noopener" target="_blank">View album page</a>
-</div>
-</article>
-</div>
-</section>
-</section>
-</div>
 </main>
 <footer class="site-footer">
-<div class="footer-inner">
-<div>
-<div>© <span id="year">2025</span> HuxP.</div>
-<div class="sub">All trademarks mentioned on this site are property of their respective owners.</div>
-</div>
-<div class="social-icons">
-<a href="mailto:huxpmusic@gmail.com" rel="me">Email</a>
-<a href="https://huxp.wiki/wiki/HuxP" rel="me">Wiki</a>
-<a href="https://github.com/huxpmusic" rel="me">GitHub</a>
-<a href="https://youtube.com/@HuxPMusic" rel="me">YouTube</a>
-<a href="https://twitter.com/HuxPMusic" rel="me">Twitter</a>
-</div>
-</div>
+  <div class="footer-inner">
+    <div>
+      <div>© <span id="year">2025</span> HuxP.</div>
+      <div class="sub">All trademarks mentioned on this site are property of their respective owners.</div>
+    </div>
+    <div class="social-icons">
+      <a href="mailto:huxpmusic@gmail.com" rel="me">Email</a>
+      <a href="https://github.com/HuxPMusic" rel="me">GitHub</a>
+      <a href="https://youtube.com/@HuxPMusic" rel="me">YouTube</a>
+      <a href="https://twitter.com/HuxPMusic" rel="me">Twitter</a>
+    </div>
+  </div>
 </footer>
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
