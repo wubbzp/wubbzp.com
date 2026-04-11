@@ -6,14 +6,8 @@
 <title>HuxP Music | HuxP</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&amp;family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="/favicon-32x32.png?v=7" rel="icon" sizes="32x32" type="image/png"/>
-<link href="/favicon-16x16.png?v=7" rel="icon" sizes="16x16" type="image/png"/>
-<link href="/favicon.ico?v=7" rel="icon" sizes="any"/>
-<link href="/apple-touch-icon.png?v=7" rel="apple-touch-icon"/>
-<link color="#898eca" href="/safari-pinned-tab.svg?v=7" rel="mask-icon"/>
-<link href="/site.webmanifest?v=7" rel="manifest"/>
-<meta content="#1a1730" name="msapplication-TileColor"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="/assets/icons/kickball-32.png?v=9" rel="icon" sizes="32x32" type="image/png"/>
 <meta content="#1a1730" name="theme-color"/>
 <meta content="HuxP" property="og:title"/>
 <meta content="Vocal synth covers, archive projects, and iWubbzy." property="og:description"/>
@@ -23,18 +17,11 @@
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="@HuxPMusic" name="twitter:site"/>
 <meta content="@HuxPMusic" name="twitter:creator"/>
-<meta content="HuxP" name="twitter:title"/>
-<meta content="Vocal synth covers, archive projects, and iWubbzy." name="twitter:description"/>
-<meta content="https://huxpmusic.com/social-card.png" name="twitter:image"/>
 <style>
 :root{
   --bg:#18142d;
-  --bg-2:#231a44;
-  --bg-panel:#f8f4ff;
-  --bg-panel-soft:#fffaff;
-  --bg-accent:#efe7ff;
-  --bg-accent-2:#e8f8ff;
-  --bg-accent-3:#fff0f8;
+  --panel:#f8f4ff;
+  --panel-soft:#fffaff;
   --border:#5d4ea1;
   --border-strong:#30255f;
   --ink:#1d1730;
@@ -53,278 +40,107 @@ body{
   background:
     radial-gradient(circle at top left, rgba(135,104,255,.22), transparent 28%),
     radial-gradient(circle at top right, rgba(255,136,220,.18), transparent 26%),
-    linear-gradient(rgba(24,20,45,.82),rgba(24,20,45,.88)),
+    linear-gradient(rgba(24,20,45,.84),rgba(24,20,45,.9)),
     url("BACKGROUND.png") repeat;
 }
-img{max-width:100%;height:auto;display:block;}
 a{color:var(--link);}a:hover{color:var(--link-hover);}a:visited{color:var(--link);}
+img{max-width:100%;height:auto;display:block;}
 .skip-link{position:absolute;left:-9999px;top:0;padding:6px 10px;background:#fff;color:#000;font-weight:bold;z-index:999;}
 .skip-link:focus{left:10px;top:10px;}
-.page{width:min(1180px,calc(100% - 24px));margin:14px auto;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.16));border:2px solid rgba(255,255,255,.28);border-radius:28px;backdrop-filter:blur(6px);}
-.masthead{position:relative;background:linear-gradient(135deg,#2c2457 0%,#47338c 52%,#6a56d4 100%);border:2px solid var(--border-strong);border-radius:24px;box-shadow:var(--shadow);padding:20px 18px 18px;margin-bottom:12px;overflow:hidden;}
+.page{width:min(1180px,calc(100% - 24px));margin:14px auto;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.16));border:2px solid rgba(255,255,255,.28);border-radius:28px;backdrop-filter:blur(6px);position:relative;z-index:2;}
+.side-wubbzy{position:fixed;left:-34px;top:53%;width:clamp(150px,16vw,220px);z-index:1;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28));animation:slidePeek 1.2s ease-out forwards,bob 5.5s ease-in-out infinite 1.2s;}
+@keyframes slidePeek{from{transform:translate(-72%,-50%);opacity:0;}to{transform:translate(-28%,-50%);opacity:1;}}
+@keyframes bob{0%,100%{transform:translate(-28%,-50%);}50%{transform:translate(-24%,-52%);}}
+.masthead{position:relative;background:linear-gradient(135deg,#2c2457 0%,#47338c 52%,#6a56d4 100%);border:2px solid var(--border-strong);border-radius:24px;box-shadow:var(--shadow);padding:18px 18px 14px;margin-bottom:12px;overflow:hidden;}
 .masthead::before,.masthead::after{content:"";position:absolute;border-radius:999px;background:rgba(255,255,255,.08);pointer-events:none;}
 .masthead::before{width:220px;height:220px;top:-90px;right:-40px;}
 .masthead::after{width:130px;height:130px;bottom:-35px;left:-30px;}
 .masthead-inner{display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
-.masthead-logo img{max-width:290px;margin:0 auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.2));}
-.masthead-copy{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:18px;padding:12px 14px;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.18);}
+.masthead-logo img{max-width:360px;margin:0 auto;filter:drop-shadow(0 8px 18px rgba(0,0,0,.26));}
+.masthead-copy{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:18px;padding:12px 14px;color:#fff;}
 .masthead-copy p{margin:0;font-size:13px;line-height:1.5;}
 .quick-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
 .quick-links a{text-decoration:none;padding:7px 12px;border-radius:999px;background:#fff;color:#312762;border:1px solid rgba(48,37,95,.22);font-size:12px;font-weight:bold;box-shadow:0 3px 8px rgba(0,0,0,.08);}
+.stamp-runner{margin-bottom:12px;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.22);border-radius:20px;padding:10px;overflow:hidden;box-shadow:var(--shadow);}
+.stamp-track{display:flex;gap:10px;width:max-content;animation:marquee 34s linear infinite;align-items:center;}
+.stamp-track img{image-rendering:pixelated;height:31px;width:auto;display:block;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .dashboard{display:grid;grid-template-columns:1fr;gap:12px;}
-.card{background:linear-gradient(180deg,var(--bg-panel-soft),var(--bg-panel));border:2px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:relative;}
-.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 26%);pointer-events:none;}
-.card-header{padding:11px 14px;background:linear-gradient(90deg,#6958c7,#8a75e8 70%,#b8aef7);color:#fff;border-bottom:2px solid var(--border);position:relative;z-index:1;}
+.card{background:linear-gradient(180deg,var(--panel-soft),var(--panel));border:2px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:relative;}
+.card-header{padding:11px 14px;background:linear-gradient(90deg,#6958c7,#8a75e8 70%,#b8aef7);color:#fff;border-bottom:2px solid var(--border);}
 .card-header h1,.card-header h2{margin:0;font-family:"Fredoka","Nunito",sans-serif;font-size:20px;font-weight:700;}
-.card-body{padding:14px;position:relative;z-index:1;}
+.card-body{padding:14px;}
 .card-body p{margin:0 0 10px;font-size:13px;line-height:1.6;}
-.card-body p:last-child{margin-bottom:0;}
 .bio-intro{display:grid;grid-template-columns:1fr;gap:10px;}
-.welcome-panel{background:linear-gradient(180deg,#f3eeff,#fffaff);border:1px solid #c8bbf0;border-radius:16px;padding:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.65);}
+.welcome-panel{background:linear-gradient(180deg,#f3eeff,#fffaff);border:1px solid #c8bbf0;border-radius:16px;padding:12px;}
 .welcome-panel h3{margin:0 0 8px;font-size:14px;font-family:"Fredoka","Nunito",sans-serif;}
-.profile-line{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.profile-line,.flag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
 .profile-pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#ece5ff;border:1px solid #cdbff7;font-size:12px;font-weight:bold;}
-.flag-row{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 10px;}
-.flag-badge{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:14px;background:#ffffff;border:1px solid #d4c9f6;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.flag-badge{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:14px;background:#fff;border:1px solid #d4c9f6;}
 .flag-badge img{width:44px;height:28px;object-fit:cover;border-radius:6px;border:1px solid #c9bdf2;}
-.flag-badge span{font-size:12px;font-weight:bold;}
 .welcome-list{margin:8px 0 0;padding-left:18px;}
-.welcome-list li{margin:4px 0;font-size:13px;}
 .video-frame{width:100%;border:2px solid #2f265d;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 18px rgba(18,12,40,.16);}
 .video-frame iframe{width:100%;height:100%;border:0;display:block;}
-.release-title{font-size:14px;font-weight:bold;margin-bottom:8px;}
 .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
 .meta-chip{padding:6px 10px;border-radius:999px;background:#efeaff;border:1px solid #cabff4;font-size:12px;}
 .bandcamp-embed{margin-top:10px;}
-.section-media{border:2px solid var(--border);border-radius:16px;margin-top:10px;box-shadow:0 6px 14px rgba(0,0,0,.12);}
 .section-split{display:grid;grid-template-columns:1fr;gap:12px;}
-.link-list{margin:0;padding-left:18px;}
-.link-list li{margin:6px 0;font-size:13px;}
-.note-box{background:var(--bg-accent);border:1px solid #c8bbf0;border-radius:16px;padding:10px 12px;margin-top:10px;font-size:13px;line-height:1.6;box-shadow:inset 0 1px 0 rgba(255,255,255,.55);}
-.lastfm-box{background:var(--bg-accent-2);border:1px solid #baddeb;border-radius:16px;padding:12px;}
-.notice-box{background:var(--bg-accent-3);border:1px solid #efc7dd;border-radius:16px;padding:10px 12px;margin-top:10px;font-size:13px;line-height:1.6;}
-.blinkies-grid{display:flex;flex-direction:column;gap:10px;}
-.blinkies-row{display:flex;flex-wrap:wrap;gap:4px;padding:8px;border-radius:14px;border:1px solid #d5cdee;}
-.blinkies-row img{image-rendering:pixelated;}
-.blinkies-nd{background:#fbe4d5;border-color:#d2a07b;}
-.blinkies-cartoons{background:#fff7d9;border-color:#dec86a;}
-.blinkies-games{background:#def4ff;border-color:#8bc2df;}
-.blinkies-nature{background:#e3f7e2;border-color:#8ec48b;}
-.blinkies-romance{background:#ffe8f5;border-color:#d79cbc;}
-.blinkies-music{background:#ebe7ff;border-color:#b9acea;}
-.button-strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
-.button-strip img{image-rendering:pixelated;}
+.section-media{border:2px solid var(--border);border-radius:16px;box-shadow:0 6px 14px rgba(0,0,0,.12);}
+.note-box,.notice-box{border-radius:16px;padding:10px 12px;margin-top:10px;font-size:13px;line-height:1.6;}
+.note-box{background:#efe7ff;border:1px solid #c8bbf0;}
+.notice-box{background:#fff0f8;border:1px solid #efc7dd;}
+.channel-grid,.indulge-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.channel-card{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:16px;background:#fff;border:1px solid #dad2f4;box-shadow:0 2px 8px rgba(0,0,0,.05);text-decoration:none;}
+.channel-card img{width:56px;height:56px;border-radius:16px;object-fit:cover;border:2px solid #cdbff7;}
+.channel-card strong{display:block;font-size:14px;color:var(--ink);}
+.channel-card span{display:block;font-size:12px;color:var(--ink-soft);margin-top:3px;}
+.indulge-card{padding:12px;border-radius:16px;background:linear-gradient(180deg,#fff,#f4f1ff);border:1px solid #d8cff3;}
+.indulge-card strong{display:block;font-size:14px;margin-bottom:4px;}
+.indulge-card p{margin:0;font-size:12px;color:var(--ink-soft);}
+.blinkies-pack{background:#fff;border:1px solid #d9d0f3;border-radius:16px;overflow:hidden;margin-bottom:10px;}
+.blinkies-pack summary{cursor:pointer;list-style:none;padding:10px 12px;font-weight:bold;font-size:13px;background:#f3eeff;border-bottom:1px solid #e0d8f6;}
+.blinkies-pack summary::-webkit-details-marker{display:none;}
+.pack-body{padding:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.pack-body img{image-rendering:pixelated;}
 .site-footer{margin-top:12px;padding:10px 14px;background:rgba(19,15,39,.78);border:2px solid rgba(255,255,255,.15);border-radius:20px;color:#fff;box-shadow:var(--shadow);}
 .footer-inner{display:flex;flex-direction:column;gap:10px;}
 .footer-inner a{color:#fff1a9;}
 .social-icons{display:flex;flex-wrap:wrap;gap:8px;}
 .social-icons a{text-decoration:none;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);}
-@media (min-width:760px){.masthead-inner{display:grid;grid-template-columns:280px 1fr;align-items:center;}.section-split{grid-template-columns:1fr .92fr;}.footer-inner{flex-direction:row;justify-content:space-between;align-items:center;}}
+@media (min-width:760px){.masthead-inner{display:grid;grid-template-columns:360px 1fr;align-items:center;}.section-split{grid-template-columns:1fr .92fr;}.channel-grid,.indulge-grid{grid-template-columns:repeat(3,1fr);}.footer-inner{flex-direction:row;justify-content:space-between;align-items:center;}}
 @media (min-width:960px){.dashboard{grid-template-columns:1.08fr .92fr;align-items:start;}.bio-intro{grid-template-columns:1.2fr .8fr;align-items:start;}.span-2{grid-column:1 / -1;}}
+@media (max-width:920px){.side-wubbzy{display:none;}}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#content">Skip to main content</a>
+<img alt="" aria-hidden="true" class="side-wubbzy" src="/assets/images/wubbzy-thumbs-up.png?v=9"/>
 <div class="page">
-  <main id="content">
-    <section class="masthead" aria-label="Site header">
-      <div class="masthead-inner">
-        <div class="masthead-logo">
-          <picture>
-            <source srcset="HuxP Logo.svg" type="image/svg+xml"/>
-            <img alt="HuxP" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/>
-          </picture>
-        </div>
-        <div class="masthead-copy">
-          <p>Music, archive work, web projects, and everything else that ties it together. This homepage is set up as a personal hub for current releases, side projects, community spaces, and archival work.</p>
-          <div class="quick-links">
-            <a href="#about">About</a>
-            <a href="#new-release">New Release</a>
-            <a href="#iwubbzy">iWubbzy</a>
-            <a href="#youtube-channels">YouTube</a>
-            <a href="#lastfm">Last.fm</a>
-            <a href="#blinkies">Blinkies</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="dashboard">
-      <section class="card" id="about">
-        <div class="card-header"><h1>Biography</h1></div>
-        <div class="card-body">
-          <div class="bio-intro">
-            <div>
-              <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is an American vocal synth cover artist, producer, webmaster, and digital creative. He has been active with vocal synth software since 2017 and began publicly releasing covers under the HuxP name in 2023.</p>
-              <p>His music work centers on VOCALOID and UTAU, especially projects featuring Hatsune Miku and Shiki Taigen. Across his covers, videos, and independent releases, HuxP focuses on J-POP, pop, rock, and internet-era music culture, with a strong interest in presentation, archiving, and clean metadata.</p>
-              <p>Outside of music, he also builds fan and personal web projects, maintains online archives, and works across art, design, and site development. HuxP Music serves as the main home for current releases, videos, and connected projects.</p>
-              <div class="notice-box">
-                This site is still evolving. New sections, layout changes, and project pages may be added over time as the site grows.
-              </div>
-            </div>
-            <aside class="welcome-panel" aria-label="Profile overview">
-              <h3>Welcome</h3>
-              <div class="profile-line">
-                <span class="profile-pill">Mitch</span>
-                <span class="profile-pill">18</span>
-                <span class="profile-pill">he / she</span>
-              </div>
-              <div class="flag-row">
-                <div class="flag-badge">
-                  <img alt="Gay flag" src="https://en.pronouns.page/flags/Gay_.png"/>
-                  <span>Gay</span>
-                </div>
-                <div class="flag-badge">
-                  <img alt="Genderfluid flag" src="https://en.pronouns.page/flags/Genderfluid.png"/>
-                  <span>Genderfluid</span>
-                </div>
-              </div>
-              <p>Hi and welcome to my website. This page brings together my music, archive work, fan projects, and personal links in one place.</p>
-              <ul class="welcome-list">
-                <li>Vocal synth covers and UTAU work</li>
-                <li>Archive and preservation projects</li>
-                <li>Personal and fan website development</li>
-                <li>Current community hub: <a href="https://discord.gg/wubbzy" rel="noopener" target="_blank">iWubbzy Central</a></li>
-              </ul>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="card" id="new-release">
-        <div class="card-header"><h2>New Release!</h2></div>
-        <div class="card-body">
-          <div class="release-title">【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】</div>
-          <div class="meta-row">
-            <span class="meta-chip">Featured video</span>
-            <span class="meta-chip">Bandcamp single included</span>
-          </div>
-          <div class="video-frame" style="aspect-ratio:16/9;">
-            <iframe src="https://www.youtube.com/embed/2l5WXp_nirw" title="【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <p style="margin-top:10px;"><a href="https://youtu.be/2l5WXp_nirw" rel="noopener" target="_blank">Watch on YouTube</a></p>
-          <div class="bandcamp-embed">
-            <iframe style="border:0; width:100%; height:120px;" src="https://bandcamp.com/EmbeddedPlayer/track=3417567890/size=large/bgcol=ffffff/linkcol=63b2cc/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://miku.bandcamp.com/track/love-is-all-around">Love Is All Around by HuxP</a></iframe>
-          </div>
-        </div>
-      </section>
-
-      <section class="card" id="iwubbzy">
-        <div class="card-header"><h2>iWubbzy</h2></div>
-        <div class="card-body section-split">
-          <div>
-            <p><a href="https://iwubbzy.com" rel="noopener" target="_blank">iWubbzy.com</a> is my fan archive and preservation project centered on <em>Wow! Wow! Wubbzy!</em>. The site is focused on collecting and organizing media, music, game material, and related information in one place.</p>
-            <div class="note-box">
-              <strong>Discord:</strong> <a href="https://discord.gg/wubbzy" rel="noopener" target="_blank">iWubbzy Central</a><br/>
-              A shared server for both iWubbzy and HuxP related updates and community discussion.
-            </div>
-          </div>
-          <div>
-            <img class="section-media" src="https://c.tenor.com/YsddRDZqVZwAAAAC/tenor.gif" alt="Animated Wow! Wow! Wubbzy! GIF"/>
-          </div>
-        </div>
-      </section>
-
-      <section class="card" id="youtube-channels">
-        <div class="card-header"><h2>YouTube Channels</h2></div>
-        <div class="card-body">
-          <ul class="link-list">
-            <li><a href="https://www.youtube.com/@WowWowMitchy" rel="noopener" target="_blank">Wow! Wow! Mitchy!</a> - my second channel</li>
-            <li><a href="https://www.youtube.com/@mitch-archive" rel="noopener" target="_blank">Mitch's Archive</a> - my archival channel</li>
-            <li><a href="https://www.youtube.com/@iWubbzy" rel="noopener" target="_blank">iWubbzy</a></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="card" id="lastfm">
-        <div class="card-header"><h2>Now Playing on Last.fm</h2></div>
-        <div class="card-body">
-          <p>Live scrobble activity from my Last.fm profile.</p>
-          <div class="lastfm-box">
-            <script src="https://recentfm.rknight.me/now.js?u=HuxP"></script>
-            <noscript><a href="https://www.last.fm/user/HuxP" rel="noopener" target="_blank">View HuxP on Last.fm</a></noscript>
-          </div>
-        </div>
-      </section>
-
-      <section class="card span-2" id="blinkies">
-        <div class="card-header"><h2>Blinkies and Buttons</h2></div>
-        <div class="card-body">
-          <div class="blinkies-grid">
-            <div class="blinkies-row blinkies-nd">
-              <img src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif" alt="ADHD"/>
-              <img src="https://adriansblinkiecollection.neocities.org/n3.gif" alt="Autistic"/>
-              <img src="https://adriansblinkiecollection.neocities.org/g44.gif" alt="FUCK AI ART"/>
-              <img src="https://adriansblinkiecollection.neocities.org/x27.gif" alt="Remember That I Love You"/>
-              <img src="https://adriansblinkiecollection.neocities.org/x31.gif" alt="Music is my thing"/>
-              <img src="https://adriansblinkiecollection.neocities.org/44.gif" alt="Do what makes you happy"/>
-              <img src="https://adriansblinkiecollection.neocities.org/m5.gif" alt="Save the Dragons"/>
-            </div>
-            <div class="blinkies-row blinkies-cartoons">
-              <img src="https://adriansblinkiecollection.neocities.org/c39.gif" alt="Pinkie Pie Smile Smile Smile"/>
-              <img src="https://adriansblinkiecollection.neocities.org/e116.gif" alt="Miku fan"/>
-              <img src="https://adriansblinkiecollection.neocities.org/s12.gif" alt="SpongeBob SquarePants"/>
-              <img src="https://adriansblinkiecollection.neocities.org/z41.gif" alt="Smiling Friends Charlie"/>
-            </div>
-            <div class="blinkies-row blinkies-games">
-              <img src="https://adriansblinkiecollection.neocities.org/d1.gif" alt="Animal Jam Classic"/>
-              <img src="https://adriansblinkiecollection.neocities.org/e93.gif" alt="I love my 3DS"/>
-              <img src="https://adriansblinkiecollection.neocities.org/i6.gif" alt="Portal 2 Spaaaaace"/>
-              <img src="https://adriansblinkiecollection.neocities.org/i5.gif" alt="Portal the cake is a lie"/>
-              <img src="https://adriansblinkiecollection.neocities.org/x37.gif" alt="I love UTAU"/>
-            </div>
-            <div class="blinkies-row blinkies-nature">
-              <img src="https://adriansblinkiecollection.neocities.org/d72.gif" alt="iNaturalist fiend"/>
-              <img src="https://adriansblinkiecollection.neocities.org/e115.gif" alt="I love the sea"/>
-              <img src="https://adriansblinkiecollection.neocities.org/e100.gif" alt="I love winter"/>
-              <img src="https://adriansblinkiecollection.neocities.org/v37.gif" alt="Underwater creatures"/>
-              <img src="https://adriansblinkiecollection.neocities.org/g42.gif" alt="Daisies"/>
-            </div>
-            <div class="blinkies-row blinkies-romance">
-              <img src="https://adriansblinkiecollection.neocities.org/v14.gif" alt="Werewolf kisser"/>
-              <img src="https://adriansblinkiecollection.neocities.org/v71.gif" alt="Hearts boys"/>
-              <img src="https://adriansblinkiecollection.neocities.org/g65.gif" alt="I love guys in sweaters"/>
-            </div>
-            <div class="blinkies-row blinkies-music">
-              <img src="https://adriansblinkiecollection.neocities.org/d30.gif" alt="TMBG Flood"/>
-              <img src="https://adriansblinkiecollection.neocities.org/e10.gif" alt="They Might Be Giants"/>
-              <img src="https://adriansblinkiecollection.neocities.org/e17.gif" alt="TMBG Lincoln"/>
-              <img src="https://adriansblinkiecollection.neocities.org/g16.gif" alt="Ween GodWeenSatan"/>
-              <img src="https://adriansblinkiecollection.neocities.org/e42.gif" alt="Ween"/>
-              <img src="https://adriansblinkiecollection.neocities.org/e43.gif" alt="Ween Ocean Man"/>
-              <img src="https://adriansblinkiecollection.neocities.org/h11.gif" alt="TMBG Apollo 18"/>
-              <img src="https://adriansblinkiecollection.neocities.org/s6.gif" alt="TMBG I Like Fun"/>
-              <img src="https://adriansblinkiecollection.neocities.org/u2.gif" alt="TMBG Here Comes Science"/>
-              <img src="https://adriansblinkiecollection.neocities.org/x18.gif" alt="TMBG Join Us"/>
-            </div>
-          </div>
-          <div class="button-strip">
-            <img src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif" alt="Firefox now"/>
-            <img src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif" alt="Old man yaoi now"/>
-            <a href="https://archive.org/details/@huxp" rel="noopener" target="_blank"><img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history"/></a>
-            <img src="https://adriansblinkiecollection.neocities.org/buttons/c2.png" alt="I hate Squarespace"/>
-            <img src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif" alt="Team Fortress now"/>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <div>© <span id="year">2025</span> HuxP.</div>
-        <div>All trademarks mentioned on this site are property of their respective owners.</div>
-      </div>
-      <div class="social-icons">
-        <a href="mailto:huxpmusic@gmail.com" rel="me">Email</a>
-        <a href="https://github.com/HuxPMusic" rel="me">GitHub</a>
-        <a href="https://youtube.com/@HuxPMusic" rel="me">YouTube</a>
-        <a href="https://twitter.com/HuxPMusic" rel="me">Twitter</a>
-        <a href="https://discord.gg/wubbzy" rel="me">Discord</a>
-      </div>
-    </div>
-  </footer>
+<main id="content">
+<section aria-label="Site header" class="masthead">
+<div class="masthead-inner">
+<div class="masthead-logo"><img alt="HuxP animated logo" decoding="async" fetchpriority="high" src="/assets/images/huxp-logo-animated.gif?v=9"/></div>
+<div class="masthead-copy">
+<p>Music, archive work, web projects, and everything else that ties it together. This homepage is set up as a personal hub for current releases, side projects, community spaces, and archival work.</p>
+<div class="quick-links"><a href="#about">About</a><a href="#new-release">New Release</a><a href="#iwubbzy">iWubbzy</a><a href="#youtube-channels">YouTube</a><a href="#music-indulge">Music</a><a href="#blinkies">Blinkies</a></div>
 </div>
-<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</div>
+</section>
+<div aria-label="Scrolling stamps and buttons" class="stamp-runner"><div class="stamp-track">
+<img alt="Firefox now" src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif"/><img alt="Old man yaoi now" src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif"/><img alt="Internet Archive preserve history" src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif"/><img alt="I hate Squarespace" src="https://adriansblinkiecollection.neocities.org/buttons/c2.png"/><img alt="Team Fortress now" src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif"/><img alt="TMBG Flood" src="https://adriansblinkiecollection.neocities.org/d30.gif"/><img alt="Miku fan" src="https://adriansblinkiecollection.neocities.org/e116.gif"/><img alt="I love UTAU" src="https://adriansblinkiecollection.neocities.org/x37.gif"/><img alt="Ween" src="https://adriansblinkiecollection.neocities.org/e42.gif"/>
+<img alt="Firefox now" src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif"/><img alt="Old man yaoi now" src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif"/><img alt="Internet Archive preserve history" src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif"/><img alt="I hate Squarespace" src="https://adriansblinkiecollection.neocities.org/buttons/c2.png"/><img alt="Team Fortress now" src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif"/><img alt="TMBG Flood" src="https://adriansblinkiecollection.neocities.org/d30.gif"/><img alt="Miku fan" src="https://adriansblinkiecollection.neocities.org/e116.gif"/><img alt="I love UTAU" src="https://adriansblinkiecollection.neocities.org/x37.gif"/><img alt="Ween" src="https://adriansblinkiecollection.neocities.org/e42.gif"/>
+</div></div>
+<div class="dashboard">
+<section class="card" id="about"><div class="card-header"><h1>Biography</h1></div><div class="card-body"><div class="bio-intro"><div><p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is an American vocal synth cover artist, producer, webmaster, and digital creative. He has been active with vocal synth software since 2017 and began publicly releasing covers under the HuxP name in 2023.</p><p>His music work centers on VOCALOID and UTAU, especially projects featuring Hatsune Miku and Shiki Taigen. Across his covers, videos, and independent releases, HuxP focuses on J-POP, pop, rock, and internet-era music culture, with a strong interest in presentation, archiving, and clean metadata.</p><p>Outside of music, he also builds fan and personal web projects, maintains online archives, and works across art, design, and site development. HuxP Music serves as the main home for current releases, videos, and connected projects.</p><div class="notice-box">This site is still evolving. New sections, layout changes, and project pages may be added over time as the site grows.</div></div><aside aria-label="Profile overview" class="welcome-panel"><h3>Welcome</h3><div class="profile-line"><span class="profile-pill">Mitch</span><span class="profile-pill">18</span><span class="profile-pill">he / she</span></div><div class="flag-row"><div class="flag-badge"><img alt="Gay flag" src="https://en.pronouns.page/flags/Gay_.png"/><span>Gay</span></div><div class="flag-badge"><img alt="Genderfluid flag" src="https://en.pronouns.page/flags/Genderfluid.png"/><span>Genderfluid</span></div></div><p>Hi and welcome to my website. This page brings together my music, archive work, fan projects, and personal links in one place.</p><ul class="welcome-list"><li>Vocal synth covers and UTAU work</li><li>Archive and preservation projects</li><li>Personal and fan website development</li><li>Current community hub: <a href="https://discord.gg/wubbzy" rel="noopener" target="_blank">iWubbzy Central</a></li></ul></aside></div></div></section>
+<section class="card" id="new-release"><div class="card-header"><h2>New Release!</h2></div><div class="card-body"><p><strong>【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】</strong></p><div class="meta-row"><span class="meta-chip">Featured video</span><span class="meta-chip">Bandcamp single included</span></div><div class="video-frame" style="aspect-ratio:16/9;"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="https://www.youtube.com/embed/2l5WXp_nirw" title="【式大元・Shiki Taigen】 「Love Is All Around」 【UTAUカバー】"></iframe></div><p style="margin-top:10px;"><a href="https://youtu.be/2l5WXp_nirw" rel="noopener" target="_blank">Watch on YouTube</a></p><div class="bandcamp-embed"><iframe seamless src="https://bandcamp.com/EmbeddedPlayer/track=3417567890/size=large/bgcol=ffffff/linkcol=63b2cc/tracklist=false/artwork=small/transparent=true/" style="border:0; width:100%; height:120px;"><a href="https://miku.bandcamp.com/track/love-is-all-around">Love Is All Around by HuxP</a></iframe></div></div></section>
+<section class="card" id="iwubbzy"><div class="card-header"><h2>iWubbzy</h2></div><div class="card-body section-split"><div><p><a href="https://iwubbzy.com" rel="noopener" target="_blank">iWubbzy.com</a> is my fan archive and preservation project centered on <em>Wow! Wow! Wubbzy!</em>. The site is focused on collecting and organizing media, music, game material, and related information in one place.</p><div class="note-box"><strong>Discord:</strong> <a href="https://discord.gg/wubbzy" rel="noopener" target="_blank">iWubbzy Central</a><br/>A shared server for both iWubbzy and HuxP related updates and community discussion.</div></div><div><img alt="Animated Wow! Wow! Wubbzy! GIF" class="section-media" src="https://c.tenor.com/YsddRDZqVZwAAAAC/tenor.gif"/></div></div></section>
+<section class="card" id="youtube-channels"><div class="card-header"><h2>YouTube Channels</h2></div><div class="card-body"><div class="channel-grid"><a class="channel-card" href="https://www.youtube.com/@WowWowMitchy" rel="noopener" target="_blank"><img alt="Wow! Wow! Mitchy! icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/jQoKqOsKSSUFxw8wjn_El4V7cdRu4NVHrjrv8fCYLiJKVVGM-XpsPqPuEeiHzBcWvYJpDEa-gw"/><div><strong>Wow! Wow! Mitchy!</strong><span>My second channel</span></div></a><a class="channel-card" href="https://www.youtube.com/@mitch-archive" rel="noopener" target="_blank"><img alt="Mitch's Archive icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/dt4N2TK5ISmH1fs81eiFLp8Uf0_eh4JVWr6qAkfwldlEWPJBo5_iVAL4cKL_KlfZfMU1WFlK1Q"/><div><strong>Mitch's Archive</strong><span>My archival channel</span></div></a><a class="channel-card" href="https://www.youtube.com/@iWubbzy" rel="noopener" target="_blank"><img alt="iWubbzy icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/dvESkn09290JCYFx9t-ivxgggPxcxFlnp5hJBdGZi6sMPtci6XLN2GS2ffRkk8MHNwwDp4dxBA"/><div><strong>iWubbzy</strong><span>Archive and fan project channel</span></div></a></div></div></section>
+<section class="card" id="music-indulge"><div class="card-header"><h2>Personal Indulge: Music</h2></div><div class="card-body"><p>I spend a lot of time organizing, cataloging, and tracking music across different places. These are the profiles I use the most.</p><div class="indulge-grid"><div class="indulge-card"><strong><a href="https://www.discogs.com/user/HuxP" rel="noopener" target="_blank">Discogs</a></strong><p>Collection, wantlist, and physical media tracking.</p></div><div class="indulge-card"><strong><a href="https://musicbrainz.org/user/HuxP" rel="noopener" target="_blank">MusicBrainz</a></strong><p>Metadata edits, release info, and structured music data.</p></div><div class="indulge-card"><strong><a href="https://vocadb.net/Profile/HuxP" rel="noopener" target="_blank">VocaDB</a></strong><p>Vocal synth related artists, songs, and release indexing.</p></div></div></div></section>
+<section class="card span-2" id="blinkies"><div class="card-header"><h2>Blinkies and Buttons</h2></div><div class="card-body"><p>Everything is grouped below so it is easier to browse without one giant wall of graphics.</p><details class="blinkies-pack" open><summary>Neurodivergent and personal</summary><div class="pack-body"><img alt="ADHD" src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif"/><img alt="Autistic" src="https://adriansblinkiecollection.neocities.org/n3.gif"/><img alt="FUCK AI ART" src="https://adriansblinkiecollection.neocities.org/g44.gif"/><img alt="Remember That I Love You" src="https://adriansblinkiecollection.neocities.org/x27.gif"/><img alt="Music is my thing" src="https://adriansblinkiecollection.neocities.org/x31.gif"/><img alt="Do what makes you happy" src="https://adriansblinkiecollection.neocities.org/44.gif"/><img alt="Save the Dragons" src="https://adriansblinkiecollection.neocities.org/m5.gif"/></div></details><details class="blinkies-pack"><summary>Cartoons and characters</summary><div class="pack-body"><img alt="Pinkie Pie Smile Smile Smile" src="https://adriansblinkiecollection.neocities.org/c39.gif"/><img alt="Miku fan" src="https://adriansblinkiecollection.neocities.org/e116.gif"/><img alt="SpongeBob SquarePants" src="https://adriansblinkiecollection.neocities.org/s12.gif"/><img alt="Smiling Friends Charlie" src="https://adriansblinkiecollection.neocities.org/z41.gif"/></div></details><details class="blinkies-pack"><summary>Games and tech</summary><div class="pack-body"><img alt="Animal Jam Classic" src="https://adriansblinkiecollection.neocities.org/d1.gif"/><img alt="I love my 3DS" src="https://adriansblinkiecollection.neocities.org/e93.gif"/><img alt="Portal 2 Spaaaaace" src="https://adriansblinkiecollection.neocities.org/i6.gif"/><img alt="Portal the cake is a lie" src="https://adriansblinkiecollection.neocities.org/i5.gif"/><img alt="I love UTAU" src="https://adriansblinkiecollection.neocities.org/x37.gif"/></div></details><details class="blinkies-pack"><summary>Nature and seasonal</summary><div class="pack-body"><img alt="iNaturalist fiend" src="https://adriansblinkiecollection.neocities.org/d72.gif"/><img alt="I love the sea" src="https://adriansblinkiecollection.neocities.org/e115.gif"/><img alt="I love winter" src="https://adriansblinkiecollection.neocities.org/e100.gif"/><img alt="Underwater creatures" src="https://adriansblinkiecollection.neocities.org/v37.gif"/><img alt="Daisies" src="https://adriansblinkiecollection.neocities.org/g42.gif"/></div></details><details class="blinkies-pack"><summary>Music and favorites</summary><div class="pack-body"><img alt="TMBG Flood" src="https://adriansblinkiecollection.neocities.org/d30.gif"/><img alt="They Might Be Giants" src="https://adriansblinkiecollection.neocities.org/e10.gif"/><img alt="TMBG Lincoln" src="https://adriansblinkiecollection.neocities.org/e17.gif"/><img alt="Ween GodWeenSatan" src="https://adriansblinkiecollection.neocities.org/g16.gif"/><img alt="Ween" src="https://adriansblinkiecollection.neocities.org/e42.gif"/><img alt="Ween Ocean Man" src="https://adriansblinkiecollection.neocities.org/e43.gif"/><img alt="TMBG Apollo 18" src="https://adriansblinkiecollection.neocities.org/h11.gif"/><img alt="TMBG I Like Fun" src="https://adriansblinkiecollection.neocities.org/s6.gif"/><img alt="TMBG Here Comes Science" src="https://adriansblinkiecollection.neocities.org/u2.gif"/><img alt="TMBG Join Us" src="https://adriansblinkiecollection.neocities.org/x18.gif"/></div></details><details class="blinkies-pack"><summary>Site buttons</summary><div class="pack-body"><img alt="Firefox now" src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif"/><img alt="Old man yaoi now" src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif"/><a href="https://archive.org/details/@huxp" rel="noopener" target="_blank"><img alt="Internet Archive preserve history" src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif"/></a><img alt="I hate Squarespace" src="https://adriansblinkiecollection.neocities.org/buttons/c2.png"/><img alt="Team Fortress now" src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif"/></div></details></div></section>
+</div>
+</main>
+<footer class="site-footer"><div class="footer-inner"><div><div>© <span id="year">2025</span> HuxP.</div><div>All trademarks mentioned on this site are property of their respective owners.</div></div><div class="social-icons"><a href="mailto:huxpmusic@gmail.com" rel="me">Email</a><a href="https://github.com/HuxPMusic" rel="me">GitHub</a><a href="https://youtube.com/@HuxPMusic" rel="me">YouTube</a><a href="https://twitter.com/HuxPMusic" rel="me">Twitter</a><a href="https://discord.gg/wubbzy" rel="me">Discord</a></div></div></footer>
+</div>
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
 </body>
 </html>
