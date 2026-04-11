@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<title>HuxP</title>
+<title>HuxP Music | HuxP</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&amp;family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
@@ -28,18 +28,20 @@
 <meta content="https://huxpmusic.com/social-card.png" name="twitter:image"/>
 <style>
 :root{
-  --bg:#1a1730;
+  --bg:#18142d;
+  --bg-2:#231a44;
   --bg-panel:#f8f4ff;
   --bg-panel-soft:#fffaff;
   --bg-accent:#efe7ff;
   --bg-accent-2:#e8f8ff;
+  --bg-accent-3:#fff0f8;
   --border:#5d4ea1;
   --border-strong:#30255f;
   --ink:#1d1730;
   --ink-soft:#51486b;
   --link:#5140b4;
   --link-hover:#7c2db6;
-  --shadow:0 10px 24px rgba(21,16,48,.18);
+  --shadow:0 12px 28px rgba(21,16,48,.22);
   --radius:20px;
 }
 *,*::before,*::after{box-sizing:border-box;}
@@ -49,257 +51,60 @@ body{
   font-family:"Verdana","Geneva",system-ui,-apple-system,sans-serif;
   color:var(--ink);
   background:
-    linear-gradient(rgba(26,23,48,.78),rgba(26,23,48,.78)),
+    radial-gradient(circle at top left, rgba(135,104,255,.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(255,136,220,.18), transparent 26%),
+    linear-gradient(rgba(24,20,45,.82),rgba(24,20,45,.88)),
     url("BACKGROUND.png") repeat;
 }
 img{max-width:100%;height:auto;display:block;}
-a{color:var(--link);}
-a:hover{color:var(--link-hover);}
-a:visited{color:var(--link);}
-.skip-link{
-  position:absolute;
-  left:-9999px;
-  top:0;
-  padding:6px 10px;
-  background:#fff;
-  color:#000;
-  font-weight:bold;
-  z-index:999;
-}
+a{color:var(--link);}a:hover{color:var(--link-hover);}a:visited{color:var(--link);}
+.skip-link{position:absolute;left:-9999px;top:0;padding:6px 10px;background:#fff;color:#000;font-weight:bold;z-index:999;}
 .skip-link:focus{left:10px;top:10px;}
-.page{
-  width:min(1160px,calc(100% - 24px));
-  margin:14px auto;
-  padding:14px;
-  background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.18));
-  border:2px solid rgba(255,255,255,.32);
-  border-radius:28px;
-  backdrop-filter:blur(4px);
-}
-.masthead{
-  background:linear-gradient(135deg,#2c2457 0%,#47338c 52%,#6a56d4 100%);
-  border:2px solid var(--border-strong);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:20px 18px 18px;
-  margin-bottom:12px;
-}
-.masthead-inner{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-.masthead-logo img{
-  max-width:290px;
-  margin:0 auto;
-}
-.masthead-copy{
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.3);
-  border-radius:18px;
-  padding:12px 14px;
-  color:#fff;
-}
-.masthead-copy p{
-  margin:0;
-  font-size:13px;
-  line-height:1.5;
-}
-.quick-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:10px;
-}
-.quick-links a{
-  text-decoration:none;
-  padding:7px 12px;
-  border-radius:999px;
-  background:#fff;
-  color:#312762;
-  border:1px solid rgba(48,37,95,.22);
-  font-size:12px;
-  font-weight:bold;
-}
-.dashboard{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-}
-.card{
-  background:linear-gradient(180deg,var(--bg-panel-soft),var(--bg-panel));
-  border:2px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-.card-header{
-  padding:11px 14px;
-  background:linear-gradient(90deg,#6958c7,#8a75e8 70%,#b8aef7);
-  color:#fff;
-  border-bottom:2px solid var(--border);
-}
-.card-header h1,.card-header h2{
-  margin:0;
-  font-family:"Fredoka","Nunito",sans-serif;
-  font-size:20px;
-  font-weight:700;
-}
-.card-body{
-  padding:14px;
-}
-.card-body p{
-  margin:0 0 10px;
-  font-size:13px;
-  line-height:1.6;
-}
+.page{width:min(1180px,calc(100% - 24px));margin:14px auto;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.16));border:2px solid rgba(255,255,255,.28);border-radius:28px;backdrop-filter:blur(6px);}
+.masthead{position:relative;background:linear-gradient(135deg,#2c2457 0%,#47338c 52%,#6a56d4 100%);border:2px solid var(--border-strong);border-radius:24px;box-shadow:var(--shadow);padding:20px 18px 18px;margin-bottom:12px;overflow:hidden;}
+.masthead::before,.masthead::after{content:"";position:absolute;border-radius:999px;background:rgba(255,255,255,.08);pointer-events:none;}
+.masthead::before{width:220px;height:220px;top:-90px;right:-40px;}
+.masthead::after{width:130px;height:130px;bottom:-35px;left:-30px;}
+.masthead-inner{display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
+.masthead-logo img{max-width:290px;margin:0 auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.2));}
+.masthead-copy{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:18px;padding:12px 14px;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.18);}
+.masthead-copy p{margin:0;font-size:13px;line-height:1.5;}
+.quick-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.quick-links a{text-decoration:none;padding:7px 12px;border-radius:999px;background:#fff;color:#312762;border:1px solid rgba(48,37,95,.22);font-size:12px;font-weight:bold;box-shadow:0 3px 8px rgba(0,0,0,.08);}
+.dashboard{display:grid;grid-template-columns:1fr;gap:12px;}
+.card{background:linear-gradient(180deg,var(--bg-panel-soft),var(--bg-panel));border:2px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:relative;}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 26%);pointer-events:none;}
+.card-header{padding:11px 14px;background:linear-gradient(90deg,#6958c7,#8a75e8 70%,#b8aef7);color:#fff;border-bottom:2px solid var(--border);position:relative;z-index:1;}
+.card-header h1,.card-header h2{margin:0;font-family:"Fredoka","Nunito",sans-serif;font-size:20px;font-weight:700;}
+.card-body{padding:14px;position:relative;z-index:1;}
+.card-body p{margin:0 0 10px;font-size:13px;line-height:1.6;}
 .card-body p:last-child{margin-bottom:0;}
-.bio-intro{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-}
-.welcome-panel{
-  background:linear-gradient(180deg,#f3eeff,#fffaff);
-  border:1px solid #c8bbf0;
-  border-radius:16px;
-  padding:12px;
-}
-.welcome-panel h3{
-  margin:0 0 8px;
-  font-size:14px;
-  font-family:"Fredoka","Nunito",sans-serif;
-}
-.profile-line{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-bottom:10px;
-}
-.profile-pill{
-  display:inline-flex;
-  align-items:center;
-  padding:6px 10px;
-  border-radius:999px;
-  background:#ece5ff;
-  border:1px solid #cdbff7;
-  font-size:12px;
-  font-weight:bold;
-}
-.flag-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin:8px 0 10px;
-}
-.flag-badge{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:6px 8px;
-  border-radius:14px;
-  background:#ffffff;
-  border:1px solid #d4c9f6;
-}
-.flag-badge img{
-  width:44px;
-  height:28px;
-  object-fit:cover;
-  border-radius:6px;
-  border:1px solid #c9bdf2;
-}
-.flag-badge span{
-  font-size:12px;
-  font-weight:bold;
-}
-.welcome-list{
-  margin:8px 0 0;
-  padding-left:18px;
-}
-.welcome-list li{
-  margin:4px 0;
-  font-size:13px;
-}
-.video-frame{
-  width:100%;
-  border:2px solid #2f265d;
-  border-radius:16px;
-  overflow:hidden;
-  background:#000;
-}
-.video-frame iframe{
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
-.release-title{
-  font-size:14px;
-  font-weight:bold;
-  margin-bottom:8px;
-}
-.meta-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:10px;
-}
-.meta-chip{
-  padding:6px 10px;
-  border-radius:999px;
-  background:#efeaff;
-  border:1px solid #cabff4;
-  font-size:12px;
-}
-.bandcamp-embed{
-  margin-top:10px;
-}
-.section-media{
-  border:2px solid var(--border);
-  border-radius:16px;
-  margin-top:10px;
-}
-.section-split{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-}
-.link-list{
-  margin:0;
-  padding-left:18px;
-}
-.link-list li{
-  margin:6px 0;
-  font-size:13px;
-}
-.note-box{
-  background:var(--bg-accent);
-  border:1px solid #c8bbf0;
-  border-radius:16px;
-  padding:10px 12px;
-  margin-top:10px;
-  font-size:13px;
-  line-height:1.6;
-}
-.lastfm-box{
-  background:var(--bg-accent-2);
-  border:1px solid #baddeb;
-  border-radius:16px;
-  padding:12px;
-}
-.blinkies-grid{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-.blinkies-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px;
-  padding:8px;
-  border-radius:14px;
-  border:1px solid #d5cdee;
-}
+.bio-intro{display:grid;grid-template-columns:1fr;gap:10px;}
+.welcome-panel{background:linear-gradient(180deg,#f3eeff,#fffaff);border:1px solid #c8bbf0;border-radius:16px;padding:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.65);}
+.welcome-panel h3{margin:0 0 8px;font-size:14px;font-family:"Fredoka","Nunito",sans-serif;}
+.profile-line{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.profile-pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#ece5ff;border:1px solid #cdbff7;font-size:12px;font-weight:bold;}
+.flag-row{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 10px;}
+.flag-badge{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:14px;background:#ffffff;border:1px solid #d4c9f6;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.flag-badge img{width:44px;height:28px;object-fit:cover;border-radius:6px;border:1px solid #c9bdf2;}
+.flag-badge span{font-size:12px;font-weight:bold;}
+.welcome-list{margin:8px 0 0;padding-left:18px;}
+.welcome-list li{margin:4px 0;font-size:13px;}
+.video-frame{width:100%;border:2px solid #2f265d;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 18px rgba(18,12,40,.16);}
+.video-frame iframe{width:100%;height:100%;border:0;display:block;}
+.release-title{font-size:14px;font-weight:bold;margin-bottom:8px;}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+.meta-chip{padding:6px 10px;border-radius:999px;background:#efeaff;border:1px solid #cabff4;font-size:12px;}
+.bandcamp-embed{margin-top:10px;}
+.section-media{border:2px solid var(--border);border-radius:16px;margin-top:10px;box-shadow:0 6px 14px rgba(0,0,0,.12);}
+.section-split{display:grid;grid-template-columns:1fr;gap:12px;}
+.link-list{margin:0;padding-left:18px;}
+.link-list li{margin:6px 0;font-size:13px;}
+.note-box{background:var(--bg-accent);border:1px solid #c8bbf0;border-radius:16px;padding:10px 12px;margin-top:10px;font-size:13px;line-height:1.6;box-shadow:inset 0 1px 0 rgba(255,255,255,.55);}
+.lastfm-box{background:var(--bg-accent-2);border:1px solid #baddeb;border-radius:16px;padding:12px;}
+.notice-box{background:var(--bg-accent-3);border:1px solid #efc7dd;border-radius:16px;padding:10px 12px;margin-top:10px;font-size:13px;line-height:1.6;}
+.blinkies-grid{display:flex;flex-direction:column;gap:10px;}
+.blinkies-row{display:flex;flex-wrap:wrap;gap:4px;padding:8px;border-radius:14px;border:1px solid #d5cdee;}
 .blinkies-row img{image-rendering:pixelated;}
 .blinkies-nd{background:#fbe4d5;border-color:#d2a07b;}
 .blinkies-cartoons{background:#fff7d9;border-color:#dec86a;}
@@ -307,66 +112,15 @@ a:visited{color:var(--link);}
 .blinkies-nature{background:#e3f7e2;border-color:#8ec48b;}
 .blinkies-romance{background:#ffe8f5;border-color:#d79cbc;}
 .blinkies-music{background:#ebe7ff;border-color:#b9acea;}
-.button-strip{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:10px;
-}
+.button-strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
 .button-strip img{image-rendering:pixelated;}
-.site-footer{
-  margin-top:12px;
-  padding:10px 14px;
-  background:rgba(19,15,39,.78);
-  border:2px solid rgba(255,255,255,.15);
-  border-radius:20px;
-  color:#fff;
-  box-shadow:var(--shadow);
-}
-.footer-inner{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
+.site-footer{margin-top:12px;padding:10px 14px;background:rgba(19,15,39,.78);border:2px solid rgba(255,255,255,.15);border-radius:20px;color:#fff;box-shadow:var(--shadow);}
+.footer-inner{display:flex;flex-direction:column;gap:10px;}
 .footer-inner a{color:#fff1a9;}
-.social-icons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.social-icons a{
-  text-decoration:none;
-  padding:6px 10px;
-  border-radius:999px;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.18);
-}
-@media (min-width:760px){
-  .masthead-inner{
-    display:grid;
-    grid-template-columns:280px 1fr;
-    align-items:center;
-  }
-  .section-split{
-    grid-template-columns:1fr .92fr;
-  }
-  .footer-inner{
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
-  }
-}
-@media (min-width:960px){
-  .dashboard{
-    grid-template-columns:1.08fr .92fr;
-    align-items:start;
-  }
-  .bio-intro{
-    grid-template-columns:1.2fr .8fr;
-    align-items:start;
-  }
-  .span-2{grid-column:1 / -1;}
-}
+.social-icons{display:flex;flex-wrap:wrap;gap:8px;}
+.social-icons a{text-decoration:none;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);}
+@media (min-width:760px){.masthead-inner{display:grid;grid-template-columns:280px 1fr;align-items:center;}.section-split{grid-template-columns:1fr .92fr;}.footer-inner{flex-direction:row;justify-content:space-between;align-items:center;}}
+@media (min-width:960px){.dashboard{grid-template-columns:1.08fr .92fr;align-items:start;}.bio-intro{grid-template-columns:1.2fr .8fr;align-items:start;}.span-2{grid-column:1 / -1;}}
 </style>
 </head>
 <body>
@@ -382,7 +136,7 @@ a:visited{color:var(--link);}
           </picture>
         </div>
         <div class="masthead-copy">
-          <p>Music, archive work, web projects, and everything else that ties it together. This homepage is set up more like a personal hub, with current releases, side projects, and links grouped into one place.</p>
+          <p>Music, archive work, web projects, and everything else that ties it together. This homepage is set up as a personal hub for current releases, side projects, community spaces, and archival work.</p>
           <div class="quick-links">
             <a href="#about">About</a>
             <a href="#new-release">New Release</a>
@@ -404,6 +158,9 @@ a:visited{color:var(--link);}
               <p>Mitch "Michelle" Bentz, known online as <strong>HuxP</strong>, is an American vocal synth cover artist, producer, webmaster, and digital creative. He has been active with vocal synth software since 2017 and began publicly releasing covers under the HuxP name in 2023.</p>
               <p>His music work centers on VOCALOID and UTAU, especially projects featuring Hatsune Miku and Shiki Taigen. Across his covers, videos, and independent releases, HuxP focuses on J-POP, pop, rock, and internet-era music culture, with a strong interest in presentation, archiving, and clean metadata.</p>
               <p>Outside of music, he also builds fan and personal web projects, maintains online archives, and works across art, design, and site development. HuxP Music serves as the main home for current releases, videos, and connected projects.</p>
+              <div class="notice-box">
+                This site is still evolving. New sections, layout changes, and project pages may be added over time as the site grows.
+              </div>
             </div>
             <aside class="welcome-panel" aria-label="Profile overview">
               <h3>Welcome</h3>
@@ -503,14 +260,12 @@ a:visited{color:var(--link);}
               <img src="https://adriansblinkiecollection.neocities.org/44.gif" alt="Do what makes you happy"/>
               <img src="https://adriansblinkiecollection.neocities.org/m5.gif" alt="Save the Dragons"/>
             </div>
-
             <div class="blinkies-row blinkies-cartoons">
               <img src="https://adriansblinkiecollection.neocities.org/c39.gif" alt="Pinkie Pie Smile Smile Smile"/>
               <img src="https://adriansblinkiecollection.neocities.org/e116.gif" alt="Miku fan"/>
               <img src="https://adriansblinkiecollection.neocities.org/s12.gif" alt="SpongeBob SquarePants"/>
               <img src="https://adriansblinkiecollection.neocities.org/z41.gif" alt="Smiling Friends Charlie"/>
             </div>
-
             <div class="blinkies-row blinkies-games">
               <img src="https://adriansblinkiecollection.neocities.org/d1.gif" alt="Animal Jam Classic"/>
               <img src="https://adriansblinkiecollection.neocities.org/e93.gif" alt="I love my 3DS"/>
@@ -518,7 +273,6 @@ a:visited{color:var(--link);}
               <img src="https://adriansblinkiecollection.neocities.org/i5.gif" alt="Portal the cake is a lie"/>
               <img src="https://adriansblinkiecollection.neocities.org/x37.gif" alt="I love UTAU"/>
             </div>
-
             <div class="blinkies-row blinkies-nature">
               <img src="https://adriansblinkiecollection.neocities.org/d72.gif" alt="iNaturalist fiend"/>
               <img src="https://adriansblinkiecollection.neocities.org/e115.gif" alt="I love the sea"/>
@@ -526,13 +280,11 @@ a:visited{color:var(--link);}
               <img src="https://adriansblinkiecollection.neocities.org/v37.gif" alt="Underwater creatures"/>
               <img src="https://adriansblinkiecollection.neocities.org/g42.gif" alt="Daisies"/>
             </div>
-
             <div class="blinkies-row blinkies-romance">
               <img src="https://adriansblinkiecollection.neocities.org/v14.gif" alt="Werewolf kisser"/>
               <img src="https://adriansblinkiecollection.neocities.org/v71.gif" alt="Hearts boys"/>
               <img src="https://adriansblinkiecollection.neocities.org/g65.gif" alt="I love guys in sweaters"/>
             </div>
-
             <div class="blinkies-row blinkies-music">
               <img src="https://adriansblinkiecollection.neocities.org/d30.gif" alt="TMBG Flood"/>
               <img src="https://adriansblinkiecollection.neocities.org/e10.gif" alt="They Might Be Giants"/>
@@ -546,13 +298,10 @@ a:visited{color:var(--link);}
               <img src="https://adriansblinkiecollection.neocities.org/x18.gif" alt="TMBG Join Us"/>
             </div>
           </div>
-
           <div class="button-strip">
             <img src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif" alt="Firefox now"/>
             <img src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif" alt="Old man yaoi now"/>
-            <a href="https://archive.org/details/@huxp" rel="noopener" target="_blank">
-              <img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history"/>
-            </a>
+            <a href="https://archive.org/details/@huxp" rel="noopener" target="_blank"><img src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif" alt="Internet Archive preserve history"/></a>
             <img src="https://adriansblinkiecollection.neocities.org/buttons/c2.png" alt="I hate Squarespace"/>
             <img src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif" alt="Team Fortress now"/>
           </div>
@@ -560,7 +309,6 @@ a:visited{color:var(--link);}
       </section>
     </div>
   </main>
-
   <footer class="site-footer">
     <div class="footer-inner">
       <div>
@@ -577,8 +325,6 @@ a:visited{color:var(--link);}
     </div>
   </footer>
 </div>
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

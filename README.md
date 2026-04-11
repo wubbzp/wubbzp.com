@@ -21,14 +21,13 @@ This site is built as a static website using plain:
 
 No build step or framework is required.
 
-## Editing
-Main homepage file:
-- `index.html`
+## Repository structure
+- `index.html` - main homepage
+- `pages/wiki-status.html` - standalone wiki status page
+- `wiki-status.html` - redirect kept for compatibility
+- `README.md` - repository overview
 
-Additional standalone page:
-- `wiki-status.html`
-
-Assets such as icons, images, and manifests are stored in the repository root unless otherwise noted.
+Most site assets currently remain in the repository root. The next cleanup pass should move images, icons, and other static files into dedicated folders such as `assets/images/`, `assets/icons/`, and `assets/meta/`.
 
 ## Notes
 This repository is mainly for maintaining the live website and updating homepage content, layout, and related static pages.
