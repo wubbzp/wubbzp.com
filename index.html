@@ -8,7 +8,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link href="/assets/icons/kickball-32.png?v=10" rel="icon" sizes="32x32" type="image/png"/>
-<meta content="#1a1730" name="theme-color"/>
+<meta content="#fee072" name="theme-color"/>
 <meta content="HuxP" property="og:title"/>
 <meta content="Vocal synth covers, archive projects, and iWubbzy." property="og:description"/>
 <meta content="website" property="og:type"/>
@@ -19,16 +19,16 @@
 <meta content="@HuxPMusic" name="twitter:creator"/>
 <style>
 :root{
-  --bg:#18142d;
-  --panel:#f8f4ff;
-  --panel-soft:#fffaff;
-  --border:#5d4ea1;
-  --border-strong:#30255f;
-  --ink:#1d1730;
-  --ink-soft:#51486b;
-  --link:#5140b4;
-  --link-hover:#7c2db6;
-  --shadow:0 12px 28px rgba(21,16,48,.22);
+  --bg:#fdf5d3;
+  --panel:#ffffff;
+  --panel-soft:#fffdf5;
+  --border:#f5b035;
+  --border-strong:#d68a18;
+  --ink:#4a2f0b;
+  --ink-soft:#7a5523;
+  --link:#d64a18;
+  --link-hover:#b03409;
+  --shadow:0 12px 28px rgba(214,138,24,.15);
   --radius:20px;
 }
 *,*::before,*::after{box-sizing:border-box;}
@@ -38,9 +38,9 @@ body{
   font-family:"Nunito","Segoe UI",system-ui,-apple-system,sans-serif;
   color:var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(135,104,255,.22), transparent 28%),
-    radial-gradient(circle at top right, rgba(255,136,220,.18), transparent 26%),
-    linear-gradient(rgba(24,20,45,.84),rgba(24,20,45,.9)),
+    radial-gradient(circle at top left, rgba(254,224,114,.6), transparent 28%),
+    radial-gradient(circle at top right, rgba(252,155,29,.4), transparent 26%),
+    linear-gradient(rgba(253,245,211,.9),rgba(253,245,211,.95)),
     url("BACKGROUND.png") repeat;
 }
 a{color:var(--link);}a:hover{color:var(--link-hover);}a:visited{color:var(--link);}
@@ -54,7 +54,7 @@ img{max-width:100%;height:auto;display:block;}
   width:clamp(170px,17vw,250px);
   z-index:6;
   pointer-events:none;
-  filter:drop-shadow(0 14px 22px rgba(0,0,0,.32));
+  filter:drop-shadow(0 14px 22px rgba(0,0,0,.15));
   animation:slidePeek 1.15s ease-out forwards,bob 5.5s ease-in-out infinite 1.15s;
 }
 @keyframes slidePeek{from{transform:translate(-78%,-50%);opacity:0;}to{transform:translate(-18%,-50%);opacity:1;}}
@@ -63,8 +63,8 @@ img{max-width:100%;height:auto;display:block;}
   width:min(1180px,calc(100% - 24px));
   margin:14px auto;
   padding:14px;
-  background:linear-gradient(180deg,rgba(255,255,255,.34),rgba(255,255,255,.16));
-  border:2px solid rgba(255,255,255,.28);
+  background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.5));
+  border:2px solid rgba(254, 224, 114, .6);
   border-radius:28px;
   backdrop-filter:blur(6px);
   position:relative;
@@ -72,7 +72,7 @@ img{max-width:100%;height:auto;display:block;}
 }
 .masthead{
   position:relative;
-  background:linear-gradient(135deg,#2c2457 0%,#47338c 52%,#6a56d4 100%);
+  background:linear-gradient(135deg,#fc9b1d 0%,#fdb94e 52%,#fee072 100%);
   border:2px solid var(--border-strong);
   border-radius:24px;
   box-shadow:var(--shadow);
@@ -80,17 +80,17 @@ img{max-width:100%;height:auto;display:block;}
   margin-bottom:12px;
   overflow:hidden;
 }
-.masthead::before,.masthead::after{content:"";position:absolute;border-radius:999px;background:rgba(255,255,255,.08);pointer-events:none;}
+.masthead::before,.masthead::after{content:"";position:absolute;border-radius:999px;background:rgba(255,255,255,.2);pointer-events:none;}
 .masthead::before{width:220px;height:220px;top:-90px;right:-40px;}
 .masthead::after{width:130px;height:130px;bottom:-35px;left:-30px;}
 .masthead-inner{display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
-.masthead-logo img{max-width:350px;margin:0 auto;filter:drop-shadow(0 8px 18px rgba(0,0,0,.26));}
-.masthead-copy{background:rgba(15,12,37,.24);border:1px solid rgba(255,255,255,.26);border-radius:18px;padding:16px 18px;color:#fff;max-width:760px;}
+.masthead-logo img{max-width:350px;margin:0 auto;filter:drop-shadow(0 8px 18px rgba(0,0,0,.12));}
+.masthead-copy{background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);border-radius:18px;padding:16px 18px;color:var(--ink);max-width:760px;}
 .masthead-copy p{margin:0;font-size:13px;line-height:1.5;}
 .quick-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
-.quick-links a{text-decoration:none;padding:8px 13px;border-radius:999px;background:#fff;color:#312762;border:1px solid rgba(48,37,95,.22);font-size:12px;font-weight:700;box-shadow:0 3px 8px rgba(0,0,0,.08);}
+.quick-links a{text-decoration:none;padding:8px 13px;border-radius:999px;background:#fff;color:#4a2f0b;border:1px solid #f5b035;font-size:12px;font-weight:700;box-shadow:0 3px 8px rgba(0,0,0,.08);}
 .marquee-stack{display:grid;gap:8px;margin-bottom:12px;}
-.marquee-row{background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.22);border-radius:20px;padding:8px 10px;overflow:hidden;box-shadow:var(--shadow);}
+.marquee-row{background:rgba(254,224,114,.4);border:2px solid rgba(245,176,53,.5);border-radius:20px;padding:8px 10px;overflow:hidden;box-shadow:var(--shadow);}
 .marquee-track{display:flex;gap:8px;width:max-content;align-items:center;animation:marqueeLeft 34s linear infinite;}
 .marquee-row.reverse .marquee-track{animation-name:marqueeRight;}
 .marquee-track img{image-rendering:pixelated;height:31px;width:auto;display:block;}
@@ -99,38 +99,22 @@ img{max-width:100%;height:auto;display:block;}
 .content-grid{display:grid;grid-template-columns:1fr;gap:12px;}
 .column{display:grid;gap:12px;}
 .card{background:linear-gradient(180deg,var(--panel-soft),var(--panel));border:2px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
-.card-header{padding:12px 16px;background:linear-gradient(90deg,#5647af,#7363ca 70%,#9b90e4);color:#fff;border-bottom:2px solid var(--border);}
+.card-header{padding:12px 16px;background:linear-gradient(90deg,#fc9b1d,#fdb94e 70%,#fee072);color:#4a2f0b;border-bottom:2px solid var(--border);}
 .card-header h1,.card-header h2,.card-header h3{margin:0;font-family:"Fredoka","Nunito",sans-serif;font-size:20px;font-weight:700;}
 .card-body{padding:14px;}
 .card-body p{margin:0 0 10px;font-size:14px;line-height:1.65;}
-.bio-intro{display:grid;grid-template-columns:1fr;gap:10px;}
-.welcome-panel{background:linear-gradient(180deg,#f3eeff,#fffaff);border:1px solid #c8bbf0;border-radius:16px;padding:12px;}
-.welcome-panel h3{margin:0 0 8px;font-size:14px;font-family:"Fredoka","Nunito",sans-serif;}
-.profile-line,.flag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
-.profile-pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#ece5ff;border:1px solid #cdbff7;font-size:12px;font-weight:bold;}
-.flag-badge{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:14px;background:#fff;border:1px solid #d4c9f6;}
-.flag-badge img{width:44px;height:28px;object-fit:cover;border-radius:6px;border:1px solid #c9bdf2;}
-.welcome-list{margin:8px 0 0;padding-left:18px;}
-.notice-box,.note-box{border-radius:16px;padding:10px 12px;margin-top:10px;font-size:13px;line-height:1.6;}
-.notice-box{background:#fff0f8;border:1px solid #efc7dd;}
-.note-box{background:#efe7ff;border:1px solid #c8bbf0;}
-.video-frame{width:100%;border:2px solid #2f265d;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 8px 18px rgba(18,12,40,.16);}
-.video-frame iframe{width:100%;height:100%;border:0;display:block;}
-.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
-.meta-chip{padding:6px 10px;border-radius:999px;background:#efeaff;border:1px solid #cabff4;font-size:12px;}
-.bandcamp-embed{margin-top:10px;}
-.project-grid,.channel-grid,.music-grid{display:grid;grid-template-columns:1fr;gap:10px;}
-.project-card,.channel-card,.music-card{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:16px;background:#fff;border:1px solid #dad2f4;box-shadow:0 2px 8px rgba(0,0,0,.05);text-decoration:none;}
-.project-thumb,.channel-card img{width:64px;height:64px;border-radius:16px;object-fit:cover;border:2px solid #cdbff7;flex:0 0 auto;}
-.project-card strong,.channel-card strong,.music-card strong{display:block;font-size:14px;color:var(--ink);margin-bottom:3px;}
-.project-card span,.channel-card span,.music-card span{display:block;font-size:12px;color:var(--ink-soft);line-height:1.5;}
-.project-card img{background:#eef2ff;padding:4px;}
-.site-footer{margin-top:12px;padding:10px 14px;background:rgba(19,15,39,.78);border:2px solid rgba(255,255,255,.15);border-radius:20px;color:#fff;box-shadow:var(--shadow);}
+.project-grid,.channel-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.project-card,.channel-card{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:16px;background:#fff;border:1px solid #fee072;box-shadow:0 2px 8px rgba(0,0,0,.05);text-decoration:none;}
+.project-thumb,.channel-card img{width:64px;height:64px;border-radius:16px;object-fit:cover;border:2px solid #fee072;flex:0 0 auto;}
+.project-card strong,.channel-card strong{display:block;font-size:14px;color:var(--ink);margin-bottom:3px;}
+.project-card span,.channel-card span{display:block;font-size:12px;color:var(--ink-soft);line-height:1.5;}
+.project-card img{background:#fffdf5;padding:4px;}
+.site-footer{margin-top:12px;padding:10px 14px;background:rgba(254, 224, 114, 0.85);border:2px solid rgba(245, 176, 53, 0.5);border-radius:20px;color:var(--ink);box-shadow:var(--shadow);}
 .footer-inner{display:flex;flex-direction:column;gap:10px;}
-.footer-inner a{color:#fff1a9;}
+.footer-inner a{color:var(--link);}
 .social-icons{display:flex;flex-wrap:wrap;gap:8px;}
-.social-icons a{text-decoration:none;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);}
-@media (min-width:760px){.masthead-inner{display:grid;grid-template-columns:360px 1fr;align-items:center;}.bio-intro{grid-template-columns:1.18fr .82fr;align-items:start;}.project-grid,.channel-grid,.music-grid{grid-template-columns:repeat(2,1fr);}.footer-inner{flex-direction:row;justify-content:space-between;align-items:center;}}
+.social-icons a{text-decoration:none;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.6);border:1px solid rgba(245, 176, 53, 0.6);}
+@media (min-width:760px){.masthead-inner{display:grid;grid-template-columns:360px 1fr;align-items:center;}.project-grid,.channel-grid{grid-template-columns:repeat(2,1fr);}.footer-inner{flex-direction:row;justify-content:space-between;align-items:center;}}
 @media (min-width:980px){.content-grid{grid-template-columns:1.08fr .92fr;align-items:start;}}
 @media (max-width:920px){.side-wubbzy{display:none;}}
 </style>
@@ -145,7 +129,7 @@ img{max-width:100%;height:auto;display:block;}
 <div class="masthead-logo"><img alt="HuxP logo" decoding="async" fetchpriority="high" src="HuxP Logo.svg"/></div>
 <div class="masthead-copy">
 <p>Music, archive work, and web projects in one place. I use this site to share new releases, ongoing projects, and the communities I help run.</p>
-<div class="quick-links"><a href="#about">About</a><a href="#new-release">New Release</a><a href="#projects">Projects</a><a href="#youtube-channels">YouTube</a><a href="#music-sites">Music Sites</a></div>
+<div class="quick-links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#youtube-channels">YouTube</a></div>
 </div>
 </div>
 </section>
@@ -156,14 +140,13 @@ img{max-width:100%;height:auto;display:block;}
 </section>
 <div class="content-grid">
 <div class="column">
-<section class="card" id="about"><div class="card-header"><h1>About</h1></div><div class="card-body"><div class="bio-intro"><div><p>I'm Mitch Bentz, and I create under the name <strong>HuxP</strong>. I've worked with vocal synth software since 2017 and started releasing covers publicly as HuxP in 2023.</p><p>My music work focuses on VOCALOID and UTAU, especially projects featuring Shiki Taigen.</p><p>Outside of music, I maintain archives, build fan and personal websites, and do visual/site design work.</p><div class="notice-box">This site is still evolving. New sections, layout changes, and project pages may be added over time as the site grows.</div></div><aside aria-label="Profile overview" class="welcome-panel"><h3>Welcome</h3><div class="profile-line"><span class="profile-pill">Mitch</span><span class="profile-pill">18</span><span class="profile-pill">he / she</span></div><div class="flag-row"><div class="flag-badge"><img alt="Gay flag" src="https://en.pronouns.page/flags/Gay_.png"/><span>Gay</span></div><div class="flag-badge"><img alt="Genderfluid flag" src="https://en.pronouns.page/flags/Genderfluid.png"/><span>Genderfluid</span></div></div><p>Welcome! This page is the main hub for my music, archive projects, fan work, and personal links.</p><ul class="welcome-list"><li>Vocal synth covers and UTAU work</li><li>Archive and preservation projects</li><li>Personal and fan website development</li><li>Current community hub: <a href="My *Wow! Wow! Wubbzy!* server, **iWubbzy Central**:
-https://discord.gg/hKXwdhUQzr" rel="noopener" target="_blank">iWubbzy Central</a></li></ul></aside></div></div></section>
-<section class="card" id="new-release"><div class="card-header"><h2>New Release!</h2></div><div class="card-body"><p><strong>【式大元・Shiki Taigen】 「To a Forest」 【UTAUカバー】</strong></p><div class="meta-row"><span class="meta-chip">Featured video</span><span class="meta-chip">Bandcamp single included</span></div><div class="video-frame" style="aspect-ratio:16/9;"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen src="https://www.youtube.com/embed/Ik_wAMlSo9c" title="【式大元・Shiki Taigen】 「To a Forest」 【UTAUカバー】"></iframe></div><p style="margin-top:10px;"><a href="https://youtu.be/Ik_wAMlSo9c" rel="noopener" target="_blank">Watch on YouTube</a></p><div class="bandcamp-embed"><iframe seamless src="https://bandcamp.com/EmbeddedPlayer/track=3292120181/size=large/bgcol=ffffff/linkcol=63b2cc/tracklist=false/artwork=small/transparent=true/" style="border:0; width:100%; height:120px;"><a href="https://huxp.bandcamp.com/track/to-a-forest">To a Forest by HuxP</a></iframe></div></div></section>
+<section class="card" id="about"><div class="card-header"><h1>About</h1></div><div class="card-body">
+<p>I'm Mitch Bentz, and I create under the name <strong>HuxP</strong>. I've worked with vocal synth software since 2017 and started releasing covers publicly as HuxP in 2023.</p><p>My music work focuses on VOCALOID and UTAU, especially projects featuring Shiki Taigen.</p><p>Outside of music, I maintain archives, build fan and personal websites, and do visual/site design work.</p>
+</div></section>
 <section class="card" id="projects"><div class="card-header"><h2>Projects</h2></div><div class="card-body"><div class="project-grid"><a class="project-card" href="https://iwubbzy.com" rel="noopener" target="_blank"><img alt="iWubbzy icon" class="project-thumb" referrerpolicy="no-referrer" src="https://cdn.discordapp.com/icons/1481749504058458325/a_7bc325e8d5909b040124fdc08d158767.webp?size=max&animated=true"/><div><strong>iWubbzy</strong><span>My fan archive and preservation project centered on <em>Wow! Wow! Wubbzy!</em>.</span></div></a><a class="project-card" href="https://discord.gg/hKXwdhUQzr" rel="noopener" target="_blank"><img alt="Kickety-kick ball icon" class="project-thumb" src="/assets/icons/kickball-32.png?v=10"/><div><strong>iWubbzy Central</strong><span>A shared Discord server for iWubbzy and HuxP updates, events, and community discussion.</span></div></a></div></div></section>
 </div>
 <div class="column">
 <section class="card" id="youtube-channels"><div class="card-header"><h2>YouTube Channels</h2></div><div class="card-body"><div class="channel-grid"><a class="channel-card" href="https://www.youtube.com/@WowWowMitchy" rel="noopener" target="_blank"><img alt="Wow! Wow! Mitchy! icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/CCTpCqvNANh075667TeSr03Mpmx4jO3ChoXWdm8uVfr4egWtR-asf7j9rPL41K5poJmOZLTg"/><div><strong>Wow! Wow! Mitchy!</strong><span>My second channel for extra uploads and side videos.</span></div></a><a class="channel-card" href="https://www.youtube.com/@wubbchive" rel="noopener" target="_blank"><img alt="Wubbchive icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/l3JWqbEZaH2vKS8FCFH76bGI8PZ6w9LsGCtp-NtM5Iis_Y5Fz_bGkREltAhqpQGYWhGV-PesSw"/><div><strong>Wubbchive</strong><span>My archival channel for preserved uploads and reference material.</span></div></a><a class="channel-card" href="https://www.youtube.com/@iWubbzy" rel="noopener" target="_blank"><img alt="iWubbzy icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/dvESkn09290JCYFx9t-ivxgggPxcxFlnp5hJBdGZi6sMPtci6XLN2GS2ffRkk8MHNwwDp4dxBA"/><div><strong>iWubbzy</strong><span>Archive and fan project channel focused on iWubbzy.</span></div></a></div></div></section>
-<section class="card" id="music-sites"><div class="card-header"><h2>Music Sites</h2></div><div class="card-body"><p>These are the music platforms I use most for cataloging, metadata, and vocal synth records.</p><div class="music-grid"><a class="music-card" href="https://www.discogs.com/user/HuxP" rel="noopener" target="_blank"><div><strong>Discogs</strong><span>Collection and wantlist tracking for physical and digital releases.</span></div></a><a class="music-card" href="https://musicbrainz.org/user/HuxP" rel="noopener" target="_blank"><div><strong>MusicBrainz</strong><span>Metadata edits, release info, and structured music data.</span></div></a><a class="music-card" href="https://vocadb.net/Profile/HuxP" rel="noopener" target="_blank"><div><strong>VocaDB</strong><span>Vocal synth related artists, songs, and release indexing.</span></div></a></div></div></section>
 </div>
 </div>
 </main>
