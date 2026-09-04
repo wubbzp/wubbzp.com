@@ -138,43 +138,24 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 1;
 }
 
-/* --- Animated CSS Logo Styles --- */
+/* --- Clean Logo Styles --- */
 .masthead-logo {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100px;
 }
-.wubbzy-logo-text {
+.logo-placeholder {
   font-family: "Fredoka", "Nunito", sans-serif;
-  font-size: clamp(60px, 8vw, 80px);
+  font-size: clamp(50px, 8vw, 80px);
   font-weight: 900;
   line-height: 1;
   text-align: center;
-  display: flex;
-  gap: 4px;
-  filter: drop-shadow(0 8px 12px rgba(251, 192, 45, 0.5));
+  color: #ffffff;
+  -webkit-text-stroke: 3px var(--ink);
+  text-shadow: 0 6px 12px rgba(74, 47, 11, 0.2);
   margin: 10px 0;
 }
-.wubbzy-logo-text span {
-  background: linear-gradient(180deg, #fff59d 0%, #fbc02d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  -webkit-text-stroke: 4px #4a2f0b;
-  display: inline-block;
-  animation: logoBounce 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
-}
-@keyframes logoBounce {
-  0%, 100% { transform: translateY(0) rotate(var(--rot)); }
-  50% { transform: translateY(-16px) rotate(var(--rot)); }
-}
-.wubbzy-logo-text span:nth-child(1) { --rot: -8deg; animation-delay: 0s; transform: rotate(var(--rot)); }
-.wubbzy-logo-text span:nth-child(2) { --rot: 5deg; animation-delay: 0.15s; transform: rotate(var(--rot)); }
-.wubbzy-logo-text span:nth-child(3) { --rot: -4deg; animation-delay: 0.3s; transform: rotate(var(--rot)); }
-.wubbzy-logo-text span:nth-child(4) { --rot: 7deg; animation-delay: 0.45s; transform: rotate(var(--rot)); }
-.wubbzy-logo-text span:nth-child(5) { --rot: -6deg; animation-delay: 0.6s; transform: rotate(var(--rot)); }
-.wubbzy-logo-text span:nth-child(6) { --rot: 8deg; animation-delay: 0.75s; transform: rotate(var(--rot)); }
 /* ------------------------------------ */
 
 .masthead-copy {
@@ -228,6 +209,10 @@ img { max-width: 100%; height: auto; display: block; }
   width: max-content;
   align-items: center;
   animation: marqueeLeft 40s linear infinite;
+}
+/* Pause marquee on hover for better accessibility */
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 .marquee-row.reverse .marquee-track { animation-name: marqueeRight; }
 .marquee-track img { image-rendering: pixelated; height: 31px; width: auto; display: block; border-radius: 2px; }
@@ -364,9 +349,7 @@ img { max-width: 100%; height: auto; display: block; }
 <section aria-label="Site header" class="masthead">
 <div class="masthead-inner">
 <div class="masthead-logo">
-  <div class="wubbzy-logo-text" aria-label="WubbzP logo">
-    <span aria-hidden="true">W</span><span aria-hidden="true">u</span><span aria-hidden="true">b</span><span aria-hidden="true">b</span><span aria-hidden="true">z</span><span aria-hidden="true">P</span>
-  </div>
+  <h1 class="logo-placeholder" aria-label="WubbzP logo">WubbzP</h1>
 </div>
 <div class="masthead-copy">
 <p>Music, archive work, and web projects in one place. I use this site to share new releases, ongoing projects, and the communities I help run.</p>
@@ -382,7 +365,7 @@ img { max-width: 100%; height: auto; display: block; }
 <div class="content-grid">
 <div class="column">
 <section class="card" id="about"><div class="card-header"><h1>About</h1></div><div class="card-body">
-<p>I'm Mitch Bentz, and I create under the name <strong>WubbzP</strong>. I've worked with vocal synth software since 2017 and started releasing covers publicly as HuxP in 2023, then rebranded to WubbzP in September 2026.</p><p>My music work focuses on VOCALOID and UTAU, especially projects featuring Shiki Taigen.</p><p>Outside of music, I maintain archives, build fan and personal websites, and do visual/site design work.</p>
+<p>I'm Mitch Bentz, and I create under the name <strong>WubbzP</strong>. I've worked with vocal synthesis software since 2017 and started releasing covers publicly as HuxP in 2023, then rebranded to WubbzP in September 2026.</p><p>My music work focuses on VOCALOID and UTAU, especially projects featuring Shiki Taigen.</p><p>Outside of music, I maintain archives, build fan and personal websites, and do visual/site design work.</p>
 </div></section>
 <section class="card" id="iwubbzy"><div class="card-header"><h2>iWubbzy</h2></div><div class="card-body">
 <p><a href="https://iwubbzy.com" rel="noopener" target="_blank"><strong>iWubbzy</strong></a> is an unofficial, non-commercial fan resource for <em>Wow! Wow! Wubbzy!</em>.</p>
