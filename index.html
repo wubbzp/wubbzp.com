@@ -250,6 +250,29 @@ img { max-width: 100%; height: auto; display: block; }
 .card-body p { margin: 0 0 14px; font-size: 15px; }
 .card-body p:last-child { margin-bottom: 0; }
 
+/* Inline Audio Button Styles */
+.audio-btn {
+  background: rgba(253, 216, 53, 0.4);
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 4px;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+}
+.audio-btn:hover {
+  background: var(--border-strong);
+  transform: scale(1.1);
+}
+
 .project-grid, .channel-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
 
 .project-card, .channel-card {
@@ -365,7 +388,9 @@ img { max-width: 100%; height: auto; display: block; }
 <div class="content-grid">
 <div class="column">
 <section class="card" id="about"><div class="card-header"><h1>About</h1></div><div class="card-body">
-<p>I'm Mitch Bentz, and I create under the name <strong>WubbzP</strong>. I've worked with vocal synthesis software since 2017 and started releasing covers publicly as HuxP in 2023, then rebranded to WubbzP in September 2026.</p><p>My music work focuses on VOCALOID and UTAU, especially projects featuring Shiki Taigen.</p><p>Outside of music, I maintain archives, build fan and personal websites, and do visual/site design work.</p>
+<p>I'm Mitch Bentz, and I create under the name <strong>WubbzP</strong> (pronounced <em>Wubbs-P</em>, <code>/ˈwʌbz.piː/</code> <button type="button" class="audio-btn" onclick="document.getElementById('wubbzp-audio').play()" aria-label="Play WubbzP pronunciation" title="Play pronunciation">🔊</button>). I've worked with vocal synthesis software since 2017 and started releasing covers publicly as HuxP in 2023, then rebranded to WubbzP in September 2026.</p>
+<audio id="wubbzp-audio" src="/assets/audio/wubbzp-pronunciation.mp3" preload="none"></audio>
+<p>My music work focuses on VOCALOID and UTAU, especially projects featuring Shiki Taigen.</p><p>Outside of music, I maintain archives, build fan and personal websites, and do visual/site design work.</p>
 </div></section>
 <section class="card" id="iwubbzy"><div class="card-header"><h2>iWubbzy</h2></div><div class="card-body">
 <p><a href="https://iwubbzy.com" rel="noopener" target="_blank"><strong>iWubbzy</strong></a> is an unofficial, non-commercial fan resource for <em>Wow! Wow! Wubbzy!</em>.</p>
