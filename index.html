@@ -9,17 +9,13 @@
 <meta content="WubbzP.com" property="og:title"/>
 <meta content="Vocal synth covers, archive projects, and iWubbzy." property="og:description"/>
 
+<!-- Bubbly fonts to match the Wubbzy style -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --sky-top: #fff6eb;
-  --sky-bottom: #cbe6fa;
-  --grass-top: #a4de5d;
-  --grass-bottom: #86c93c;
-  
   --console-outer: #95df4a;
   --console-border: #71b827;
   --console-inner: #d1f0a8;
@@ -50,10 +46,9 @@ html, body {
   font-family: "Nunito", sans-serif;
   color: var(--text-dark);
   min-height: 100vh;
-  /* Recreating the sky and grass background */
-  background: 
-    linear-gradient(to bottom, transparent 65%, var(--grass-top) 65%, var(--grass-bottom) 100%),
-    linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-bottom) 100%);
+  /* Updated Background */
+  background: #ffffff url("/assets/images/background.png") center bottom no-repeat fixed;
+  background-size: cover;
   overflow-x: hidden;
 }
 
@@ -65,8 +60,8 @@ a:hover { text-decoration: underline; }
   position: absolute;
   top: -50px;
   right: -50px;
-  width: 250px;
-  height: 250px;
+  width: clamp(150px, 20vw, 250px);
+  height: clamp(150px, 20vw, 250px);
   background: #ffdb4d;
   border-radius: 50%;
   border: 12px solid #ffbc24;
@@ -76,6 +71,7 @@ a:hover { text-decoration: underline; }
 
 /* Layout Wrapper */
 .container {
+  width: 100%;
   max-width: 1000px;
   margin: 80px auto 40px;
   padding: 0 20px;
@@ -90,7 +86,7 @@ a:hover { text-decoration: underline; }
   right: 0;
   text-align: center;
   font-family: "Fredoka", sans-serif;
-  font-size: clamp(50px, 8vw, 85px);
+  font-size: clamp(45px, 8vw, 85px);
   font-weight: 700;
   color: #b873e6;
   margin: 0;
@@ -102,7 +98,7 @@ a:hover { text-decoration: underline; }
 }
 .site-title::before {
   /* Inner text fill to cover stroke overlapping issues */
-  content: "WUBBZ P";
+  content: "WUBBZP";
   position: absolute;
   left: 0;
   right: 0;
@@ -155,7 +151,7 @@ a:hover { text-decoration: underline; }
   font-family: "Fredoka", sans-serif;
   color: #ffdb4d;
   margin-top: 0;
-  font-size: 28px;
+  font-size: clamp(22px, 4vw, 28px);
   border-bottom: 4px dashed var(--screen-highlight);
   padding-bottom: 10px;
   text-shadow: 2px 2px 0 var(--screen-border);
@@ -166,7 +162,7 @@ a:hover { text-decoration: underline; }
   margin: 0 0 15px 15px;
   border: 4px solid var(--screen-highlight);
   border-radius: 16px;
-  width: 120px;
+  width: clamp(80px, 25vw, 120px);
   background: #fff;
 }
 
@@ -246,8 +242,8 @@ a:hover { text-decoration: underline; }
 }
 
 .circle-btn {
-  width: 90px;
-  height: 90px;
+  width: clamp(65px, 15vw, 90px);
+  height: clamp(65px, 15vw, 90px);
   border-radius: 50%;
   border: 6px solid var(--btn-blue-border);
   background: var(--btn-blue);
@@ -317,6 +313,8 @@ a:hover { text-decoration: underline; }
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 8px 0 #1c7c94;
+  width: fit-content;
+  max-width: 90%;
 }
 .footer-sign::before, .footer-sign::after {
   content: "";
@@ -332,13 +330,29 @@ a:hover { text-decoration: underline; }
 .footer-sign p { margin: 0; font-size: 14px; }
 .footer-sign a { color: #ffdb4d; }
 
+/* Mobile Optimisation Media Queries */
 @media (max-width: 850px) {
   .top-row { grid-template-columns: 1fr; }
-  .side-panel { flex-direction: row; flex-wrap: wrap; }
-  .chunky-btn { flex: 1; min-width: 150px; font-size: 16px; padding: 10px; }
-  .site-title { font-size: 55px; top: -50px; }
-  .wubb-console { padding: 20px; border-width: 8px; border-radius: 40px; }
-  .wubb-inner { padding: 15px; border-radius: 25px; border-width: 6px; }
+  .side-panel { flex-direction: row; flex-wrap: wrap; gap: 15px; }
+  .chunky-btn { flex: 1; min-width: 180px; font-size: 18px; padding: 12px 10px; }
+  .site-title { top: -50px; }
+  .wubb-console { padding: 25px; border-width: 10px; border-radius: 50px; }
+  .wubb-inner { padding: 20px; border-radius: 35px; border-width: 6px; }
+  .container { margin-top: 60px; }
+}
+
+@media (max-width: 550px) {
+  .site-title { top: -45px; -webkit-text-stroke: 4px #ffffff; letter-spacing: 1px; }
+  .container { padding: 0 10px; }
+  .wubb-console { padding: 15px; border-width: 8px; border-radius: 35px; }
+  .wubb-inner { padding: 15px; border-radius: 25px; gap: 20px; }
+  .main-screen { padding: 15px; font-size: 14px; border-radius: 16px; border-width: 6px; }
+  .side-panel { flex-direction: column; }
+  .chunky-btn { min-width: 100%; }
+  .circle-row { gap: 10px; }
+  .circle-btn { border-width: 4px; box-shadow: inset 0 4px 0 rgba(255,255,255,0.3), 0 4px 0 var(--btn-blue-border); }
+  .circle-btn:active { box-shadow: inset 0 4px 0 rgba(255,255,255,0.3), 0 0 0 var(--btn-blue-border); transform: translateY(4px); }
+  .footer-sign::before, .footer-sign::after { width: 8px; }
 }
 </style>
 </head>
@@ -348,13 +362,15 @@ a:hover { text-decoration: underline; }
 
 <div class="container">
   
-  <h1 class="site-title">WUBBZ P</h1>
+  <h1 class="site-title">WUBBZP</h1>
   
   <div class="wubb-console">
     <div class="wubb-inner">
       
+      <!-- Top Content Area -->
       <div class="top-row">
         
+        <!-- Main Bio Screen -->
         <main class="main-screen">
           <img src="/assets/images/WubbzP.png" alt="WubbzP Icon" class="avatar" />
           
@@ -364,13 +380,14 @@ a:hover { text-decoration: underline; }
           
           <audio id="wubbzp-audio" src="/assets/audio/How to Pronounce WubbzP.mp3" preload="none"></audio>
           
-          <p>She began working with the VOCALOID4 engine in 2017. Her music work primarily focuses on VOCALOID and UTAU software, specifically notable projects featuring the vocal synth <em>Shiki Taigen</em>. Working mainly in J-pop, pop, and children's music, she releases her music through her own label, WubbzP Music.</p>
+          <p>Born in Broken Arrow, Oklahoma, on 22 March 2008, she began working with the VOCALOID4 engine in 2017. Her music work primarily focuses on VOCALOID and UTAU software, specifically notable projects featuring the vocal synth <em>Shiki Taigen</em> alongside Hatsune Miku. Working mainly in J-pop, pop, and children's music, she releases her music through her own label, WubbzP Music.</p>
           
-          <p>Her discography includes the album <em>Miku + Michelle</em> and its deluxe editions, alongside popular covers such as "Sadistic.Music∞Factory". While known for her extensive cover work, she has stated that her future goals include producing her own original songs.</p>
+          <p>Her discography includes the album <em>Miku + Michelle</em> and its deluxe edition, alongside popular covers such as 'Sadistic.Music∞Factory'. While known for her extensive cover work, she has stated that her future goals include producing her own original songs.</p>
           
           <p>Outside of music production, Bentz maintains digital archives, builds personal and fan websites, and conducts general visual and site design work.</p>
         </main>
         
+        <!-- Big Chunky Navigation Buttons -->
         <aside class="side-panel">
           <a href="https://iwubbzy.com" class="chunky-btn orange" target="_blank" rel="noopener">
             <span style="font-size: 24px; margin-bottom: 5px;">📺</span>
@@ -392,6 +409,7 @@ a:hover { text-decoration: underline; }
         
       </div>
       
+      <!-- Bottom Circular Icons (Channels) -->
       <div class="circle-row">
         <a href="https://www.youtube.com/@wowwowmitchy" class="circle-btn orange" aria-label="Wow! Wow! Mitchy!" target="_blank" rel="noopener">
           <img alt="Wow! Wow! Mitchy!" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/CCTpCqvNANh075667TeSr03Mpmx4jO3ChoXWdm8uVfr4egWtR-asf7j9rPL41K5poJmOZLTg"/>
@@ -406,13 +424,14 @@ a:hover { text-decoration: underline; }
         </a>
         
         <a href="mailto:wubbzyp@gmail.com" class="circle-btn" aria-label="Email Me">
-          <span style="font-size: 40px; color: white; display: inline-block; margin-top: 5px;">✉️</span>
+          <span style="font-size: clamp(24px, 6vw, 40px); color: white; display: inline-block; margin-top: 5px;">✉️</span>
         </a>
       </div>
       
     </div>
   </div>
   
+  <!-- Stylized Footer Signboard -->
   <div class="footer-sign">
     <p>Wow, wow, everyone! © <span id="year">2026</span> WubbzP.</p>
     <p>All trademarks are property of their respective owners.</p>
