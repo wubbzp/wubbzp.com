@@ -3,34 +3,26 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<title>WubbzP</title>
+<title>WubbzP - WubbzPedia, the free encyclopedia</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link href="/assets/icons/kickball-32.png?v=10" rel="icon" sizes="32x32" type="image/png"/>
 <meta content="#fee072" name="theme-color"/>
-<meta content="WubbzP" property="og:title"/>
+<meta content="WubbzP - WubbzPedia" property="og:title"/>
 <meta content="Vocal synth covers, archive projects, and iWubbzy." property="og:description"/>
-<meta content="website" property="og:type"/>
-<meta content="https://wubbzp.com/" property="og:url"/>
-<meta content="https://wubbzp.com/social-card.png" property="og:image"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="@WubbzP" name="twitter:site"/>
-<meta content="@WubbzP" name="twitter:creator"/>
+
 <style>
 :root {
-  --bg: #fdf5d3;
-  --panel: #ffffff;
-  --panel-soft: #fffdf5;
-  --border: #fdd835;
-  --border-strong: #fbc02d;
-  --ink: #4a2f0b;
-  --ink-soft: #7a5523;
-  --link: #b28900;
-  --link-hover: #806200;
-  --shadow: 0 12px 28px rgba(74, 47, 11, 0.08);
-  --shadow-hover: 0 16px 32px rgba(74, 47, 11, 0.12);
-  --radius: 20px;
+  --wubbzy-yellow: #fdf5d3;
+  --wubbzy-gold: #fdd835;
+  --wubbzy-orange: #fbc02d;
+  --wubbzy-pink: #ff6b8b;
+  --wiki-bg: #ffffff;
+  --ink: #202122;
+  --link-blue: #0645ad;
+  --link-red: #cc2200;
+  --border-style: 2px dashed var(--wubbzy-orange);
 }
 
 *, *::before, *::after {
@@ -40,379 +32,472 @@
 html, body {
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  font-family: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Nunito", "Segoe UI", sans-serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at top left, rgba(254,224,114,.6), transparent 28%),
-    radial-gradient(circle at top right, rgba(253,216,53,.4), transparent 26%),
-    linear-gradient(rgba(253,245,211,.9), rgba(253,245,211,.95)),
-    url("BACKGROUND.png") repeat;
+  background: var(--wubbzy-yellow);
   line-height: 1.6;
 }
 
-a { color: var(--link); transition: color 0.2s ease; }
-a:hover { color: var(--link-hover); }
-a:visited { color: var(--link); }
+a { color: var(--link-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:visited { color: #0b0080; }
 
-img { max-width: 100%; height: auto; display: block; }
-
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  padding: 8px 16px;
-  background: var(--ink);
-  color: #fff;
-  font-weight: bold;
-  border-radius: 0 0 8px 0;
-  z-index: 999;
-  text-decoration: none;
-}
-.skip-link:focus { left: 0; top: 0; }
-
-.side-wubbzy {
-  position: fixed;
-  left: -8px;
-  top: 54%;
-  width: clamp(170px, 17vw, 250px);
-  z-index: 6;
-  pointer-events: none;
-  filter: drop-shadow(0 14px 22px rgba(74, 47, 11, 0.15));
-  animation: slidePeek 1.15s ease-out forwards, bob 5.5s ease-in-out infinite 1.15s;
-}
-
-@keyframes slidePeek {
-  from { transform: translate(-78%, -50%); opacity: 0; }
-  to { transform: translate(-18%, -50%); opacity: 1; }
-}
-@keyframes bob {
-  0%, 100% { transform: translate(-18%, -50%); }
-  50% { transform: translate(-14%, -52%); }
-}
-
-.page {
-  width: min(1180px, calc(100% - 24px));
-  margin: 24px auto;
-  padding: 20px;
-  background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.6));
-  border: 2px solid rgba(254, 224, 114, 0.8);
-  border-radius: 32px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  position: relative;
-  z-index: 3;
-  box-shadow: 0 8px 32px rgba(253, 216, 53, 0.15);
-}
-
-.masthead {
-  position: relative;
-  background: linear-gradient(135deg, #fbc02d 0%, #fdd835 52%, #fee072 100%);
-  border: 2px solid var(--border-strong);
-  border-radius: 24px;
-  box-shadow: var(--shadow);
-  padding: 32px 24px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-
-.masthead::before, .masthead::after {
-  content: "";
-  position: absolute;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.25);
-  pointer-events: none;
-}
-.masthead::before { width: 220px; height: 220px; top: -90px; right: -40px; }
-.masthead::after { width: 130px; height: 130px; bottom: -35px; left: -30px; }
-
-.masthead-inner {
+/* Wiki Layout Grid */
+.wiki-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Sidebar Navigation */
+.wiki-sidebar {
+  width: 176px;
+  padding: 20px 10px;
+  flex-shrink: 0;
+}
+
+.wiki-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.wiki-logo h1 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 24px;
+  color: #4a2f0b;
+  margin: 0;
+  line-height: 1.1;
+}
+.wiki-logo span {
+  font-size: 12px;
+  font-family: "Nunito", sans-serif;
+  color: #7a5523;
+}
+
+.sidebar-menu {
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--wubbzy-gold);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.sidebar-menu h3 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 14px;
+  margin: 0 0 5px 0;
+  color: #7a5523;
+  border-bottom: 1px solid var(--wubbzy-gold);
+}
+.sidebar-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}
+.sidebar-menu li { padding: 3px 0; }
+
+/* Main Content Area */
+.wiki-main {
+  flex-grow: 1;
+  padding: 20px;
+  min-width: 0;
+}
+
+/* Top Tabs */
+.wiki-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: -2px;
+  position: relative;
+  z-index: 2;
+  font-family: "Fredoka", sans-serif;
+  font-size: 14px;
+}
+.wiki-tab {
+  background: #fffdf5;
+  border: 2px solid var(--wubbzy-gold);
+  border-bottom: none;
+  padding: 6px 12px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+}
+.wiki-tab.active {
+  background: var(--wiki-bg);
+  border-color: var(--wubbzy-orange);
+  font-weight: 700;
+  padding-bottom: 8px; /* Covers the border below */
+}
+
+/* Article Container */
+.article-content {
+  background: var(--wiki-bg);
+  border: 2px solid var(--wubbzy-orange);
+  border-radius: 0 12px 12px 12px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(253, 216, 53, 0.3);
   position: relative;
   z-index: 1;
 }
 
-/* --- Clean Logo Styles --- */
-.masthead-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100px;
+.article-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 36px;
+  border-bottom: var(--border-style);
+  margin: 0 0 10px 0;
+  padding-bottom: 5px;
 }
-.logo-placeholder {
-  font-family: "Fredoka", "Nunito", sans-serif;
-  font-size: clamp(50px, 8vw, 80px);
-  font-weight: 900;
-  line-height: 1;
-  text-align: center;
-  color: #ffffff;
-  -webkit-text-stroke: 3px var(--ink);
-  text-shadow: 0 6px 12px rgba(74, 47, 11, 0.2);
-  margin: 10px 0;
-}
-/* ------------------------------------ */
 
-.masthead-copy {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  padding: 20px 24px;
-  color: var(--ink);
-  max-width: 760px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-.masthead-copy p { margin: 0; font-size: 15px; }
-
-.quick-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-.quick-links a {
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--ink);
-  border: 2px solid var(--border);
+/* Infobox */
+.infobox {
+  float: right;
+  width: 280px;
+  margin: 0 0 15px 20px;
+  background: #fffdf5;
+  border: 3px solid var(--wubbzy-gold);
+  border-radius: 16px;
+  padding: 10px;
   font-size: 13px;
-  font-weight: 700;
-  box-shadow: 0 3px 8px rgba(74, 47, 11, 0.06);
-  transition: all 0.2s ease;
 }
-.quick-links a:hover {
-  background: var(--border-strong);
-  border-color: var(--border-strong);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(74, 47, 11, 0.1);
+.infobox-title {
+  background: var(--wubbzy-gold);
+  text-align: center;
+  font-family: "Fredoka", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.infobox img {
+  display: block;
+  margin: 0 auto 10px;
+  border: 2px solid var(--wubbzy-gold);
+  border-radius: 12px;
+  max-width: 150px;
+}
+.infobox th {
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+  padding: 4px 10px 4px 0;
+  color: #4a2f0b;
+}
+.infobox td {
+  padding: 4px 0;
 }
 
-.marquee-stack { display: grid; gap: 10px; margin-bottom: 20px; }
-.marquee-row {
-  background: rgba(254, 224, 114, 0.4);
-  border: 2px solid rgba(253, 216, 53, 0.5);
-  border-radius: 24px;
-  padding: 10px 12px;
-  overflow: hidden;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
-  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+/* Table of Contents */
+.toc {
+  display: inline-block;
+  background: rgba(253, 216, 53, 0.15);
+  border: 2px solid var(--wubbzy-gold);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px 0;
+  min-width: 250px;
+}
+.toc-title {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+.toc ul ul { padding-left: 20px; }
+.toc li { margin-bottom: 4px; }
+.toc .toc-number { color: #7a5523; margin-right: 5px; }
+
+/* Section Headers */
+h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 24px;
+  border-bottom: var(--border-style);
+  margin-top: 30px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* Inline Audio */
+.audio-btn {
+  background: var(--wubbzy-gold);
+  border: 1px solid var(--wubbzy-orange);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.audio-btn:hover { background: var(--wubbzy-orange); }
+
+/* Project Grid / Channels */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+.gallery-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 2px solid var(--wubbzy-gold);
+  border-radius: 12px;
+  padding: 10px;
+  background: #fffdf5;
+  transition: transform 0.2s;
+}
+.gallery-card:hover {
+  transform: scale(1.02);
+  border-color: var(--wubbzy-orange);
+}
+.gallery-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--wubbzy-gold);
+}
+.gallery-info strong { display: block; font-family: "Fredoka", sans-serif; }
+.gallery-info span { font-size: 13px; color: #555; }
+
+/* Marquee / Categories box */
+.cat-links {
+  border: 2px dashed var(--wubbzy-orange);
+  background: rgba(253, 216, 53, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 40px;
+}
+.cat-links-title {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 .marquee-track {
   display: flex;
   gap: 10px;
   width: max-content;
   align-items: center;
-  animation: marqueeLeft 40s linear infinite;
+  animation: marqueeLeft 35s linear infinite;
 }
-/* Pause marquee on hover for better accessibility */
-.marquee-track:hover {
-  animation-play-state: paused;
-}
+.marquee-track img { image-rendering: pixelated; height: 31px; border-radius: 2px; }
+.marquee-row { overflow: hidden; margin-bottom: 5px; }
 .marquee-row.reverse .marquee-track { animation-name: marqueeRight; }
-.marquee-track img { image-rendering: pixelated; height: 31px; width: auto; display: block; border-radius: 2px; }
-
+.marquee-track:hover { animation-play-state: paused; }
 @keyframes marqueeLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes marqueeRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
-.content-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-.column { display: grid; gap: 16px; align-content: start; }
-
-.card {
-  background: linear-gradient(180deg, var(--panel-soft), var(--panel));
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: box-shadow 0.3s ease;
-}
-.card:hover { box-shadow: var(--shadow-hover); }
-
-.card-header {
-  padding: 14px 20px;
-  background: linear-gradient(90deg, #fbc02d, #fdd835 70%, #fee072);
-  color: var(--ink);
-  border-bottom: 2px solid var(--border);
-}
-.card-header h1, .card-header h2, .card-header h3 {
-  margin: 0;
-  font-family: "Fredoka", "Nunito", sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.card-body { padding: 20px; }
-.card-body p { margin: 0 0 14px; font-size: 15px; }
-.card-body p:last-child { margin-bottom: 0; }
-
-/* Inline Audio Button Styles */
-.audio-btn {
-  background: rgba(253, 216, 53, 0.4);
-  border: 1px solid var(--border-strong);
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 1;
-  padding: 4px;
-  vertical-align: middle;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  margin-left: 4px;
-}
-.audio-btn:hover {
-  background: var(--border-strong);
-  transform: scale(1.1);
-}
-
-.project-grid, .channel-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-
-.project-card, .channel-card {
+/* Footer */
+.wiki-footer {
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid var(--wubbzy-orange);
+  font-size: 12px;
+  color: #555;
   display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 14px;
-  border-radius: 16px;
-  background: #fff;
-  border: 2px solid #fee072;
-  box-shadow: 0 2px 8px rgba(74, 47, 11, 0.05);
-  text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  justify-content: space-between;
+  align-items: center;
 }
-.project-card:hover, .channel-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--border-strong);
-  box-shadow: 0 8px 20px rgba(74, 47, 11, 0.1);
-}
+.wiki-footer-links a { margin-left: 10px; font-weight: bold; }
 
-.project-thumb, .channel-card img {
-  width: 64px;
-  height: 64px;
-  border-radius: 12px;
-  object-fit: cover;
-  border: 2px solid #fee072;
-  flex: 0 0 auto;
-  transition: border-color 0.2s ease;
-}
-.project-card:hover .project-thumb, .channel-card:hover img {
-  border-color: var(--border-strong);
-}
-
-.project-card strong, .channel-card strong {
-  display: block;
-  font-size: 15px;
-  color: var(--ink);
-  margin-bottom: 4px;
-  font-family: "Fredoka", sans-serif;
-}
-.project-card span, .channel-card span {
-  display: block;
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.5;
-}
-.project-card img { background: #fffdf5; padding: 4px; }
-
-.site-footer {
-  margin-top: 16px;
-  padding: 16px 20px;
-  background: rgba(254, 224, 114, 0.85);
-  border: 2px solid rgba(253, 216, 53, 0.5);
-  border-radius: 20px;
-  color: var(--ink);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.footer-inner { display: flex; flex-direction: column; gap: 14px; font-size: 14px; }
-.footer-inner a { color: var(--ink); font-weight: 600; }
-
-.social-icons { display: flex; flex-wrap: wrap; gap: 10px; }
-.social-icons a {
-  text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 2px solid rgba(253, 216, 53, 0.8);
-  transition: all 0.2s ease;
-}
-.social-icons a:hover {
-  background: #fff;
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(74, 47, 11, 0.08);
-}
-
-@media (min-width: 760px) {
-  .masthead-inner { display: grid; grid-template-columns: 360px 1fr; align-items: center; }
-  .project-grid, .channel-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-inner { flex-direction: row; justify-content: space-between; align-items: center; }
-}
-@media (min-width: 980px) {
-  .content-grid { grid-template-columns: 1.08fr 0.92fr; align-items: start; }
-}
-@media (max-width: 920px) {
-  .side-wubbzy { display: none; }
+@media (max-width: 768px) {
+  .wiki-container { flex-direction: column; }
+  .wiki-sidebar { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; }
+  .sidebar-menu { display: none; } /* Hide heavy sidebar on mobile */
+  .wiki-logo { margin-bottom: 0; }
+  .infobox { float: none; width: 100%; margin: 0 0 20px 0; }
+  .article-content { border-radius: 12px; }
 }
 </style>
 </head>
 <body>
-<a class="skip-link" href="#content">Skip to main content</a>
-<img alt="" aria-hidden="true" class="side-wubbzy" src="/assets/images/wubbzy-thumbs-up.png?v=10"/>
-<div class="page">
-<main id="content">
-<section aria-label="Site header" class="masthead">
-<div class="masthead-inner">
-<div class="masthead-logo">
-  <h1 class="logo-placeholder" aria-label="WubbzP logo">WubbzP</h1>
-</div>
-<div class="masthead-copy">
-<p>Music, archive work, and web projects in one place. I use this site to share new releases, ongoing projects, and the communities I help run.</p>
-<div class="quick-links"><a href="#about">About</a><a href="#iwubbzy">iWubbzy</a><a href="#youtube-channels">YouTube</a></div>
-</div>
-</div>
-</section>
-<section aria-label="Scrolling blinkies and buttons" class="marquee-stack">
-<div class="marquee-row"><div class="marquee-track"><img alt="ADHD" src="https://web.archive.org/web/20230307174621if_/https://kotatsu.me/blinkies/adhdblinkie_byus.gif"/><img alt="Autistic" src="https://adriansblinkiecollection.neocities.org/n3.gif"/><img alt="FUCK AI ART" src="https://adriansblinkiecollection.neocities.org/g44.gif"/><img alt="Remember That I Love You" src="https://adriansblinkiecollection.neocities.org/x27.gif"/><img alt="Music is my thing" src="https://adriansblinkiecollection.neocities.org/x31.gif"/><img alt="Do what makes you happy" src="https://adriansblinkiecollection.neocities.org/44.gif"/><img alt="Save the Dragons" src="https://adriansblinkiecollection.neocities.org/m5.gif"/><img alt="Pinkie Pie Smile Smile Smile" src="https://adriansblinkiecollection.neocities.org/c39.gif"/><img alt="Miku fan" src="https://adriansblinkiecollection.neocities.org/e116.gif"/><img alt="SpongeBob SquarePants" src="https://adriansblinkiecollection.neocities.org/s12.gif"/><img alt="Smiling Friends Charlie" src="https://adriansblinkiecollection.neocities.org/z41.gif"/><img alt="ADHD" src="https://kotatsu.me/blinkies/adhdblinkie_byus.gif"/><img alt="Autistic" src="https://adriansblinkiecollection.neocities.org/n3.gif"/><img alt="FUCK AI ART" src="https://adriansblinkiecollection.neocities.org/g44.gif"/><img alt="Remember That I Love You" src="https://adriansblinkiecollection.neocities.org/x27.gif"/><img alt="Music is my thing" src="https://adriansblinkiecollection.neocities.org/x31.gif"/><img alt="Do what makes you happy" src="https://adriansblinkiecollection.neocities.org/44.gif"/><img alt="Save the Dragons" src="https://adriansblinkiecollection.neocities.org/m5.gif"/><img alt="Pinkie Pie Smile Smile Smile" src="https://adriansblinkiecollection.neocities.org/c39.gif"/><img alt="Miku fan" src="https://adriansblinkiecollection.neocities.org/e116.gif"/><img alt="SpongeBob SquarePants" src="https://adriansblinkiecollection.neocities.org/s12.gif"/><img alt="Smiling Friends Charlie" src="https://adriansblinkiecollection.neocities.org/z41.gif"/></div></div>
-<div class="marquee-row reverse"><div class="marquee-track"><img alt="Animal Jam Classic" src="https://adriansblinkiecollection.neocities.org/d1.gif"/><img alt="I love my 3DS" src="https://adriansblinkiecollection.neocities.org/e93.gif"/><img alt="Portal 2 Spaaaaace" src="https://adriansblinkiecollection.neocities.org/i6.gif"/><img alt="Portal the cake is a lie" src="https://adriansblinkiecollection.neocities.org/i5.gif"/><img alt="I love UTAU" src="https://adriansblinkiecollection.neocities.org/x37.gif"/><img alt="iNaturalist fiend" src="https://adriansblinkiecollection.neocities.org/d72.gif"/><img alt="I love the sea" src="https://adriansblinkiecollection.neocities.org/e115.gif"/><img alt="I love winter" src="https://adriansblinkiecollection.neocities.org/e100.gif"/><img alt="Underwater creatures" src="https://adriansblinkiecollection.neocities.org/v37.gif"/><img alt="Daisies" src="https://adriansblinkiecollection.neocities.org/g42.gif"/><img alt="Animal Jam Classic" src="https://adriansblinkiecollection.neocities.org/d1.gif"/><img alt="I love my 3DS" src="https://adriansblinkiecollection.neocities.org/e93.gif"/><img alt="Portal 2 Spaaaaace" src="https://adriansblinkiecollection.neocities.org/i6.gif"/><img alt="Portal the cake is a lie" src="https://adriansblinkiecollection.neocities.org/i5.gif"/><img alt="I love UTAU" src="https://adriansblinkiecollection.neocities.org/x37.gif"/><img alt="iNaturalist fiend" src="https://adriansblinkiecollection.neocities.org/d72.gif"/><img alt="I love the sea" src="https://adriansblinkiecollection.neocities.org/e115.gif"/><img alt="I love winter" src="https://adriansblinkiecollection.neocities.org/e100.gif"/><img alt="Underwater creatures" src="https://adriansblinkiecollection.neocities.org/v37.gif"/><img alt="Daisies" src="https://adriansblinkiecollection.neocities.org/g42.gif"/></div></div>
-<div class="marquee-row"><div class="marquee-track"><img alt="Werewolf kisser" src="https://adriansblinkiecollection.neocities.org/v14.gif"/><img alt="Hearts boys" src="https://adriansblinkiecollection.neocities.org/v71.gif"/><img alt="I love guys in sweaters" src="https://adriansblinkiecollection.neocities.org/g65.gif"/><img alt="TMBG Flood" src="https://adriansblinkiecollection.neocities.org/d30.gif"/><img alt="They Might Be Giants" src="https://adriansblinkiecollection.neocities.org/e10.gif"/><img alt="TMBG Lincoln" src="https://adriansblinkiecollection.neocities.org/e17.gif"/><img alt="Ween GodWeenSatan" src="https://adriansblinkiecollection.neocities.org/g16.gif"/><img alt="Ween" src="https://adriansblinkiecollection.neocities.org/e42.gif"/><img alt="Ween Ocean Man" src="https://adriansblinkiecollection.neocities.org/e43.gif"/><img alt="TMBG Apollo 18" src="https://adriansblinkiecollection.neocities.org/h11.gif"/><img alt="TMBG I Like Fun" src="https://adriansblinkiecollection.neocities.org/s6.gif"/><img alt="TMBG Here Comes Science" src="https://adriansblinkiecollection.neocities.org/u2.gif"/><img alt="TMBG Join Us" src="https://adriansblinkiecollection.neocities.org/x18.gif"/><img alt="Firefox now" src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif"/><img alt="Old man yaoi now" src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif"/><img alt="Internet Archive preserve history" src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif"/><img alt="I hate Squarespace" src="https://adriansblinkiecollection.neocities.org/buttons/c2.png"/><img alt="Team Fortress now" src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif"/><img alt="Werewolf kisser" src="https://adriansblinkiecollection.neocities.org/v14.gif"/><img alt="Hearts boys" src="https://adriansblinkiecollection.neocities.org/v71.gif"/><img alt="I love guys in sweaters" src="https://adriansblinkiecollection.neocities.org/g65.gif"/><img alt="TMBG Flood" src="https://adriansblinkiecollection.neocities.org/d30.gif"/><img alt="They Might Be Giants" src="https://adriansblinkiecollection.neocities.org/e10.gif"/><img alt="TMBG Lincoln" src="https://adriansblinkiecollection.neocities.org/e17.gif"/><img alt="Ween GodWeenSatan" src="https://adriansblinkiecollection.neocities.org/g16.gif"/><img alt="Ween" src="https://adriansblinkiecollection.neocities.org/e42.gif"/><img alt="Ween Ocean Man" src="https://adriansblinkiecollection.neocities.org/e43.gif"/><img alt="TMBG Apollo 18" src="https://adriansblinkiecollection.neocities.org/h11.gif"/><img alt="TMBG I Like Fun" src="https://adriansblinkiecollection.neocities.org/s6.gif"/><img alt="TMBG Here Comes Science" src="https://adriansblinkiecollection.neocities.org/u2.gif"/><img alt="TMBG Join Us" src="https://adriansblinkiecollection.neocities.org/x18.gif"/><img alt="Firefox now" src="https://adriansblinkiecollection.neocities.org/buttons/a18.gif"/><img alt="Old man yaoi now" src="https://adriansblinkiecollection.neocities.org/buttons/a36.gif"/><img alt="Internet Archive preserve history" src="https://adriansblinkiecollection.neocities.org/buttons/a60.gif"/><img alt="I hate Squarespace" src="https://adriansblinkiecollection.neocities.org/buttons/c2.png"/><img alt="Team Fortress now" src="https://adriansblinkiecollection.neocities.org/buttons/d7.gif"/></div></div>
-</section>
-<div class="content-grid">
-<div class="column">
-<section class="card" id="about"><div class="card-header"><h1>About</h1></div><div class="card-body">
-<p>I'm Mitch Bentz, and I create under the name <strong>WubbzP</strong> (pronounced <em>Wubbs-P</em>, <code>/ˈwʌbz.piː/</code> <button type="button" class="audio-btn" onclick="document.getElementById('wubbzp-audio').play()" aria-label="Play WubbzP pronunciation" title="Play pronunciation">🔊</button>). I've worked with vocal synthesis software since 2017 and started releasing covers publicly as HuxP in 2023, then rebranded to WubbzP in September 2026.</p>
-<audio id="wubbzp-audio" src="/assets/audio/How to Pronounce WubbzP.mp3" preload="none"></audio>
-<p>My music work focuses on VOCALOID and UTAU, especially projects featuring Shiki Taigen.</p><p>Outside of music, I maintain archives, build fan and personal websites, and do visual/site design work.</p>
-</div></section>
-<section class="card" id="iwubbzy"><div class="card-header"><h2>iWubbzy</h2></div><div class="card-body">
-<p><a href="https://iwubbzy.com" rel="noopener" target="_blank"><strong>iWubbzy</strong></a> is an unofficial, non-commercial fan resource for <em>Wow! Wow! Wubbzy!</em>.</p>
-<p>I also help run a shared Discord community for updates, events, and discussion centred around the site and my music.</p>
-<div class="project-grid" style="grid-template-columns: 1fr; margin-top: 16px;">
-  <a class="project-card" href="https://discord.gg/hKXwdhUQzr" rel="noopener" target="_blank">
-    <img alt="iWubbzy Central icon" class="project-thumb" src="iWubbzy Central.png"/>
-    <div>
-      <strong>iWubbzy Central</strong>
-      <span>A shared Discord server for iWubbzy and WubbzP.</span>
+
+<div class="wiki-container">
+  
+  <aside class="wiki-sidebar">
+    <div class="wiki-logo">
+      <h1>WubbzPedia</h1>
+      <span>The Free Encyclopedia</span>
     </div>
-  </a>
+    
+    <div class="sidebar-menu">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="#mw-head">Main page</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#iwubbzy">iWubbzy</a></li>
+        <li><a href="#youtube-channels">YouTube</a></li>
+      </ul>
+    </div>
+    
+    <div class="sidebar-menu">
+      <h3>External links</h3>
+      <ul>
+        <li><a href="https://github.com/wubbzp" target="_blank">GitHub</a></li>
+        <li><a href="https://twitter.com/wubbzp" target="_blank">Twitter</a></li>
+        <li><a href="https://discord.gg/hKXwdhUQzr" target="_blank">Discord Server</a></li>
+      </ul>
+    </div>
+    
+    <img alt="" aria-hidden="true" src="/assets/images/wubbzy-thumbs-up.png?v=10" style="width: 120px; margin: 20px auto; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));" />
+  </aside>
+
+  <main class="wiki-main" id="mw-head">
+    
+    <div class="wiki-tabs">
+      <div class="wiki-tab active">Article</div>
+      <div class="wiki-tab">Talk</div>
+      <div style="flex-grow: 1;"></div>
+      <div class="wiki-tab active" style="background: var(--wiki-bg);">Read</div>
+      <div class="wiki-tab">Edit</div>
+      <div class="wiki-tab">View history</div>
+    </div>
+    
+    <div class="article-content">
+      <h1 class="article-title">WubbzP</h1>
+      
+      <aside class="infobox">
+        <div class="infobox-title">WubbzP</div>
+        <img src="/assets/icons/kickball-32.png?v=10" alt="WubbzP Icon" />
+        <table>
+          <tbody>
+            <tr><th>Birth name</th><td>Mitch Bentz</td></tr>
+            <tr><th>Also known as</th><td>HuxP</td></tr>
+            <tr><th>Occupations</th><td>Archiver, Musician, Web Designer</td></tr>
+            <tr><th>Active years</th><td>2017 - present</td></tr>
+            <tr><th>Genres</th><td>VOCALOID, UTAU</td></tr>
+          </tbody>
+        </table>
+      </aside>
+
+      <p><strong>Mitch Bentz</strong>, better known online as <strong>WubbzP</strong> (pronounced <em>Wubbs-P</em>, <code>/ˈwʌbz.piː/</code> <button type="button" class="audio-btn" onclick="document.getElementById('wubbzp-audio').play()" aria-label="Play WubbzP pronunciation" title="Play pronunciation">🔊</button>), is an archiver, visual designer, and creator of vocal synthesis covers. He has worked with vocal synthesis software since 2017. Initially releasing covers publicly under the alias HuxP in 2023, he officially rebranded to WubbzP in September 2026.</p>
+      
+      <audio id="wubbzp-audio" src="/assets/audio/How to Pronounce WubbzP.mp3" preload="none"></audio>
+      
+      <p>This site serves as a centralized hub to share new music releases, ongoing web projects, and the communities he helps run.</p>
+
+      <div class="toc">
+        <div class="toc-title">Contents</div>
+        <ul>
+          <li><span class="toc-number">1</span> <a href="#about">About</a></li>
+          <li><span class="toc-number">2</span> <a href="#iwubbzy">iWubbzy</a></li>
+          <li><span class="toc-number">3</span> <a href="#youtube-channels">YouTube Channels</a></li>
+          <li><span class="toc-number">4</span> <a href="#userboxes">Userboxes (Blinkies)</a></li>
+        </ul>
+      </div>
+
+      <h2 id="about">About</h2>
+      <p>WubbzP's music work primarily focuses on VOCALOID and UTAU software, specifically notable projects featuring the vocal synth <em>Shiki Taigen</em>. Outside of music production, Bentz maintains digital archives, builds personal and fan websites, and conducts general visual and site design work.</p>
+
+      <h2 id="iwubbzy">iWubbzy</h2>
+      <p><a href="https://iwubbzy.com" rel="noopener" target="_blank"><strong>iWubbzy</strong></a> is an unofficial, non-commercial fan resource dedicated to preserving and celebrating the animated television series <em>Wow! Wow! Wubbzy!</em>.</p>
+      <p>A shared Discord community is also maintained for updates, events, and discussion centered around the iWubbzy site and WubbzP's music releases.</p>
+      
+      <div class="gallery">
+        <a class="gallery-card" href="https://discord.gg/hKXwdhUQzr" rel="noopener" target="_blank">
+          <img alt="iWubbzy Central icon" src="iWubbzy Central.png"/>
+          <div class="gallery-info">
+            <strong>iWubbzy Central</strong>
+            <span>A shared Discord server for iWubbzy and WubbzP.</span>
+          </div>
+        </a>
+      </div>
+
+      <h2 id="youtube-channels">YouTube Channels</h2>
+      <p>WubbzP operates several YouTube channels to separate his musical covers, archives, and fan projects.</p>
+      
+      <div class="gallery">
+        <a class="gallery-card" href="https://www.youtube.com/@wowwowmitchy" rel="noopener" target="_blank">
+          <img alt="Wow! Wow! Mitchy! icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/CCTpCqvNANh075667TeSr03Mpmx4jO3ChoXWdm8uVfr4egWtR-asf7j9rPL41K5poJmOZLTg"/>
+          <div class="gallery-info">
+            <strong>Wow! Wow! Mitchy!</strong>
+            <span>Second channel for extra uploads and side videos.</span>
+          </div>
+        </a>
+        <a class="gallery-card" href="https://www.youtube.com/@wubbchive" rel="noopener" target="_blank">
+          <img alt="Wubbchive icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/l3JWqbEZaH2vKS8FCFH76bGI8PZ6w9LsGCtp-NtM5Iis_Y5Fz_bGkREltAhqpQGYWhGV-PesSw"/>
+          <div class="gallery-info">
+            <strong>Wubbchive</strong>
+            <span>Archival channel for preserved uploads and references.</span>
+          </div>
+        </a>
+        <a class="gallery-card" href="https://www.youtube.com/@iwubbzy" rel="noopener" target="_blank">
+          <img alt="iWubbzy icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/dvESkn09290JCYFx9t-ivxgggPxcxFlnp5hJBdGZi6sMPtci6XLN2GS2ffRkk8MHNwwDp4dxBA"/>
+          <div class="gallery-info">
+            <strong>iWubbzy</strong>
+            <span>Archive and fan project channel focused on iWubbzy.</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="cat-links" id="userboxes">
+        <div class="cat-links-title">Userboxes</div>
+        <div class="marquee-row">
+          <div class="marquee-track">
+            <img alt="ADHD" src="https://web.archive.org/web/20230307174621if_/https://kotatsu.me/blinkies/adhdblinkie_byus.gif"/>
+            <img alt="Autistic" src="https://adriansblinkiecollection.neocities.org/n3.gif"/>
+            <img alt="FUCK AI ART" src="https://adriansblinkiecollection.neocities.org/g44.gif"/>
+            <img alt="Music is my thing" src="https://adriansblinkiecollection.neocities.org/x31.gif"/>
+            <img alt="Miku fan" src="https://adriansblinkiecollection.neocities.org/e116.gif"/>
+            <img alt="SpongeBob SquarePants" src="https://adriansblinkiecollection.neocities.org/s12.gif"/>
+            
+            <img alt="ADHD" src="https://web.archive.org/web/20230307174621if_/https://kotatsu.me/blinkies/adhdblinkie_byus.gif"/>
+            <img alt="Autistic" src="https://adriansblinkiecollection.neocities.org/n3.gif"/>
+            <img alt="FUCK AI ART" src="https://adriansblinkiecollection.neocities.org/g44.gif"/>
+            <img alt="Music is my thing" src="https://adriansblinkiecollection.neocities.org/x31.gif"/>
+            <img alt="Miku fan" src="https://adriansblinkiecollection.neocities.org/e116.gif"/>
+            <img alt="SpongeBob SquarePants" src="https://adriansblinkiecollection.neocities.org/s12.gif"/>
+          </div>
+        </div>
+        <div class="marquee-row reverse">
+          <div class="marquee-track">
+            <img alt="Animal Jam Classic" src="https://adriansblinkiecollection.neocities.org/d1.gif"/>
+            <img alt="I love my 3DS" src="https://adriansblinkiecollection.neocities.org/e93.gif"/>
+            <img alt="Portal the cake is a lie" src="https://adriansblinkiecollection.neocities.org/i5.gif"/>
+            <img alt="I love UTAU" src="https://adriansblinkiecollection.neocities.org/x37.gif"/>
+            <img alt="iNaturalist fiend" src="https://adriansblinkiecollection.neocities.org/d72.gif"/>
+            
+            <img alt="Animal Jam Classic" src="https://adriansblinkiecollection.neocities.org/d1.gif"/>
+            <img alt="I love my 3DS" src="https://adriansblinkiecollection.neocities.org/e93.gif"/>
+            <img alt="Portal the cake is a lie" src="https://adriansblinkiecollection.neocities.org/i5.gif"/>
+            <img alt="I love UTAU" src="https://adriansblinkiecollection.neocities.org/x37.gif"/>
+            <img alt="iNaturalist fiend" src="https://adriansblinkiecollection.neocities.org/d72.gif"/>
+          </div>
+        </div>
+      </div>
+
+      <footer class="wiki-footer">
+        <div>
+          This page was last edited in <span id="year">2026</span>.<br/>
+          All trademarks mentioned on this site are property of their respective owners.
+        </div>
+        <div class="wiki-footer-links">
+          <a href="mailto:wubbzyp@gmail.com">Contact</a>
+          <a href="https://youtube.com/@wubbzp">YouTube</a>
+          <a href="#">Privacy policy</a>
+        </div>
+      </footer>
+      
+    </div>
+  </main>
+  
 </div>
-</div></section>
-</div>
-<div class="column">
-<section class="card" id="youtube-channels"><div class="card-header"><h2>YouTube Channels</h2></div><div class="card-body"><div class="channel-grid"><a class="channel-card" href="https://www.youtube.com/@wowwowmitchy" rel="noopener" target="_blank"><img alt="Wow! Wow! Mitchy! icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/CCTpCqvNANh075667TeSr03Mpmx4jO3ChoXWdm8uVfr4egWtR-asf7j9rPL41K5poJmOZLTg"/><div><strong>Wow! Wow! Mitchy!</strong><span>My second channel for extra uploads and side videos.</span></div></a><a class="channel-card" href="https://www.youtube.com/@wubbchive" rel="noopener" target="_blank"><img alt="Wubbchive icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/l3JWqbEZaH2vKS8FCFH76bGI8PZ6w9LsGCtp-NtM5Iis_Y5Fz_bGkREltAhqpQGYWhGV-PesSw"/><div><strong>Wubbchive</strong><span>My archival channel for preserved uploads and reference material.</span></div></a><a class="channel-card" href="https://www.youtube.com/@iwubbzy" rel="noopener" target="_blank"><img alt="iWubbzy icon" referrerpolicy="no-referrer" src="https://yt3.googleusercontent.com/dvESkn09290JCYFx9t-ivxgggPxcxFlnp5hJBdGZi6sMPtci6XLN2GS2ffRkk8MHNwwDp4dxBA"/><div><strong>iWubbzy</strong><span>Archive and fan project channel focused on iWubbzy.</span></div></a></div></div></section>
-</div>
-</div>
-</main>
-<footer class="site-footer"><div class="footer-inner"><div><div>© <span id="year">2026</span> WubbzP.</div><div>All trademarks mentioned on this site are property of their respective owners.</div></div><div class="social-icons"><a href="mailto:wubbzyp@gmail.com" rel="me">Email</a><a href="https://github.com/wubbzp" rel="me">GitHub</a><a href="https://youtube.com/@wubbzp" rel="me">YouTube</a><a href="https://twitter.com/wubbzp" rel="me">Twitter</a><a href="https://discord.gg/hKXwdhUQzr" rel="me">Discord</a></div></div></footer>
-</div>
+
 <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
 </body>
 </html>
