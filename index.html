@@ -4,9 +4,6 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>WubbzP - WubbzPedia, the free encyclopedia</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link href="/assets/icons/kickball-32.png?v=10" rel="icon" sizes="32x32" type="image/png"/>
 <meta content="#fee072" name="theme-color"/>
 <meta content="WubbzP - WubbzPedia" property="og:title"/>
@@ -23,6 +20,10 @@
   --link-blue: #0645ad;
   --link-red: #cc2200;
   --border-style: 2px dashed var(--wubbzy-orange);
+  
+  /* Wikipedia Standard Fonts */
+  --wiki-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Liberation Sans", Helvetica, Arial, sans-serif;
+  --wiki-serif: "Linux Libertine", Georgia, Times, "Times New Roman", serif;
 }
 
 *, *::before, *::after {
@@ -32,7 +33,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: "Nunito", "Segoe UI", sans-serif;
+  font-family: var(--wiki-sans);
   color: var(--ink);
   background: var(--wubbzy-yellow);
   line-height: 1.6;
@@ -61,15 +62,16 @@ a:visited { color: #0b0080; }
   margin-bottom: 20px;
 }
 .wiki-logo h1 {
-  font-family: "Fredoka", sans-serif;
+  font-family: var(--wiki-serif);
   font-size: 24px;
+  font-weight: normal;
   color: #4a2f0b;
   margin: 0;
   line-height: 1.1;
 }
 .wiki-logo span {
   font-size: 12px;
-  font-family: "Nunito", sans-serif;
+  font-family: var(--wiki-sans);
   color: #7a5523;
 }
 
@@ -81,8 +83,9 @@ a:visited { color: #0b0080; }
   margin-bottom: 15px;
 }
 .sidebar-menu h3 {
-  font-family: "Fredoka", sans-serif;
+  font-family: var(--wiki-sans);
   font-size: 14px;
+  font-weight: normal;
   margin: 0 0 5px 0;
   color: #7a5523;
   border-bottom: 1px solid var(--wubbzy-gold);
@@ -109,7 +112,7 @@ a:visited { color: #0b0080; }
   margin-bottom: -2px;
   position: relative;
   z-index: 2;
-  font-family: "Fredoka", sans-serif;
+  font-family: var(--wiki-sans);
   font-size: 14px;
 }
 .wiki-tab {
@@ -123,7 +126,7 @@ a:visited { color: #0b0080; }
 .wiki-tab.active {
   background: var(--wiki-bg);
   border-color: var(--wubbzy-orange);
-  font-weight: 700;
+  font-weight: bold;
   padding-bottom: 8px; /* Covers the border below */
 }
 
@@ -139,8 +142,9 @@ a:visited { color: #0b0080; }
 }
 
 .article-title {
-  font-family: "Fredoka", sans-serif;
-  font-size: 36px;
+  font-family: var(--wiki-serif);
+  font-size: 32px;
+  font-weight: normal;
   border-bottom: var(--border-style);
   margin: 0 0 10px 0;
   padding-bottom: 5px;
@@ -160,9 +164,9 @@ a:visited { color: #0b0080; }
 .infobox-title {
   background: var(--wubbzy-gold);
   text-align: center;
-  font-family: "Fredoka", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
+  font-family: var(--wiki-sans);
+  font-size: 16px;
+  font-weight: bold;
   padding: 5px;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -196,8 +200,8 @@ a:visited { color: #0b0080; }
   min-width: 250px;
 }
 .toc-title {
-  font-family: "Fredoka", sans-serif;
-  font-weight: 700;
+  font-family: var(--wiki-sans);
+  font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -213,16 +217,18 @@ a:visited { color: #0b0080; }
 
 /* Section Headers */
 h2 {
-  font-family: "Fredoka", sans-serif;
+  font-family: var(--wiki-serif);
   font-size: 24px;
+  font-weight: normal;
   border-bottom: var(--border-style);
   margin-top: 30px;
   padding-bottom: 5px;
 }
 
 h3 {
-  font-family: "Fredoka", sans-serif;
+  font-family: var(--wiki-sans);
   font-size: 18px;
+  font-weight: bold;
   margin-top: 20px;
 }
 
@@ -272,7 +278,7 @@ h3 {
   object-fit: cover;
   border: 1px solid var(--wubbzy-gold);
 }
-.gallery-info strong { display: block; font-family: "Fredoka", sans-serif; }
+.gallery-info strong { display: block; font-family: var(--wiki-sans); font-weight: bold; }
 .gallery-info span { font-size: 13px; color: #555; }
 
 /* Marquee / Categories box */
@@ -284,8 +290,8 @@ h3 {
   margin-top: 40px;
 }
 .cat-links-title {
-  font-family: "Fredoka", sans-serif;
-  font-weight: 700;
+  font-family: var(--wiki-sans);
+  font-weight: bold;
   margin-bottom: 10px;
 }
 .marquee-track {
@@ -329,6 +335,7 @@ h3 {
 
 <div class="wiki-container">
   
+  <!-- Sidebar -->
   <aside class="wiki-sidebar">
     <div class="wiki-logo">
       <h1>WubbzPedia</h1>
@@ -354,11 +361,14 @@ h3 {
       </ul>
     </div>
     
+    <!-- Easter Egg Side Wubbzy -->
     <img alt="" aria-hidden="true" src="/assets/images/wubbzy-thumbs-up.png?v=10" style="width: 120px; margin: 20px auto; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));" />
   </aside>
 
+  <!-- Main Content -->
   <main class="wiki-main" id="mw-head">
     
+    <!-- Top Tabs -->
     <div class="wiki-tabs">
       <div class="wiki-tab active">Article</div>
       <div class="wiki-tab">Talk</div>
@@ -368,15 +378,17 @@ h3 {
       <div class="wiki-tab">View history</div>
     </div>
     
+    <!-- Article Body -->
     <div class="article-content">
       <h1 class="article-title">WubbzP</h1>
       
+      <!-- Infobox -->
       <aside class="infobox">
         <div class="infobox-title">WubbzP</div>
-        <img src="/assets/icons/kickball-32.png?v=10" alt="WubbzP Icon" />
+        <img src="/assets/images/WubbzP.png" alt="WubbzP Icon" />
         <table>
           <tbody>
-            <tr><th>Birth name</th><td>Mitch Bentz</td></tr>
+            <tr><th>Name</th><td>Mitch Bentz</td></tr>
             <tr><th>Also known as</th><td>HuxP</td></tr>
             <tr><th>Occupations</th><td>Archiver, Musician, Web Designer</td></tr>
             <tr><th>Active years</th><td>2017 - present</td></tr>
@@ -391,6 +403,7 @@ h3 {
       
       <p>This site serves as a centralized hub to share new music releases, ongoing web projects, and the communities he helps run.</p>
 
+      <!-- TOC -->
       <div class="toc">
         <div class="toc-title">Contents</div>
         <ul>
@@ -445,6 +458,7 @@ h3 {
         </a>
       </div>
 
+      <!-- Blinkies Section masquerading as a Wiki categories box -->
       <div class="cat-links" id="userboxes">
         <div class="cat-links-title">Userboxes</div>
         <div class="marquee-row">
@@ -456,6 +470,7 @@ h3 {
             <img alt="Miku fan" src="https://adriansblinkiecollection.neocities.org/e116.gif"/>
             <img alt="SpongeBob SquarePants" src="https://adriansblinkiecollection.neocities.org/s12.gif"/>
             
+            <!-- Duplicated for smooth scrolling -->
             <img alt="ADHD" src="https://web.archive.org/web/20230307174621if_/https://kotatsu.me/blinkies/adhdblinkie_byus.gif"/>
             <img alt="Autistic" src="https://adriansblinkiecollection.neocities.org/n3.gif"/>
             <img alt="FUCK AI ART" src="https://adriansblinkiecollection.neocities.org/g44.gif"/>
@@ -472,6 +487,7 @@ h3 {
             <img alt="I love UTAU" src="https://adriansblinkiecollection.neocities.org/x37.gif"/>
             <img alt="iNaturalist fiend" src="https://adriansblinkiecollection.neocities.org/d72.gif"/>
             
+            <!-- Duplicated for smooth scrolling -->
             <img alt="Animal Jam Classic" src="https://adriansblinkiecollection.neocities.org/d1.gif"/>
             <img alt="I love my 3DS" src="https://adriansblinkiecollection.neocities.org/e93.gif"/>
             <img alt="Portal the cake is a lie" src="https://adriansblinkiecollection.neocities.org/i5.gif"/>
@@ -481,6 +497,7 @@ h3 {
         </div>
       </div>
 
+      <!-- Footer -->
       <footer class="wiki-footer">
         <div>
           This page was last edited in <span id="year">2026</span>.<br/>
