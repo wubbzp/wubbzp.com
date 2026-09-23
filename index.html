@@ -181,7 +181,7 @@ a:hover { text-decoration: underline; }
 
 /* Playful Audio Button */
 .audio-btn {
-  background: #ffdb4d;
+  background: #ffdb4d url("/assets/icons/kickball-32.png") center/cover no-repeat;
   border: 3px solid #d99e00;
   border-radius: 50%;
   cursor: pointer;
@@ -196,14 +196,8 @@ a:hover { text-decoration: underline; }
   vertical-align: middle;
   transition: transform 0.1s;
   box-shadow: 0 4px 0 #d99e00;
-}
-.audio-btn i {
-  color: #202122;
-  font-size: 14px;
-  line-height: 1;
-  display: inline-block;
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  overflow: hidden;
+  text-indent: -9999px;
 }
 .audio-btn:active {
   transform: translateY(4px);
@@ -414,7 +408,7 @@ a:hover { text-decoration: underline; }
           
           <h2>About Me</h2>
           
-          <p><strong>Mitch "Michelle" Bentz</strong>, better known online as <strong>WubbzP</strong> (pronounced <em>Wubbs-P</em>, <code>/ˈwʌbz.piː/</code> <button type="button" class="audio-btn" onclick="document.getElementById('wubbzp-audio').play()" aria-label="Play WubbzP pronunciation" title="Play pronunciation"><i class="fa-solid fa-volume"></i></button>), is an archiver, visual designer, and creator of vocal synthesis covers.</p>
+          <p><strong>Mitch "Michelle" Bentz</strong>, better known online as <strong>WubbzP</strong> (pronounced <em>Wubbs-P</em>, <code>/ˈwʌbz.piː/</code> <button type="button" class="audio-btn" onclick="document.getElementById('wubbzp-audio').play()" aria-label="Play WubbzP pronunciation" title="Play pronunciation">Play pronunciation</button>), is an archiver, visual designer, and creator of vocal synthesis covers.</p>
           
           <audio id="wubbzp-audio" src="/assets/audio/How to Pronounce WubbzP.mp3" preload="none"></audio>
           
