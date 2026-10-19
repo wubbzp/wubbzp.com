@@ -138,6 +138,8 @@
     }
 
     picker.addEventListener("click", function (e) {
+      // let Ctrl/Cmd/Shift-clicks and middle-clicks open links normally
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var link = e.target.closest("a[href^='#']");
       if (!link || !panelFor(link.getAttribute("href").slice(1))) return;
       e.preventDefault();
@@ -165,7 +167,9 @@
     }
 
     window.addEventListener("hashchange", function () {
-      select(location.hash.slice(1));
+      // ignore other in-page anchors (e.g. the skip link's #content)
+      var id = location.hash.slice(1);
+      if (!id || panelFor(id)) select(id);
     });
 
     picker.classList.add("is-ready");
