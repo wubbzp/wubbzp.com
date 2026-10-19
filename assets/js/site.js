@@ -60,6 +60,87 @@
     });
   }
 
+  // Razz: swings in the first time he's on screen; poke him for a squish,
+  // a ripple, sparkles and a speech bubble. He tilts toward the pointer.
+  var razz = document.getElementById("razz");
+  if (razz) {
+    var spot = razz.parentNode;
+    var body = razz.querySelector(".razz-body");
+    var say = spot.querySelector(".razz-bubble");
+    var quips = ["Hey!", "Hehe, that tickles!", "Wow, wow!", "Boop!", "Rawr!", "Hi there!", "Again? Okay!"];
+    var q = 0, sayTimer;
+
+    var settle = function () { spot.classList.add("is-settled"); };
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      spot.classList.add("is-in");
+      settle();
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { spot.classList.add("is-in"); io.disconnect(); }
+      }, { threshold: 0.4 });
+      io.observe(spot);
+      razz.addEventListener("animationend", function (e) {
+        if (e.animationName === "razz-swing") settle();
+      });
+    }
+
+    razz.addEventListener("pointermove", function (e) {
+      if (reduceMotion || e.pointerType === "touch") return;
+      var r = razz.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      body.style.setProperty("--ry", (x * 18).toFixed(1) + "deg");
+      body.style.setProperty("--rx", (-y * 14).toFixed(1) + "deg");
+    });
+    razz.addEventListener("pointerleave", function () {
+      body.style.setProperty("--rx", "0deg");
+      body.style.setProperty("--ry", "0deg");
+    });
+
+    razz.addEventListener("click", function (e) {
+      var r = razz.getBoundingClientRect();
+      // keyboard presses (detail 0) poke the middle of his chest
+      var px = e.detail ? e.clientX - r.left : r.width / 2;
+      var py = e.detail ? e.clientY - r.top : r.height * 0.55;
+
+      say.textContent = quips[q++ % quips.length];
+      spot.classList.add("show-bubble");
+      clearTimeout(sayTimer);
+      sayTimer = setTimeout(function () { spot.classList.remove("show-bubble"); }, 1800);
+
+      body.style.transformOrigin = px + "px " + py + "px";
+      body.classList.remove("poked");
+      void body.offsetWidth;
+      body.classList.add("poked");
+      if (reduceMotion) return;
+
+      var offsetY = razz.offsetTop; // the button sits below the speech bubble in the spot
+      var ring = document.createElement("span");
+      ring.className = "razz-ripple";
+      ring.setAttribute("aria-hidden", "true");
+      ring.style.left = px + "px";
+      ring.style.top = offsetY + py + "px";
+      spot.appendChild(ring);
+      ring.addEventListener("animationend", function () { this.remove(); });
+
+      var shapes = ["★", "♥", "✦", "♪"];
+      for (var i = 0; i < 8; i++) {
+        var sp = document.createElement("span");
+        var a = (Math.PI * 2 * i) / 8 + Math.random() * 0.4;
+        var dist = 45 + Math.random() * 30;
+        sp.className = "sparkle";
+        sp.setAttribute("aria-hidden", "true");
+        sp.textContent = shapes[i % shapes.length];
+        sp.style.left = px + "px";
+        sp.style.top = offsetY + py + "px";
+        sp.style.setProperty("--dx", Math.cos(a) * dist + "px");
+        sp.style.setProperty("--dy", Math.sin(a) * dist + "px");
+        spot.appendChild(sp);
+        sp.addEventListener("animationend", function () { this.remove(); });
+      }
+    });
+  }
+
   // Visitor counter (Abacus, a free counting API). Each browser session is
   // counted once; later page views in the same session only read the total.
   var counter = document.getElementById("counter");
