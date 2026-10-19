@@ -259,11 +259,17 @@ img { max-width: 100%; }
    Razz stands in the bottom-left corner of the stage (where the original
    site's mailbox was), flush with the frame. He swings in when first seen;
    poking him squashes and springs him from the poke point. */
-.stage:not(.stage-page) .sidebar { align-self: stretch; }
+/* Razz comes last in the page (so keyboard order matches the screen) but
+   shares the left column with the menu, which reserves room for him. */
+.stage:not(.stage-page) .sidebar { grid-column: 1; grid-row: 1; padding-bottom: 173px; }
 .razz-spot {
   position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+  justify-self: center;
   width: 160px;
-  margin: auto auto -22px; /* pinned to the stage's bottom edge */
+  margin-bottom: -22px; /* pinned to the stage's bottom edge */
   z-index: 3;
 }
 .razz {
@@ -308,13 +314,15 @@ img { max-width: 100%; }
   0%, 100% { rotate: 0deg; }
   50% { rotate: 1.2deg; }
 }
-.razz-body.poked { animation: razz-poke 0.65s cubic-bezier(.3, .7, .4, 1); }
+/* the squash has its own layer so the tilt above keeps pivoting at his feet */
+.razz-squash { display: block; transform-origin: 50% 100%; }
+.razz-squash.poked { animation: razz-poke 0.65s cubic-bezier(.3, .7, .4, 1); }
 @keyframes razz-poke {
   0% { scale: 1 1; }
-  15% { scale: 1.1 0.84; translate: 0 6px; }
-  38% { scale: 0.93 1.1; translate: 0 -8px; }
-  58% { scale: 1.04 0.96; translate: 0 2px; }
-  78% { scale: 0.99 1.02; translate: 0 0; }
+  15% { scale: 1.1 0.84; }
+  38% { scale: 0.93 1.1; }
+  58% { scale: 1.04 0.96; }
+  78% { scale: 0.99 1.02; }
   100% { scale: 1 1; }
 }
 .razz-ripple {
@@ -1407,8 +1415,8 @@ cite:lang(ja), cite :lang(ja) { font-style: normal; }
   .menu-divider { grid-column: 1 / -1; }
   /* inner pages: the ribbon, BACK button and footer cover navigation */
   .stage-page .sidebar { display: none; }
-  .stage:not(.stage-page) .sidebar { display: contents; }
-  .razz-spot { order: 9; justify-self: center; width: 150px; margin: -10px auto -18px; }
+  .stage:not(.stage-page) .sidebar { grid-column: auto; grid-row: auto; padding-bottom: 0; }
+  .razz-spot { grid-column: auto; grid-row: auto; width: 150px; margin: -10px auto -18px; }
   .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; }
   .feature-cta { text-align: left; margin: 0; }
   .feature-card { grid-column: 1 / -1; }
@@ -1459,6 +1467,6 @@ cite:lang(ja), cite :lang(ja) { font-style: normal; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .burst, .mystery.pop, .razz-body img, .razz-body.poked { animation: none; }
+  .burst, .mystery.pop, .razz-body img, .razz-squash.poked { animation: none; }
   .razz-spot.is-in .razz { animation: none; }
 }

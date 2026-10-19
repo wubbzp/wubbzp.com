@@ -66,6 +66,7 @@
   if (razz) {
     var spot = razz.parentNode;
     var body = razz.querySelector(".razz-body");
+    var squash = razz.querySelector(".razz-squash");
     var say = spot.querySelector(".razz-bubble");
     var quips = ["Hey!", "Hehe, that tickles!", "Wow, wow!", "Boop!", "Rawr!", "Hi there!", "Again? Okay!"];
     var q = 0, sayTimer;
@@ -108,10 +109,11 @@
       clearTimeout(sayTimer);
       sayTimer = setTimeout(function () { spot.classList.remove("show-bubble"); }, 1800);
 
-      body.style.transformOrigin = px + "px " + py + "px";
-      body.classList.remove("poked");
-      void body.offsetWidth;
-      body.classList.add("poked");
+      // squash toward the poke, with his feet staying on the frame
+      squash.style.transformOrigin = px + "px 100%";
+      squash.classList.remove("poked");
+      void squash.offsetWidth;
+      squash.classList.add("poked");
       if (reduceMotion) return;
 
       var offsetY = razz.offsetTop; // the button sits below the speech bubble in the spot
