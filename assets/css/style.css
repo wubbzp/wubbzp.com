@@ -1248,6 +1248,16 @@ a.edition-cover:hover { transform: rotate(-3deg) scale(1.05); }
   font-size: 12px;
   font-weight: bold;
 }
+.edition-kind {
+  display: inline-block;
+  margin: 3px 0 4px;
+  background: var(--burst-bottom);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 12px;
+  font-weight: bold;
+}
 .edition-info p { margin: 0; font-size: 14px; }
 .tracks {
   grid-column: 2;
