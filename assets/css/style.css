@@ -1289,6 +1289,13 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
 }
 .tracks td { padding: 4px 0 3px 10px; vertical-align: top; }
 
+/* Album and release names are always italic. Japanese text isn't set in
+   italics, so Japanese titles stay upright. */
+cite { font-style: italic; }
+cite:lang(ja), cite :lang(ja) { font-style: normal; }
+.panel .after-cards { margin: 14px 0 0; }
+.cards-2 { grid-template-columns: repeat(2, 1fr); }
+
 /* Contact */
 .email-big {
   display: inline-block;
@@ -1403,6 +1410,7 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
   .guide p { font-size: 16px; }
   .panel { font-size: 14px; border-width: 16px; border-image-width: 16px; }
   .facts { grid-template-columns: 1fr; gap: 0; }
+  .cards-2 { grid-template-columns: 1fr; }
   .facts dd { margin-bottom: 6px; }
   .box-inner { padding: 14px; font-size: 14px; }
 }
