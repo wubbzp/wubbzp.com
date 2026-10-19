@@ -1,4 +1,4 @@
-/* SquigglePants Art Studio: a browser recreation of the Wii Art Studio, built from the game's own files.
+/* SpongeBob SquigglePants: Art Studio. A browser recreation of the Wii Art Studio, built from the game's own files.
    Everything is laid out on the game's 854x480 screen; #stage is scaled to fit the window. */
 (() => {
 'use strict';
@@ -165,7 +165,7 @@ function gate() {
   const g = el('div', { id: 'gate', class: 'scene' });
   img('assets/boot/save_icon.gif', 0, 0, g).style.position = 'static';
   el('div', { class: 'big', text: 'Click or tap to start' }, g);
-  el('div', { class: 'small', text: 'A fan recreation of the Art Studio from SpongeBob SquigglePants (Wii, 2011), rebuilt from the game’s own art and music. Sound on!' }, g);
+  el('div', { class: 'small', innerHTML: 'A fan recreation of the Art Studio from <i>SpongeBob SquigglePants</i> (Wii, 2011), rebuilt from the game’s own art and music. Sound on!' }, g);
   const go = () => { Sound.init(); Sound.load('title', 'assets/audio/title.flac'); boot(); };
   g.addEventListener('pointerup', go);
   setScene(g, e => { if (e.key === 'Enter' || e.key === ' ') go(); });
