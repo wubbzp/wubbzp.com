@@ -1,0 +1,1252 @@
+/* WubbzP.com: styled after the 2008 Wow! Wow! Wubbzy! website.
+   Shared by every page. */
+
+@font-face {
+  font-family: "House Holiday Sans";
+  src: url("/assets/fonts/house-holiday-sans.ttf") format("truetype");
+  size-adjust: 125%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "VAG Rounded";
+  src: url("/assets/fonts/vag-rounded.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --page-top: #2f8fd0;
+  --page-bottom: #6cc6ee;
+
+  --frame: #1f6fb5;
+  --frame-light: #6fd0f5;
+  --frame-dark: #154f8a;
+
+  --logo-bg: #3fa6de;
+  --logo-green: #9bd23c;
+  --logo-green-dark: #3c7a1a;
+
+  --ribbon: #6a5bd0;
+  --ribbon-dark: #4637a3;
+  --ribbon-text: #ffe14a;
+
+  --yellow: #ffe94d;
+  --yellow-dark: #e8b400;
+  --navy: #2b2f8f;
+  --ink: #13235a;
+
+  --menu-bg: #d8f8fc;
+  --menu-border: #3fb6d6;
+  --menu-active: #e8730c;
+
+  --house: #b9b5ec;
+  --house-dark: #7f78cf;
+  --house-light: #dcd9fb;
+
+  --burst-top: #ff7aa8;
+  --burst-bottom: #ff9e45;
+
+  --card-cream: #fffbea;
+  --purple-text: #5b3bb3;
+  --red-text: #e8291c;
+  --orange-frame: #ff8b20;
+  --panel-border: #669f4e;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  min-height: 100%;
+  background: linear-gradient(180deg, var(--page-top) 0%, var(--page-bottom) 100%);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "VAG Rounded", "Nunito", sans-serif;
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+:focus-visible { outline: 4px solid var(--yellow); outline-offset: 2px; }
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  background: var(--yellow);
+  color: var(--navy);
+  border: 3px solid var(--frame);
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-family: "House Holiday Sans", cursive;
+}
+.skip-link:focus { top: 12px; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.site {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 18px 16px 30px;
+}
+
+/* ---------- Header: logo box, ribbon nav, contact pill ---------- */
+.header {
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 5;
+  margin-bottom: -26px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--logo-bg);
+  border: 5px solid var(--frame-light);
+  border-radius: 22px;
+  padding: 8px 14px;
+  box-shadow: 0 5px 0 var(--frame-dark);
+  transform: rotate(-2deg);
+  transition: transform 0.15s;
+}
+.logo:hover { transform: rotate(0deg) scale(1.03); }
+.logo-text {
+  display: block;
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 50px;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: var(--logo-green);
+  -webkit-text-stroke: 3px var(--logo-green-dark);
+  paint-order: stroke fill;
+  text-shadow: 0 4px 0 rgba(0,0,0,0.18);
+  margin: 0;
+}
+.logo-text small {
+  display: block;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  -webkit-text-stroke: 2px var(--frame-dark);
+  margin-bottom: 2px;
+}
+.logo img {
+  width: 44px;
+  height: 44px;
+  transform: rotate(12deg);
+}
+
+/* Purple ribbon navigation */
+.ribbon {
+  /* the ribbon's folded tails (::before/::after) sit behind the band (ul) */
+  justify-self: center;
+  position: relative;
+  transform: rotate(1.5deg);
+}
+.ribbon::before, .ribbon::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 26px;
+  height: 100%;
+  background: var(--ribbon-dark);
+  z-index: 0;
+}
+.ribbon::before { left: -18px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 40% 50%); }
+.ribbon::after { right: -18px; clip-path: polygon(0 0, 100% 0, 60% 50%, 100% 100%, 0 100%); }
+.ribbon ul {
+  position: relative;
+  z-index: 1;
+  background: var(--ribbon);
+  border-top: 4px solid #8f82ea;
+  border-bottom: 4px solid var(--ribbon-dark);
+  box-shadow: 0 5px 0 rgba(0,0,0,0.15);
+  list-style: none;
+  margin: 0;
+  padding: 6px 26px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 22px;
+}
+.ribbon a {
+  font-family: "House Holiday Sans", cursive;
+  font-size: 26px;
+  color: var(--ribbon-text);
+  text-shadow: 0 2px 0 var(--ribbon-dark);
+  transition: color 0.15s;
+}
+.ribbon a:hover, .ribbon a[aria-current="page"] { color: #ffffff; }
+
+/* Yellow pill (Contact) */
+.pill {
+  display: inline-block;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 22px;
+  color: var(--navy);
+  background: var(--yellow);
+  border: 4px solid var(--frame);
+  border-radius: 14px;
+  padding: 4px 16px;
+  box-shadow: inset 0 -5px 0 var(--yellow-dark), 0 4px 0 var(--frame-dark);
+  transition: transform 0.1s;
+}
+.pill:hover { transform: translateY(-2px); }
+.pill:active { transform: translateY(3px); box-shadow: inset 0 -5px 0 var(--yellow-dark), 0 1px 0 var(--frame-dark); }
+
+/* ---------- Main stage ---------- */
+.stage {
+  position: relative;
+  border: 8px solid var(--frame);
+  border-radius: 26px;
+  box-shadow: inset 0 0 0 4px var(--frame-light), 0 8px 0 var(--frame-dark);
+  background: #eaf6ff url("/assets/images/bg.png") center bottom / cover no-repeat;
+  padding: 50px 22px 22px;
+  display: grid;
+  grid-template-columns: 180px 1fr 280px;
+  gap: 20px;
+  align-items: start;
+}
+/* Inner pages: menu + one content column, like the original site's inner pages */
+.stage-page {
+  grid-template-columns: 180px 1fr;
+  background: #ffffff url("/assets/images/bg.png") center bottom / 100% auto no-repeat;
+  padding-bottom: 120px;
+}
+
+/* Left sidebar menu */
+.sidebar { display: flex; flex-direction: column; gap: 22px; }
+.menu {
+  background: var(--menu-bg);
+  border: 5px solid var(--menu-border);
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 rgba(31,111,181,0.35);
+  padding: 10px 12px 12px;
+}
+.menu ul { list-style: none; margin: 0; padding: 0; }
+.menu-divider {
+  border-top: 3px dotted var(--menu-border);
+  margin: 6px 0;
+}
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink);
+  padding-left: 14px;
+  position: relative;
+}
+.menu a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: transparent;
+}
+.menu a:hover, .menu a[aria-current="page"] { color: var(--menu-active); }
+.menu a:hover::before, .menu a[aria-current="page"]::before { background: var(--menu-active); }
+.menu i { font-size: 13px; opacity: 0.7; }
+
+/* ---------- Home: video house ---------- */
+.house {
+  position: relative;
+  margin-top: 58px;
+  background: var(--house);
+  border: 6px solid var(--house-dark);
+  border-top: 0;
+  border-radius: 0 0 22px 22px;
+  padding: 10px 22px 22px;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+}
+.house::before {
+  /* the roof */
+  content: "";
+  position: absolute;
+  left: -6px;
+  right: -6px;
+  bottom: 100%;
+  height: 64px;
+  background: var(--house-dark);
+  clip-path: polygon(50% 0, 100% 72%, 100% 100%, 0 100%, 0 72%);
+}
+.house::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 56px;
+  background: var(--house);
+  clip-path: polygon(50% 0, 100% 74%, 100% 100%, 0 100%, 0 74%);
+}
+.video {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 16 / 9;
+  background: var(--house-light);
+  border: 5px solid #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 0 0 3px var(--house-dark);
+  overflow: hidden;
+}
+.video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.house h2 {
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 34px;
+  color: var(--navy);
+  text-align: center;
+  margin: 16px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Home: featured release + visitor counter ---------- */
+.feature { position: relative; padding-top: 6px; }
+.album {
+  display: block;
+  position: relative;
+  width: 74%;
+  background: #ffffff;
+  border: 4px solid #2c2c2c;
+  border-radius: 6px;
+  padding: 6px;
+  transform: rotate(-5deg);
+  box-shadow: 6px 8px 0 rgba(0,0,0,0.2);
+  margin-left: 2px;
+}
+.album-art {
+  aspect-ratio: 1 / 1;
+  border-radius: 2px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.55) 0 22%, transparent 23%),
+    repeating-linear-gradient(45deg, #ffe94d 0 14px, #ffdf2e 14px 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px 8px;
+  text-align: center;
+  font-family: "House Holiday Sans", cursive;
+  color: var(--purple-text);
+}
+.album-art .album-title {
+  font-size: 18px;
+  line-height: 1.05;
+  -webkit-text-stroke: 4px #ffffff;
+  paint-order: stroke fill;
+}
+.album-art .album-vol {
+  background: var(--purple-text);
+  color: #ffffff;
+  font-size: 16px;
+  padding: 2px 12px;
+  border-radius: 10px;
+}
+.mystery-wrap {
+  position: relative;
+  width: 44%;
+}
+.mystery {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 5px solid var(--menu-active);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+  cursor: pointer;
+  padding: 0;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 54px;
+  line-height: 1;
+  color: var(--purple-text);
+  transform: rotate(-6deg);
+  transition: transform 0.15s;
+}
+.mystery:hover { transform: rotate(0deg) scale(1.06); }
+.mystery:focus-visible { outline: 4px solid var(--frame); outline-offset: 3px; }
+.mystery.pop { animation: mystery-pop 0.7s ease; }
+@keyframes mystery-pop {
+  0% { transform: rotate(-6deg) scale(1); }
+  30% { transform: rotate(180deg) scale(1.3); }
+  60% { transform: rotate(350deg) scale(0.9); }
+  100% { transform: rotate(354deg) scale(1); }
+}
+.sparkle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  font-size: 24px;
+  color: var(--purple-text);
+  -webkit-text-stroke: 1px #ffffff;
+  animation: sparkle 0.9s ease-out forwards;
+}
+@keyframes sparkle {
+  from { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+  to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.2) rotate(40deg); opacity: 0; }
+}
+.mystery-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) scale(0);
+  white-space: nowrap;
+  background: #ffffff;
+  border: 3px solid var(--purple-text);
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 15px;
+  color: var(--purple-text);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.mystery-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -7px;
+  border: 7px solid transparent;
+  border-top-color: var(--purple-text);
+}
+.mystery-wrap.show-bubble .mystery-bubble { transform: translateX(-50%) scale(1); }
+
+.burst {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, var(--burst-top), var(--burst-bottom));
+  clip-path: polygon(50% 0%, 59% 14%, 75% 6%, 76% 23%, 93% 25%, 85% 40%, 100% 50%, 85% 60%, 93% 75%, 76% 77%, 75% 94%, 59% 86%, 50% 100%, 41% 86%, 25% 94%, 24% 77%, 7% 75%, 15% 60%, 0% 50%, 15% 40%, 7% 25%, 24% 23%, 25% 6%, 41% 14%);
+  font-family: "House Holiday Sans", cursive;
+  font-size: 23px;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 2px 0 #c2410c;
+  transform: rotate(8deg);
+  animation: wobble 3s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes wobble {
+  0%, 100% { transform: rotate(8deg) scale(1); }
+  50% { transform: rotate(2deg) scale(1.06); }
+}
+.feature-cta {
+  display: block;
+  text-align: right;
+  position: relative;
+  z-index: 1;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 19px;
+  line-height: 1.15;
+  color: #2b3da8;
+  margin: 10px 4px 12px 0;
+}
+a.feature-cta:hover { color: var(--menu-active); }
+.feature-card {
+  background: var(--card-cream);
+  border: 6px solid #a58ae0;
+  border-radius: 22px;
+  box-shadow: inset 0 0 0 3px #ffffff, 0 6px 0 rgba(0,0,0,0.12);
+  padding: 14px 12px;
+  text-align: center;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 24px;
+  line-height: 1.1;
+  color: var(--purple-text);
+  margin: 0;
+}
+
+/* Visitor counter + its "counted since" tooltip */
+.counter {
+  position: relative;
+  cursor: help;
+}
+.counter-digits {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 8px 0 4px;
+}
+.counter-digits span {
+  display: inline-block;
+  min-width: 28px;
+  padding: 4px 0;
+  background: linear-gradient(180deg, #3d3fa0 0 50%, #2b2f8f 50% 100%);
+  border: 3px solid #1f2270;
+  border-radius: 6px;
+  color: var(--yellow);
+  font-family: "VAG Rounded", sans-serif;
+  font-size: 26px;
+  line-height: 1;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+.counter small {
+  display: block;
+  font-size: 16px;
+  color: #2b3da8;
+}
+.counter small i { font-size: 13px; opacity: 0.75; }
+.counter-note {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  width: min(260px, 90vw);
+  transform: translateX(-50%) translateY(6px);
+  opacity: 0;
+  visibility: hidden;
+  background: var(--navy);
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+  padding: 8px 12px;
+  font-family: "VAG Rounded", sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+  z-index: 10;
+  pointer-events: none;
+}
+.counter-note::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -8px;
+  border: 8px solid transparent;
+  border-top-color: var(--navy);
+}
+.counter:hover .counter-note,
+.counter:focus .counter-note,
+.counter:focus-within .counter-note {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.counter:focus-visible { outline: 4px solid var(--frame); outline-offset: 3px; }
+
+/* ---------- Blue-framed boxes (below the stage) ---------- */
+.box-row {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+.box {
+  background: var(--logo-bg);
+  border: 5px solid var(--frame-light);
+  border-radius: 22px;
+  padding: 7px;
+  box-shadow: 0 6px 0 var(--frame-dark);
+}
+.box-inner {
+  height: 100%;
+  background: var(--card-cream);
+  border-radius: 14px;
+  padding: 16px 18px 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #24236b;
+}
+.box h2 {
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+.box p { margin: 0 0 12px; }
+.box strong { color: var(--purple-text); }
+.welcome-avatar {
+  float: right;
+  width: 96px;
+  margin: 0 0 8px 12px;
+  border: 4px solid #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0 0 3px var(--orange-frame);
+  transform: rotate(3deg);
+}
+
+.news {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.news li {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 8px 0;
+  border-bottom: 3px dotted #e7d9a6;
+}
+.news li:last-child { border-bottom: 0; padding-bottom: 0; }
+.news time, .news .news-date {
+  display: block;
+  background: var(--purple-text);
+  color: #ffffff;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 14px;
+  line-height: 1.1;
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px 4px;
+}
+.news .news-date.soon { background: var(--burst-bottom); }
+.news b {
+  display: block;
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 18px;
+  color: var(--navy);
+}
+.news span { font-size: 14px; }
+.news a { color: var(--purple-text); text-decoration: underline; }
+
+/* ---------- Bottom promo row ---------- */
+.promos {
+  display: grid;
+  grid-template-columns: 1fr 190px 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+.promo-frame {
+  background: var(--logo-bg);
+  border: 5px solid var(--frame-light);
+  border-radius: 20px;
+  padding: 7px;
+  box-shadow: 0 6px 0 var(--frame-dark);
+}
+.promo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  background: var(--yellow);
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: inset 0 -6px 0 var(--yellow-dark);
+  transition: filter 0.15s;
+}
+.promo:hover { filter: brightness(1.06); }
+.promo img {
+  width: 72px;
+  height: 72px;
+  flex: none;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.18);
+  background: #ffffff;
+}
+.promo-text {
+  font-family: "House Holiday Sans", cursive;
+  font-size: 22px;
+  line-height: 1.05;
+  color: var(--purple-text);
+  text-align: center;
+  flex: 1;
+}
+.promo-text small {
+  display: block;
+  font-family: "VAG Rounded", sans-serif;
+  font-size: 12px;
+  color: #6b4a00;
+  margin-top: 6px;
+}
+.promo.red .promo-text { color: var(--red-text); }
+
+.promo-stack { display: flex; flex-direction: column; gap: 10px; }
+.stack-btn {
+  display: block;
+  flex: 1;
+  background: var(--yellow);
+  border: 4px solid var(--frame);
+  border-radius: 14px;
+  box-shadow: inset 0 -6px 0 var(--yellow-dark), 0 4px 0 var(--frame-dark);
+  text-align: center;
+  padding: 4px 6px 8px;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--navy);
+  transition: transform 0.1s;
+}
+.stack-btn small { display: block; font-size: 14px; margin-bottom: 2px; }
+.stack-btn:hover { transform: translateY(-2px); }
+.stack-btn:active { transform: translateY(3px); box-shadow: inset 0 -6px 0 var(--yellow-dark), 0 1px 0 var(--frame-dark); }
+
+/* ---------- Inner pages ---------- */
+.page { min-width: 0; }
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 12px;
+}
+.page-title {
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 44px;
+  line-height: 1;
+  color: #2e3192;
+  margin: 0;
+}
+
+/* BACK button: the original site's button art, with its hover/press states */
+.back-btn {
+  flex: none;
+  display: block;
+  width: 131px;
+  height: 45px;
+  background: url("/assets/images/original/back-up.png") center / contain no-repeat;
+}
+.back-btn:hover, .back-btn:focus-visible { background-image: url("/assets/images/original/back-over.png"); }
+.back-btn:active { background-image: url("/assets/images/original/back-down.png"); transform: translateY(1px); }
+.back-btn:focus-visible { outline: 3px solid var(--frame); outline-offset: -4px; border-radius: 12px; }
+
+/* Character guide with a speech bubble */
+.guide {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 16px;
+}
+.guide img {
+  flex: none;
+  width: 65px;
+  height: auto;
+  transform: rotate(-4deg);
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.15));
+}
+.guide p {
+  position: relative;
+  margin: 0;
+  background: #ffffff;
+  border: 3px solid var(--navy);
+  border-radius: 16px;
+  padding: 8px 14px;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--navy);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.12);
+}
+.guide p::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  margin-top: -9px;
+  border: 9px solid transparent;
+  border-right-color: var(--navy);
+}
+
+/* Green panel: the original Characters-page panel art, stretched with border-image */
+.panel {
+  border: 20px solid transparent;
+  border-image: url("/assets/images/original/green-panel.png") 20 fill / 20px stretch;
+  padding: 2px 4px;
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #1d2a55;
+}
+.panel h2 {
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 1.1;
+  color: #2e3192;
+  margin: 0 0 8px;
+}
+.panel h3 {
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 14px 0 4px;
+}
+.panel p { margin: 0 0 10px; }
+.panel > :last-child { margin-bottom: 0; }
+.panel strong { color: var(--purple-text); }
+.panel a:not(.cream-btn, .card, .picker-tab, .picker-overview-grid a) { color: var(--purple-text); text-decoration: underline; }
+.panel a:not(.cream-btn, .card, .picker-tab, .picker-overview-grid a):hover { color: var(--menu-active); }
+.panel-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.panel-row > .panel { margin-bottom: 16px; }
+
+.avatar {
+  float: right;
+  width: clamp(80px, 22vw, 120px);
+  margin: 0 0 10px 14px;
+  border: 5px solid #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 0 0 3px var(--orange-frame);
+  transform: rotate(3deg);
+}
+
+/* Kickball pronunciation button */
+.audio-btn {
+  background: #ffdb4d url("/assets/icons/kickball-32.png") center/cover no-repeat;
+  border: 3px solid #d99e00;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-left: 4px;
+  vertical-align: middle;
+  box-shadow: 0 3px 0 #d99e00;
+  overflow: hidden;
+  text-indent: -9999px;
+  transition: transform 0.1s;
+}
+.audio-btn:active { transform: translateY(3px); box-shadow: none; }
+
+/* Cream buttons: the original blank button art, glowing on hover like the BACK button */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin: 12px 0 0;
+}
+.cream-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  border-style: solid;
+  border-width: 10px;
+  border-image: url("/assets/images/original/cream-button.png") 10 fill / 10px stretch;
+  background: none;
+  padding: 0 6px;
+  font-family: "VAG Rounded", sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #111111;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.cream-btn:hover, .cream-btn:focus-visible {
+  border-image: url("/assets/images/original/cream-button-glow.png") 17 fill / 17px / 7px stretch;
+}
+.cream-btn:active { transform: translateY(1px); }
+.cream-btn:focus-visible { outline: none; }
+.cream-btn i { font-size: 14px; }
+
+/* Facts list */
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  margin: 0;
+}
+.facts dt {
+  font-family: "House Holiday Sans", cursive;
+  font-size: 16px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.facts dd { margin: 0; }
+
+/* Timeline */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 18px;
+  border-left: 4px dotted var(--panel-border);
+}
+.timeline li {
+  position: relative;
+  padding: 0 0 12px 6px;
+}
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -29px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--menu-active);
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px var(--menu-active);
+}
+.timeline li.soon::before { background: #ffffff; }
+.timeline b {
+  display: block;
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 18px;
+  color: var(--purple-text);
+}
+
+/* Cards (What I Do, Elsewhere) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+.card {
+  display: block;
+  background: #ffffff;
+  border: 3px solid var(--orange-frame);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1d2a55;
+  transition: transform 0.15s;
+}
+a.card:hover { transform: translateY(-3px) rotate(-1deg); }
+.card i.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--purple-text);
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.card b {
+  display: block;
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 20px;
+  color: #2e3192;
+}
+.card .card-go {
+  display: block;
+  margin-top: 6px;
+  font-family: "House Holiday Sans", cursive;
+  color: var(--menu-active);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px; padding: 0; list-style: none; }
+.chips li {
+  background: #ffffff;
+  border: 2px solid var(--panel-border);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 13px;
+}
+
+/* ---------- Picker: the original Characters-page layout ---------- */
+.picker {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: 0 0 16px;
+}
+.picker > * { min-width: 0; }
+.picker-list {
+  margin: 0;
+  padding: 0;
+}
+.picker-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.picker-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 15px;
+  line-height: 1.05;
+  color: #111111;
+  border-radius: 12px;
+  padding: 2px;
+}
+.thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 55px;
+  margin-bottom: 3px;
+  background: #fff8e6;
+  border: 3px solid var(--orange-frame);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb i { font-size: 26px; color: var(--purple-text); }
+.thumb.q { font-family: "House Holiday Sans", cursive; font-size: 34px; color: var(--purple-text); }
+.picker-tab:hover .thumb { transform: rotate(-5deg) scale(1.06); }
+.picker-tab[aria-selected="true"] .thumb {
+  box-shadow: 0 0 0 4px #ffffff, 0 0 10px 4px #ffb347;
+}
+.picker-tab[aria-selected="true"] { color: var(--menu-active); }
+
+.picker-stage {
+  position: relative;
+  min-height: 330px;
+  margin: 0;
+}
+.picker-panel { scroll-margin-top: 20px; }
+/* before the script runs, show only the overview */
+.js .picker:not(.is-ready) .picker-panel:not([data-overview]) { display: none; }
+.picker-panel + .picker-panel { margin-top: 18px; }
+.js .picker-panel + .picker-panel { margin-top: 0; }
+.picker-panel h2 { padding-right: 64px; }
+.close-x {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 54px;
+  height: 25px;
+  border: 0;
+  padding: 0;
+  background: url("/assets/images/original/close-x.png") center / contain no-repeat;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.1s;
+}
+.close-x:hover { transform: scale(1.08); }
+.close-x[hidden] { display: none; }
+.picker-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+.picker-meta li {
+  background: var(--purple-text);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+}
+.picker-meta li.soon { background: var(--burst-bottom); }
+.picker-meta li.plain { background: #ffffff; color: var(--ink); border: 2px solid var(--panel-border); }
+.picker-hero {
+  float: right;
+  width: 110px;
+  margin: 30px 0 10px 14px;
+  border: 4px solid #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 0 0 3px var(--orange-frame);
+  transform: rotate(3deg);
+  background: #fff8e6;
+}
+.picker-hero.q {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 60px;
+  color: var(--purple-text);
+}
+.picker-hero.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  font-size: 50px;
+  color: var(--purple-text);
+}
+.picker-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+.picker-overview-grid a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 2px solid var(--orange-frame);
+  border-radius: 12px;
+  padding: 6px 8px;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 15px;
+  line-height: 1.1;
+  color: var(--ink);
+  transition: transform 0.15s;
+}
+.picker-overview-grid a:hover { transform: translateY(-2px); color: var(--menu-active); }
+.picker-overview-grid i { width: 18px; text-align: center; color: var(--purple-text); }
+
+/* Contact */
+.email-big {
+  display: inline-block;
+  font-family: "House Holiday Sans", cursive;
+  font-size: clamp(22px, 5vw, 32px);
+  color: #2e3192;
+  word-break: break-all;
+}
+.copy-status {
+  font-family: "House Holiday Sans", cursive;
+  color: var(--menu-active);
+  min-height: 1.2em;
+  margin-top: 6px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 12px;
+  color: #e6f6ff;
+}
+.footer-links { margin: 0 0 4px; font-size: 13px; }
+.footer-links a { color: #e6f6ff; }
+.footer-links a:hover { color: var(--yellow); }
+.footer-links a.hl { color: var(--yellow); }
+.footer p { margin: 0 0 3px; }
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(180deg, #ffffff, #dcdcdc);
+  border: 2px solid #b5b5b5;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-family: "VAG Rounded", sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #333;
+}
+.social b { font-size: 15px; text-transform: none; }
+.social .tw { color: #1da1f2; }
+.social .gh { color: #24292f; }
+.social .yt { color: #ff0000; }
+.social .dc { color: #5865f2; }
+.social:hover { border-color: var(--frame); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 880px) {
+  .header { grid-template-columns: 1fr auto; margin-bottom: -18px; }
+  .ribbon { grid-column: 1 / -1; grid-row: 2; }
+  .stage { grid-template-columns: 1fr; padding: 40px 14px 18px; }
+  .stage-page { padding-bottom: 80px; }
+  .sidebar { flex-direction: row; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .menu { flex: 1; min-width: 240px; }
+  .menu ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 10px; }
+  .menu-divider { grid-column: 1 / -1; }
+  /* inner pages: the ribbon, BACK button and footer cover navigation */
+  .stage-page .sidebar { display: none; }
+  .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; }
+  .feature-cta { text-align: left; margin: 0; }
+  .feature-card { grid-column: 1 / -1; }
+  .box-row { grid-template-columns: 1fr; }
+  .promos { grid-template-columns: 1fr; }
+  .promo-stack { flex-direction: row; }
+  .panel-row { grid-template-columns: 1fr; gap: 0; }
+}
+
+@media (max-width: 640px) {
+  .picker { grid-template-columns: 1fr; }
+  .picker-list ul {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 4px 2px 6px;
+    scroll-snap-type: x mandatory;
+  }
+  .picker-tab { flex: 0 0 78px; scroll-snap-align: start; }
+  .picker-stage { min-height: 0; }
+}
+
+@media (max-width: 520px) {
+  .site { padding: 12px 10px 24px; }
+  .logo-text { font-size: 36px; }
+  .logo img { width: 34px; height: 34px; }
+  .pill { font-size: 18px; padding: 3px 10px; }
+  .ribbon ul { padding: 6px 14px 8px; }
+  .ribbon a { font-size: 21px; }
+  .stage { border-width: 6px; }
+  .house { padding: 8px 10px 12px; }
+  .feature { grid-template-columns: 1fr; }
+  .album { width: 70%; margin: 0 auto; }
+  .burst { width: 110px; height: 110px; font-size: 18px; right: 0; }
+  .feature-cta { text-align: center; }
+  .counter-digits span { min-width: 24px; font-size: 22px; }
+  .promo-stack { flex-direction: column; }
+  .page-title { font-size: 34px; }
+  .back-btn { width: 105px; height: 36px; }
+  .guide p { font-size: 16px; }
+  .panel { font-size: 14px; border-width: 16px; border-image-width: 16px; }
+  .facts { grid-template-columns: 1fr; gap: 0; }
+  .facts dd { margin-bottom: 6px; }
+  .box-inner { padding: 14px; font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .burst, .mystery.pop { animation: none; }
+}
