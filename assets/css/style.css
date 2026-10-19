@@ -630,7 +630,8 @@ a.feature-cta:hover { color: var(--menu-active); }
 @media (min-width: 881px) {
   .news-box .news {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr; /* one column per news item */
     gap: 0 18px;
   }
   .news-box .news li {
