@@ -71,6 +71,8 @@ body {
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; }
 :focus-visible { outline: 4px solid var(--yellow); outline-offset: 2px; }
+/* yellow is hard to see on the light panels and white cards */
+.panel :focus-visible, .box :focus-visible { outline-color: var(--frame); }
 
 .skip-link {
   position: absolute;
@@ -1138,16 +1140,15 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
 /* Group headings inside a picker list (Albums / Cover Compilations) */
 .picker-group {
   font-family: "House Holiday Sans", cursive;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.1;
   text-align: center;
   color: #ffffff;
-  background: var(--panel-border);
-  border-radius: 999px;
-  padding: 3px 6px;
+  background: var(--logo-green-dark);
+  border-radius: 12px;
+  padding: 3px 2px;
 }
 .picker-group:not(:first-child) { margin-top: 6px; }
-.picker-tab > span:last-child { overflow-wrap: anywhere; }
 
 /* Cover art (Music page) */
 .thumb.cover { height: 65px; background: #ffffff; }
@@ -1179,7 +1180,7 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
   padding: 8px 12px;
   font-size: 14px;
 }
-.callout b { font-family: "House Holiday Sans", cursive; font-weight: normal; color: var(--menu-active); }
+.callout b { font-family: "House Holiday Sans", cursive; font-weight: normal; color: #b45309; }
 .notes { margin: 0 0 10px; padding-left: 20px; }
 .notes li { margin-bottom: 4px; }
 
@@ -1373,7 +1374,7 @@ a.edition-cover:hover { transform: rotate(-3deg) scale(1.05); }
     scroll-snap-type: x mandatory;
   }
   .picker-tab { flex: 0 0 78px; scroll-snap-align: start; }
-  .picker-group { flex: 0 0 auto; align-self: center; writing-mode: vertical-rl; transform: rotate(180deg); padding: 6px 3px; }
+  .picker-group { flex: 0 0 auto; align-self: center; writing-mode: vertical-rl; transform: rotate(180deg); padding: 6px 3px; scroll-snap-align: start; }
   .picker-group:not(:first-child) { margin-top: 0; margin-left: 6px; }
   .picker-hero.cover { width: 110px; }
   .edition { grid-template-columns: 64px 1fr; gap: 10px; }
