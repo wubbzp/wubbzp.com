@@ -104,10 +104,10 @@ img { max-width: 100%; }
   padding: 18px 16px 30px;
 }
 
-/* ---------- Header: logo box, ribbon nav, contact pill ---------- */
+/* ---------- Header: logo box and ribbon nav ---------- */
 .header {
   display: grid;
-  grid-template-columns: 240px 1fr auto;
+  grid-template-columns: 240px 1fr;
   align-items: center;
   gap: 16px;
   position: relative;
@@ -196,22 +196,6 @@ img { max-width: 100%; }
   transition: color 0.15s;
 }
 .ribbon a:hover, .ribbon a[aria-current="page"] { color: #ffffff; }
-
-/* Yellow pill (Contact) */
-.pill {
-  display: inline-block;
-  font-family: "House Holiday Sans", cursive;
-  font-size: 22px;
-  color: var(--navy);
-  background: var(--yellow);
-  border: 4px solid var(--frame);
-  border-radius: 14px;
-  padding: 4px 16px;
-  box-shadow: inset 0 -5px 0 var(--yellow-dark), 0 4px 0 var(--frame-dark);
-  transition: transform 0.1s;
-}
-.pill:hover { transform: translateY(-2px); }
-.pill:active { transform: translateY(3px); box-shadow: inset 0 -5px 0 var(--yellow-dark), 0 1px 0 var(--frame-dark); }
 
 /* ---------- Main stage ---------- */
 .stage {
@@ -1304,7 +1288,7 @@ cite:lang(ja), cite :lang(ja) { font-style: normal; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {
-  .header { grid-template-columns: 1fr auto; margin-bottom: -18px; }
+  .header { grid-template-columns: 1fr; margin-bottom: -18px; }
   .ribbon { grid-column: 1 / -1; grid-row: 2; }
   .stage { grid-template-columns: 1fr; padding: 40px 14px 18px; }
   .stage-page { padding-bottom: 80px; }
@@ -1343,7 +1327,6 @@ cite:lang(ja), cite :lang(ja) { font-style: normal; }
   .site { padding: 12px 10px 24px; }
   .logo-text { font-size: 36px; }
   .logo img { width: 34px; height: 34px; }
-  .pill { font-size: 18px; padding: 3px 10px; }
   .ribbon ul { padding: 6px 14px 8px; }
   .ribbon a { font-size: 21px; }
   .stage { border-width: 6px; }

@@ -185,10 +185,10 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(
           function () { done("Copied! Wow, wow!"); },
-          function () { done("Couldn't copy. The address is " + text); }
+          function () { done("Couldn't copy it. Here it is: " + text); }
         );
       } else {
-        done("Couldn't copy. The address is " + text);
+        done("Couldn't copy it. Here it is: " + text);
       }
     });
   });
