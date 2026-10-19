@@ -1135,6 +1135,139 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
 .picker-overview-grid a:hover { transform: translateY(-2px); color: var(--menu-active); }
 .picker-overview-grid i { width: 18px; text-align: center; color: var(--purple-text); }
 
+/* Group headings inside a picker list (Albums / Cover Compilations) */
+.picker-group {
+  font-family: "House Holiday Sans", cursive;
+  font-size: 13px;
+  line-height: 1.1;
+  text-align: center;
+  color: #ffffff;
+  background: var(--panel-border);
+  border-radius: 999px;
+  padding: 3px 6px;
+}
+.picker-group:not(:first-child) { margin-top: 6px; }
+.picker-tab > span:last-child { overflow-wrap: anywhere; }
+
+/* Cover art (Music page) */
+.thumb.cover { height: 65px; background: #ffffff; }
+.picker-hero.cover {
+  display: block;
+  width: 150px;
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+  transition: transform 0.15s;
+}
+.picker-hero.cover:hover { transform: rotate(0deg) scale(1.03); }
+.picker-hero.cover img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.picker-panel .subtitle {
+  margin: -4px 0 10px;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 17px;
+  color: var(--purple-text);
+}
+:lang(ja) {
+  font-family: "House Holiday Sans", "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.callout {
+  background: #ffffff;
+  border: 3px dashed var(--orange-frame);
+  border-radius: 14px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+.callout b { font-family: "House Holiday Sans", cursive; font-weight: normal; color: var(--menu-active); }
+.notes { margin: 0 0 10px; padding-left: 20px; }
+.notes li { margin-bottom: 4px; }
+
+.editions {
+  clear: both;
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.edition {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 12px;
+  align-items: start;
+  background: #ffffff;
+  border: 3px solid var(--orange-frame);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+}
+.edition-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff8e6;
+  border: 2px solid #f1d9b5;
+  transition: transform 0.15s;
+}
+a.edition-cover:hover { transform: rotate(-3deg) scale(1.05); }
+.edition-cover img { width: 100%; height: 100%; object-fit: cover; }
+.edition-cover.ph i { font-size: 34px; color: var(--purple-text); opacity: 0.6; }
+.edition-cover.q { font-family: "House Holiday Sans", cursive; font-size: 40px; color: var(--purple-text); }
+.edition-info b {
+  display: block;
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 1.15;
+  color: #2e3192;
+}
+.edition-date {
+  display: inline-block;
+  margin: 3px 0 4px;
+  background: var(--purple-text);
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.edition-info p { margin: 0; font-size: 14px; }
+.tracks {
+  grid-column: 2;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.tracks th {
+  width: 64px;
+  vertical-align: top;
+  text-align: left;
+  padding: 3px 0;
+  font-weight: normal;
+}
+.track-no {
+  display: inline-block;
+  min-width: 56px;
+  text-align: center;
+  white-space: nowrap;
+  background: #eef9d9;
+  color: var(--ink);
+  border: 2px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 1px 6px;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.tracks td { padding: 4px 0 3px 10px; vertical-align: top; }
+
 /* Contact */
 .email-big {
   display: inline-block;
@@ -1219,6 +1352,12 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
     scroll-snap-type: x mandatory;
   }
   .picker-tab { flex: 0 0 78px; scroll-snap-align: start; }
+  .picker-group { flex: 0 0 auto; align-self: center; writing-mode: vertical-rl; transform: rotate(180deg); padding: 6px 3px; }
+  .picker-group:not(:first-child) { margin-top: 0; margin-left: 6px; }
+  .picker-hero.cover { width: 110px; }
+  .edition { grid-template-columns: 64px 1fr; gap: 10px; }
+  .edition-cover { width: 64px; }
+  .tracks { grid-column: 1 / -1; }
   .picker-stage { min-height: 0; }
 }
 
