@@ -16,13 +16,25 @@
 <meta content="@WubbzP" name="twitter:site"/>
 <meta content="/assets/images/mbymiy.png" name="twitter:image"/>
 
-<!-- Bouncy display font + rounded body font, in the spirit of the 2008 Wubbzy site -->
+<!-- Logo font (the Wubbzy-site fonts are self-hosted below) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@600;700&family=Varela+Round&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <style>
+@font-face {
+  font-family: "House Holiday Sans";
+  src: url("/assets/fonts/house-holiday-sans.ttf") format("truetype");
+  size-adjust: 125%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "VAG Rounded";
+  src: url("/assets/fonts/vag-rounded.ttf") format("truetype");
+  font-display: swap;
+}
+
 :root {
   --page-top: #2f8fd0;
   --page-bottom: #6cc6ee;
@@ -69,7 +81,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Varela Round", "Nunito", sans-serif;
+  font-family: "VAG Rounded", "Nunito", sans-serif;
   color: var(--navy);
   overflow-x: hidden;
 }
@@ -164,7 +176,7 @@ a { color: inherit; text-decoration: none; }
   gap: 4px 22px;
 }
 .ribbon a {
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 26px;
   color: var(--ribbon-text);
   text-shadow: 0 2px 0 var(--ribbon-dark);
@@ -175,7 +187,7 @@ a { color: inherit; text-decoration: none; }
 /* Yellow pill (Contact) */
 .pill {
   display: inline-block;
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 22px;
   color: var(--navy);
   background: var(--yellow);
@@ -216,7 +228,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 18px;
   line-height: 1.5;
   color: #13235a;
@@ -243,9 +255,9 @@ a { color: inherit; text-decoration: none; }
   background: #ffffff;
   border: 4px solid #6a6fd0;
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 8px 24px 8px 12px;
   text-align: center;
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 19px;
   line-height: 1.05;
   color: #3d3fa0;
@@ -265,6 +277,44 @@ a { color: inherit; text-decoration: none; }
   background: #8f93e6;
 }
 .mail-note i { display: block; font-size: 26px; color: var(--frame); margin-top: 4px; }
+
+/* Character friends, borrowed from the original site's Characters page */
+.friends {
+  background: var(--menu-bg);
+  border: 5px solid var(--menu-border);
+  border-radius: 12px;
+  box-shadow: 6px 6px 0 rgba(31,111,181,0.35);
+  padding: 8px 10px 10px;
+  text-align: center;
+}
+.friends h3 {
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 17px;
+  color: #13235a;
+  margin: 0 0 6px;
+}
+.friends ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.friends li {
+  font-family: "House Holiday Sans", cursive;
+  font-size: 15px;
+  color: #13235a;
+}
+.friends img {
+  display: block;
+  width: 56px;
+  height: auto;
+  margin: 0 auto 1px;
+  transition: transform 0.15s;
+}
+.friends li:hover img { transform: rotate(-6deg) scale(1.08); }
 
 /* Centre "house" panel holding the bio */
 .house {
@@ -315,7 +365,7 @@ a { color: inherit; text-decoration: none; }
   border: 0;
 }
 .house h2 {
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-weight: normal;
   font-size: 34px;
   color: var(--navy);
@@ -344,7 +394,7 @@ a { color: inherit; text-decoration: none; }
   color: #24236b;
 }
 .about h2 {
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-weight: normal;
   font-size: 34px;
   color: var(--navy);
@@ -406,7 +456,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: space-between;
   padding: 10px 8px 8px;
   text-align: center;
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   color: var(--purple-text);
 }
 .album-art .album-title {
@@ -415,12 +465,10 @@ a { color: inherit; text-decoration: none; }
   -webkit-text-stroke: 4px #ffffff;
   paint-order: stroke fill;
 }
-.album-art .album-mystery {
-  font-size: 56px;
-  line-height: 1;
-  color: #ffffff;
-  -webkit-text-stroke: 3px var(--purple-text);
-  paint-order: stroke fill;
+.album-art img {
+  width: 42%;
+  transform: rotate(-6deg);
+  filter: drop-shadow(0 4px 0 rgba(0,0,0,0.18));
 }
 .album-art .album-vol {
   background: var(--purple-text);
@@ -441,7 +489,7 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   background: linear-gradient(180deg, var(--burst-top), var(--burst-bottom));
   clip-path: polygon(50% 0%, 59% 14%, 75% 6%, 76% 23%, 93% 25%, 85% 40%, 100% 50%, 85% 60%, 93% 75%, 76% 77%, 75% 94%, 59% 86%, 50% 100%, 41% 86%, 25% 94%, 24% 77%, 7% 75%, 15% 60%, 0% 50%, 15% 40%, 7% 25%, 24% 23%, 25% 6%, 41% 14%);
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 23px;
   line-height: 1;
   color: #ffffff;
@@ -458,7 +506,7 @@ a { color: inherit; text-decoration: none; }
   text-align: right;
   position: relative;
   z-index: 1;
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 19px;
   line-height: 1.15;
   color: #2b3da8;
@@ -471,7 +519,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: inset 0 0 0 3px #ffffff, 0 6px 0 rgba(0,0,0,0.12);
   padding: 14px 12px;
   text-align: center;
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 24px;
   line-height: 1.1;
   color: var(--purple-text);
@@ -538,7 +586,7 @@ a { color: inherit; text-decoration: none; }
   background: #ffffff;
 }
 .promo-text {
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 22px;
   line-height: 1.05;
   color: var(--purple-text);
@@ -547,7 +595,7 @@ a { color: inherit; text-decoration: none; }
 }
 .promo-text small {
   display: block;
-  font-family: "Varela Round", sans-serif;
+  font-family: "VAG Rounded", sans-serif;
   font-size: 12px;
   color: #6b4a00;
   margin-top: 6px;
@@ -564,7 +612,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: inset 0 -6px 0 var(--yellow-dark), 0 4px 0 var(--frame-dark);
   text-align: center;
   padding: 4px 6px 8px;
-  font-family: "Chewy", cursive;
+  font-family: "House Holiday Sans", cursive;
   font-size: 24px;
   line-height: 1;
   color: var(--navy);
@@ -601,7 +649,7 @@ a { color: inherit; text-decoration: none; }
   border: 2px solid #b5b5b5;
   border-radius: 4px;
   padding: 4px 10px;
-  font-family: "Varela Round", sans-serif;
+  font-family: "VAG Rounded", sans-serif;
   font-size: 11px;
   text-transform: uppercase;
   color: #333;
@@ -620,6 +668,7 @@ a { color: inherit; text-decoration: none; }
   .stage { grid-template-columns: 1fr; padding: 40px 14px 18px; }
   .sidebar { flex-direction: row; align-items: center; flex-wrap: wrap; justify-content: center; }
   .menu { flex: 1; min-width: 240px; }
+  .friends ul { grid-template-columns: repeat(4, 1fr); }
   .menu ul { display: grid; grid-template-columns: 1fr 1fr; }
   .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; }
   .feature-cta { text-align: left; margin: 0; }
@@ -693,6 +742,16 @@ a { color: inherit; text-decoration: none; }
       </nav>
 
       <a href="mailto:wubbzyp@gmail.com" class="mail-note">Send Me<br>a Letter!<i class="fa-solid fa-envelope"></i></a>
+
+      <div class="friends">
+        <h3>Wubbzy &amp; Friends</h3>
+        <ul>
+          <li><img src="assets/images/characters/wubbzy.png" alt="" />Wubbzy</li>
+          <li><img src="assets/images/characters/daizy.png" alt="" />Daizy</li>
+          <li><img src="assets/images/characters/walden.png" alt="" />Walden</li>
+          <li><img src="assets/images/characters/widget.png" alt="" />Widget</li>
+        </ul>
+      </div>
     </aside>
 
     <!-- Video house -->
@@ -708,7 +767,7 @@ a { color: inherit; text-decoration: none; }
       <div class="album" role="img" aria-label="Wow! Wow! Wubbzy! Cover Collection, Vol. 1 (artwork coming soon)">
         <div class="album-art" aria-hidden="true">
           <span class="album-title">Wow! Wow! Wubbzy!<br>Cover Collection</span>
-          <span class="album-mystery">?</span>
+          <img src="assets/images/characters/wubbzy.png" alt="" />
           <span class="album-vol">Vol. 1</span>
         </div>
       </div>
