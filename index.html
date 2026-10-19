@@ -298,15 +298,21 @@ a { color: inherit; text-decoration: none; }
   background: var(--house);
   clip-path: polygon(50% 0, 100% 74%, 100% 100%, 0 100%, 0 74%);
 }
-.house-inner {
+.video {
   position: relative;
   z-index: 1;
+  aspect-ratio: 16 / 9;
   background: var(--house-light);
+  border: 5px solid #ffffff;
   border-radius: 14px;
-  padding: 18px 20px;
-  font-size: 15px;
-  line-height: 1.65;
-  color: #24236b;
+  box-shadow: 0 0 0 3px var(--house-dark);
+  overflow: hidden;
+}
+.video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 .house h2 {
   font-family: "Chewy", cursive;
@@ -314,13 +320,38 @@ a { color: inherit; text-decoration: none; }
   font-size: 34px;
   color: var(--navy);
   text-align: center;
-  margin: -4px 0 8px;
+  margin: 16px 0 0;
   position: relative;
   z-index: 1;
 }
-.house-inner p:first-of-type { margin-top: 0; }
-.house-inner p:last-child { margin-bottom: 0; }
-.house-inner strong { color: var(--purple-text); }
+
+/* About Me card below the stage */
+.about {
+  margin-top: 18px;
+  background: var(--logo-bg);
+  border: 5px solid var(--frame-light);
+  border-radius: 22px;
+  padding: 8px;
+  box-shadow: 0 6px 0 var(--frame-dark);
+}
+.about-inner {
+  background: var(--house-light);
+  border: 5px solid var(--house-dark);
+  border-radius: 16px;
+  padding: 16px 22px 20px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #24236b;
+}
+.about h2 {
+  font-family: "Chewy", cursive;
+  font-weight: normal;
+  font-size: 34px;
+  color: var(--navy);
+  margin: 0 0 6px;
+}
+.about-inner p:last-child { margin-bottom: 0; }
+.about-inner strong { color: var(--purple-text); }
 .avatar {
   float: right;
   width: clamp(80px, 22vw, 116px);
@@ -363,25 +394,40 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 6px 8px 0 rgba(0,0,0,0.2);
   margin-left: 2px;
 }
-.album img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: 62% center;
+.album-art {
+  aspect-ratio: 1 / 1;
   border-radius: 2px;
-}
-.album span {
-  position: absolute;
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
-  background: rgba(91,59,179,0.88);
-  color: #ffffff;
-  font-family: "Chewy", cursive;
-  font-size: 20px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.55) 0 22%, transparent 23%),
+    repeating-linear-gradient(45deg, #ffe94d 0 14px, #ffdf2e 14px 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px 8px;
   text-align: center;
-  padding: 4px;
+  font-family: "Chewy", cursive;
+  color: var(--purple-text);
+}
+.album-art .album-title {
+  font-size: 18px;
+  line-height: 1.05;
+  -webkit-text-stroke: 4px #ffffff;
+  paint-order: stroke fill;
+}
+.album-art .album-mystery {
+  font-size: 56px;
+  line-height: 1;
+  color: #ffffff;
+  -webkit-text-stroke: 3px var(--purple-text);
+  paint-order: stroke fill;
+}
+.album-art .album-vol {
+  background: var(--purple-text);
+  color: #ffffff;
+  font-size: 16px;
+  padding: 2px 12px;
+  border-radius: 10px;
 }
 .burst {
   position: absolute;
@@ -410,13 +456,14 @@ a { color: inherit; text-decoration: none; }
 .feature-cta {
   display: block;
   text-align: right;
+  position: relative;
+  z-index: 1;
   font-family: "Chewy", cursive;
   font-size: 19px;
   line-height: 1.15;
   color: #2b3da8;
   margin: 10px 4px 12px 0;
 }
-.feature-cta:hover { color: var(--menu-active); }
 .feature-card {
   background: var(--card-cream);
   border: 6px solid #a58ae0;
@@ -425,11 +472,34 @@ a { color: inherit; text-decoration: none; }
   padding: 14px 12px;
   text-align: center;
   font-family: "Chewy", cursive;
-  font-size: 32px;
-  line-height: 1.12;
+  font-size: 24px;
+  line-height: 1.1;
   color: var(--purple-text);
-  -webkit-text-stroke: 1px #3f2490;
   margin: 0;
+}
+.counter-digits {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 8px 0 4px;
+}
+.counter-digits span {
+  display: inline-block;
+  min-width: 28px;
+  padding: 4px 0;
+  background: linear-gradient(180deg, #3d3fa0 0 50%, #2b2f8f 50% 100%);
+  border: 3px solid #1f2270;
+  border-radius: 6px;
+  color: var(--yellow);
+  font-family: "Fredoka", sans-serif;
+  font-size: 26px;
+  line-height: 1;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+.counter small {
+  display: block;
+  font-size: 16px;
+  color: #2b3da8;
 }
 
 /* ---------- Bottom promo row ---------- */
@@ -572,7 +642,8 @@ a { color: inherit; text-decoration: none; }
   .album { width: 70%; margin: 0 auto; }
   .burst { width: 110px; height: 110px; font-size: 18px; right: 0; }
   .feature-cta { text-align: center; }
-  .feature-card { font-size: 26px; }
+  .about-inner { padding: 14px; font-size: 14px; }
+  .counter-digits span { min-width: 24px; font-size: 22px; }
   .promo-stack { flex-direction: column; }
 }
 
@@ -624,36 +695,51 @@ a { color: inherit; text-decoration: none; }
       <a href="mailto:wubbzyp@gmail.com" class="mail-note">Send Me<br>a Letter!<i class="fa-solid fa-envelope"></i></a>
     </aside>
 
-    <!-- Bio house -->
-    <main class="house" id="about">
-      <h2>About Me</h2>
-      <div class="house-inner">
-        <img src="assets/images/wbzp.png" alt="WubbzP Icon" class="avatar" />
-
-        <p><strong>Mitch "Michelle" Bentz</strong>, better known online as <strong>WubbzP</strong> (pronounced <em>Wubbs-P</em>, <code>/ˈwʌbz.piː/</code> <button type="button" class="audio-btn" onclick="document.getElementById('wubbzp-audio').play()" aria-label="Play WubbzP pronunciation" title="Play pronunciation">Play pronunciation</button>), is an archiver, visual designer, and creator of vocal synthesis covers.</p>
-
-        <audio id="wubbzp-audio" src="/assets/audio/How to Pronounce WubbzP.mp3" preload="none"></audio>
-
-        <p id="music">She began working with the VOCALOID4 engine in 2017. Her music work primarily focuses on VOCALOID and UTAU software, specifically notable projects featuring the vocal synth <em>Shiki Taigen</em> alongside Hatsune Miku. Working mainly in J-pop, pop, and children's music, she releases her music through her own label, WubbzP Music.</p>
-
-        <p>Her discography includes the album <em>Miku + Michelle</em> and its deluxe edition, alongside popular covers such as "Sadistic.Music∞Factory". While known for her extensive cover work, she has stated that her future goals include producing her own original songs.</p>
-
-        <p>Outside of music production, Bentz maintains digital archives, builds personal and fan websites, and conducts general visual and site design work.</p>
+    <!-- Video house -->
+    <main class="house">
+      <div class="video">
+        <iframe src="https://www.youtube-nocookie.com/embed/0P3EPoGJBxk" title="WubbzP video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
+      <h2>Watch a Video Now!</h2>
     </main>
 
     <!-- Featured release -->
     <section class="feature" aria-label="Featured release">
-      <a href="https://www.youtube.com/@wowwowmitchy" class="album" target="_blank" rel="noopener">
-        <img src="assets/images/mbymiy.png" alt="Miku + Michelle album artwork" />
-        <span>Miku + Michelle</span>
-      </a>
-      <div class="burst" aria-hidden="true">Out<br>Now!</div>
-      <a href="https://www.youtube.com/@wowwowmitchy" class="feature-cta" target="_blank" rel="noopener">Click here to give it a listen now!</a>
-      <p class="feature-card">Wow! Wow! It's Vocal Synth Time!</p>
+      <div class="album" role="img" aria-label="Wow! Wow! Wubbzy! Cover Collection, Vol. 1 (artwork coming soon)">
+        <div class="album-art" aria-hidden="true">
+          <span class="album-title">Wow! Wow! Wubbzy!<br>Cover Collection</span>
+          <span class="album-mystery">?</span>
+          <span class="album-vol">Vol. 1</span>
+        </div>
+      </div>
+      <div class="burst" aria-hidden="true">Coming<br>Soon!</div>
+      <p class="feature-cta">Stay tuned for more info!</p>
+      <div class="feature-card counter">
+        You are visitor number
+        <div class="counter-digits" id="counter" aria-live="polite"><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span></div>
+        <small>Thanks for stopping by!</small>
+      </div>
     </section>
 
   </div>
+
+  <!-- About Me -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <h2>About Me</h2>
+        <img src="assets/images/wbzp.png" alt="WubbzP Icon" class="avatar" />
+
+      <p><strong>Mitch "Michelle" Bentz</strong>, better known online as <strong>WubbzP</strong> (pronounced <em>Wubbs-P</em>, <code>/ˈwʌbz.piː/</code> <button type="button" class="audio-btn" onclick="document.getElementById('wubbzp-audio').play()" aria-label="Play WubbzP pronunciation" title="Play pronunciation">Play pronunciation</button>), is an archiver, visual designer, and creator of vocal synthesis covers.</p>
+
+      <audio id="wubbzp-audio" src="/assets/audio/How to Pronounce WubbzP.mp3" preload="none"></audio>
+
+      <p id="music">She began working with the VOCALOID4 engine in 2017. Her music work primarily focuses on VOCALOID and UTAU software, specifically notable projects featuring the vocal synth <em>Shiki Taigen</em> alongside Hatsune Miku. Working mainly in J-pop, pop, and children's music, she releases her music through her own label, WubbzP Music.</p>
+
+      <p>Her discography includes the album <em>Miku + Michelle</em> and its deluxe edition, alongside popular covers such as "Sadistic.Music∞Factory". While known for her extensive cover work, she has stated that her future goals include producing her own original songs.</p>
+
+      <p>Outside of music production, Bentz maintains digital archives, builds personal and fan websites, and conducts general visual and site design work.</p>
+    </div>
+  </section>
 
   <!-- Bottom promos (channels) -->
   <section class="promos" id="channels" aria-label="Channels">
@@ -699,6 +785,25 @@ a { color: inherit; text-decoration: none; }
 
 </div>
 
-<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Visitor counter (CounterAPI). Each browser session is counted once.
+(function () {
+  var base = "https://api.counterapi.dev/v1/wubbzp-com/visits";
+  var counted = false;
+  try { counted = sessionStorage.getItem("wubbzp-counted") === "1"; } catch (e) {}
+  fetch(counted ? base : base + "/up")
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (typeof data.count !== "number") return;
+      try { sessionStorage.setItem("wubbzp-counted", "1"); } catch (e) {}
+      var digits = String(data.count).padStart(6, "0").split("");
+      document.getElementById("counter").innerHTML =
+        digits.map(function (d) { return "<span>" + d + "</span>"; }).join("");
+    })
+    .catch(function () {});
+})();
+</script>
 </body>
 </html>
