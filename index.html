@@ -16,10 +16,6 @@
 <meta content="@WubbzP" name="twitter:site"/>
 <meta content="/assets/images/mbymiy.png" name="twitter:image"/>
 
-<!-- Logo font (the Wubbzy-site fonts are self-hosted below) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <style>
@@ -118,9 +114,9 @@ a { color: inherit; text-decoration: none; }
   transform: rotate(-2deg);
 }
 .logo-text {
-  font-family: "Fredoka", sans-serif;
-  font-weight: 700;
-  font-size: 46px;
+  font-family: "House Holiday Sans", cursive;
+  font-weight: normal;
+  font-size: 50px;
   line-height: 1;
   letter-spacing: 1px;
   color: var(--logo-green);
@@ -131,8 +127,8 @@ a { color: inherit; text-decoration: none; }
 }
 .logo-text small {
   display: block;
-  font-size: 15px;
-  letter-spacing: 3px;
+  font-size: 20px;
+  letter-spacing: 1px;
   color: #ffffff;
   -webkit-text-stroke: 2px var(--frame-dark);
   margin-bottom: 2px;
@@ -146,14 +142,10 @@ a { color: inherit; text-decoration: none; }
 
 /* Purple ribbon navigation */
 .ribbon {
+  /* the ribbon's folded tails (::before/::after) sit behind the band (ul) */
   justify-self: center;
   position: relative;
-  background: var(--ribbon);
-  border-top: 4px solid #8f82ea;
-  border-bottom: 4px solid var(--ribbon-dark);
-  padding: 6px 26px 8px;
   transform: rotate(1.5deg);
-  box-shadow: 0 5px 0 rgba(0,0,0,0.15);
 }
 .ribbon::before, .ribbon::after {
   content: "";
@@ -162,14 +154,20 @@ a { color: inherit; text-decoration: none; }
   width: 26px;
   height: 100%;
   background: var(--ribbon-dark);
-  z-index: -1;
+  z-index: 0;
 }
 .ribbon::before { left: -18px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 40% 50%); }
 .ribbon::after { right: -18px; clip-path: polygon(0 0, 100% 0, 60% 50%, 100% 100%, 0 100%); }
 .ribbon ul {
+  position: relative;
+  z-index: 1;
+  background: var(--ribbon);
+  border-top: 4px solid #8f82ea;
+  border-bottom: 4px solid var(--ribbon-dark);
+  box-shadow: 0 5px 0 rgba(0,0,0,0.15);
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 6px 26px 8px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -278,43 +276,6 @@ a { color: inherit; text-decoration: none; }
 }
 .mail-note i { display: block; font-size: 26px; color: var(--frame); margin-top: 4px; }
 
-/* Character friends, borrowed from the original site's Characters page */
-.friends {
-  background: var(--menu-bg);
-  border: 5px solid var(--menu-border);
-  border-radius: 12px;
-  box-shadow: 6px 6px 0 rgba(31,111,181,0.35);
-  padding: 8px 10px 10px;
-  text-align: center;
-}
-.friends h3 {
-  font-family: "House Holiday Sans", cursive;
-  font-weight: normal;
-  font-size: 17px;
-  color: #13235a;
-  margin: 0 0 6px;
-}
-.friends ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-.friends li {
-  font-family: "House Holiday Sans", cursive;
-  font-size: 15px;
-  color: #13235a;
-}
-.friends img {
-  display: block;
-  width: 56px;
-  height: auto;
-  margin: 0 auto 1px;
-  transition: transform 0.15s;
-}
-.friends li:hover img { transform: rotate(-6deg) scale(1.08); }
 
 /* Centre "house" panel holding the bio */
 .house {
@@ -465,11 +426,75 @@ a { color: inherit; text-decoration: none; }
   -webkit-text-stroke: 4px #ffffff;
   paint-order: stroke fill;
 }
-.album-art img {
-  width: 42%;
-  transform: rotate(-6deg);
-  filter: drop-shadow(0 4px 0 rgba(0,0,0,0.18));
+.mystery-wrap {
+  position: relative;
+  width: 44%;
 }
+.mystery {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 5px solid var(--menu-active);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+  cursor: pointer;
+  padding: 0;
+  font-family: "House Holiday Sans", cursive;
+  font-size: 54px;
+  line-height: 1;
+  color: var(--purple-text);
+  transform: rotate(-6deg);
+  transition: transform 0.15s;
+}
+.mystery:hover { transform: rotate(0deg) scale(1.06); }
+.mystery:focus-visible { outline: 4px solid var(--frame); outline-offset: 3px; }
+.mystery.pop { animation: mystery-pop 0.7s ease; }
+@keyframes mystery-pop {
+  0% { transform: rotate(-6deg) scale(1); }
+  30% { transform: rotate(180deg) scale(1.3); }
+  60% { transform: rotate(350deg) scale(0.9); }
+  100% { transform: rotate(354deg) scale(1); }
+}
+.sparkle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  font-size: 24px;
+  color: var(--purple-text);
+  -webkit-text-stroke: 1px #ffffff;
+  animation: sparkle 0.9s ease-out forwards;
+}
+@keyframes sparkle {
+  from { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+  to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.2) rotate(40deg); opacity: 0; }
+}
+.mystery-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) scale(0);
+  white-space: nowrap;
+  background: #ffffff;
+  border: 3px solid var(--purple-text);
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 15px;
+  color: var(--purple-text);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+.mystery-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -7px;
+  border: 7px solid transparent;
+  border-top-color: var(--purple-text);
+}
+.mystery-wrap.show-bubble .mystery-bubble { transform: translateX(-50%) scale(1); }
 .album-art .album-vol {
   background: var(--purple-text);
   color: #ffffff;
@@ -539,7 +564,7 @@ a { color: inherit; text-decoration: none; }
   border: 3px solid #1f2270;
   border-radius: 6px;
   color: var(--yellow);
-  font-family: "Fredoka", sans-serif;
+  font-family: "VAG Rounded", sans-serif;
   font-size: 26px;
   line-height: 1;
   box-shadow: 0 3px 0 rgba(0,0,0,0.2);
@@ -668,7 +693,6 @@ a { color: inherit; text-decoration: none; }
   .stage { grid-template-columns: 1fr; padding: 40px 14px 18px; }
   .sidebar { flex-direction: row; align-items: center; flex-wrap: wrap; justify-content: center; }
   .menu { flex: 1; min-width: 240px; }
-  .friends ul { grid-template-columns: repeat(4, 1fr); }
   .menu ul { display: grid; grid-template-columns: 1fr 1fr; }
   .feature { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; }
   .feature-cta { text-align: left; margin: 0; }
@@ -682,7 +706,7 @@ a { color: inherit; text-decoration: none; }
   .logo-text { font-size: 36px; }
   .logo img { width: 34px; height: 34px; }
   .pill { font-size: 18px; padding: 3px 10px; }
-  .ribbon { padding: 6px 14px 8px; }
+  .ribbon ul { padding: 6px 14px 8px; }
   .ribbon a { font-size: 21px; }
   .stage { border-width: 6px; }
   .house { padding: 8px 10px 12px; }
@@ -697,7 +721,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .burst { animation: none; }
+  .burst, .mystery.pop { animation: none; }
 }
 </style>
 </head>
@@ -742,16 +766,6 @@ a { color: inherit; text-decoration: none; }
       </nav>
 
       <a href="mailto:wubbzyp@gmail.com" class="mail-note">Send Me<br>a Letter!<i class="fa-solid fa-envelope"></i></a>
-
-      <div class="friends">
-        <h3>Wubbzy &amp; Friends</h3>
-        <ul>
-          <li><img src="assets/images/characters/wubbzy.png" alt="" />Wubbzy</li>
-          <li><img src="assets/images/characters/daizy.png" alt="" />Daizy</li>
-          <li><img src="assets/images/characters/walden.png" alt="" />Walden</li>
-          <li><img src="assets/images/characters/widget.png" alt="" />Widget</li>
-        </ul>
-      </div>
     </aside>
 
     <!-- Video house -->
@@ -764,10 +778,13 @@ a { color: inherit; text-decoration: none; }
 
     <!-- Featured release -->
     <section class="feature" aria-label="Featured release">
-      <div class="album" role="img" aria-label="Wow! Wow! Wubbzy! Cover Collection, Vol. 1 (artwork coming soon)">
-        <div class="album-art" aria-hidden="true">
+      <div class="album">
+        <div class="album-art">
           <span class="album-title">Wow! Wow! Wubbzy!<br>Cover Collection</span>
-          <img src="assets/images/characters/wubbzy.png" alt="" />
+          <span class="mystery-wrap" id="mystery-wrap">
+            <button type="button" class="mystery" id="mystery" aria-label="Wow! Wow! Wubbzy! Cover Collection, Vol. 1 artwork: coming soon">?</button>
+            <span class="mystery-bubble" aria-hidden="true">It's a surprise!</span>
+          </span>
           <span class="album-vol">Vol. 1</span>
         </div>
       </div>
@@ -846,6 +863,35 @@ a { color: inherit; text-decoration: none; }
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Mystery "?" on the Cover Collection placeholder: spin, sparkle, tease.
+(function () {
+  var btn = document.getElementById("mystery");
+  var wrap = document.getElementById("mystery-wrap");
+  var lines = ["It's a surprise!", "Coming soon!", "No peeking!", "Wow! Wow!", "Stay tuned!"];
+  var n = 0, timer;
+  btn.addEventListener("click", function () {
+    wrap.querySelector(".mystery-bubble").textContent = lines[n++ % lines.length];
+    btn.classList.remove("pop");
+    void btn.offsetWidth;
+    btn.classList.add("pop");
+    wrap.classList.add("show-bubble");
+    clearTimeout(timer);
+    timer = setTimeout(function () { wrap.classList.remove("show-bubble"); }, 1600);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var shapes = ["★", "♪", "✦", "♫"];
+    for (var i = 0; i < 8; i++) {
+      var s = document.createElement("span");
+      var a = (Math.PI * 2 * i) / 8;
+      s.className = "sparkle";
+      s.textContent = shapes[i % shapes.length];
+      s.style.setProperty("--dx", Math.cos(a) * 70 + "px");
+      s.style.setProperty("--dy", Math.sin(a) * 70 + "px");
+      wrap.appendChild(s);
+      s.addEventListener("animationend", function () { this.remove(); });
+    }
+  });
+})();
 
 // Visitor counter (CounterAPI). Each browser session is counted once.
 (function () {
