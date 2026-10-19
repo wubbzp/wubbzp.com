@@ -1159,9 +1159,7 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
   padding: 0;
   overflow: hidden;
   background: #ffffff;
-  transition: transform 0.15s;
 }
-.picker-hero.cover:hover { transform: rotate(0deg) scale(1.03); }
 .picker-hero.cover img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .picker-panel .subtitle {
   margin: -4px 0 10px;
@@ -1217,9 +1215,7 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
   overflow: hidden;
   background: #fff8e6;
   border: 2px solid #f1d9b5;
-  transition: transform 0.15s;
 }
-a.edition-cover:hover { transform: rotate(-3deg) scale(1.05); }
 .edition-cover img { width: 100%; height: 100%; object-fit: cover; }
 .edition-cover.ph i { font-size: 34px; color: var(--purple-text); opacity: 0.6; }
 .edition-cover.q { font-family: "House Holiday Sans", cursive; font-size: 40px; color: var(--purple-text); }
