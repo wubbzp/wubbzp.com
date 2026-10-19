@@ -17,7 +17,7 @@ const STR = {   // from Boot/ArtStudio.text and UiText.text
   overwrite: 'There is already an image saved in this slot.  If you choose to continue this image will be lost.  Are you sure you want to save?',
   noFile: 'No file to load!',
   exit: 'Are you sure you want to exit?',
-  yes: 'Yes', no: 'No', coloringBook: 'Coloring Book', empty: 'Empty',
+  yes: 'Yes', no: 'No', coloringBook: 'Colouring Book', empty: 'Empty',
 };
 
 const stage = document.getElementById('stage');
@@ -252,7 +252,7 @@ function studio() {
 
   img(ui('AS_artstudio_bg'), 0, 0, root);
 
-  // drawing area: paint layer, coloring-book lines on top, then the stamp preview
+  // drawing area: paint layer, colouring-book lines on top, then the stamp preview
   const area = place(el('div', { id: 'canvasArea' }, root), CX, CY);
   const mk = () => { const c = el('canvas', { width: CW * RES, height: CH * RES }, area); return c; };
   const paint = mk(), lines = mk(), preview = mk();
@@ -276,8 +276,8 @@ function studio() {
   hit(68, 94, 32, 36, undo, 'Undo (←)');
   hit(144, 94, 32, 36, redo, 'Redo (→)');
 
-  // current color (A button)
-  const colorBtn = place(el('div', { class: 'hit', title: 'Colors (A)' }, panel), 40, 166, 67, 69);
+  // current colour (A button)
+  const colorBtn = place(el('div', { class: 'hit', title: 'Colours (A)' }, panel), 40, 166, 67, 69);
   img(ui('AS_button_A_current_color'), 0, 0, colorBtn);
   const dot = place(el('div', { class: 'colorDot' }, colorBtn), 6, 5, 56, 56);
   const aBadge = img(ui('AS_button_A'), 58, 40, colorBtn);
@@ -322,7 +322,7 @@ function studio() {
   Object.assign(backLabel.style, { left: '42px', fontSize: '22px' });
   back.addEventListener('pointerup', e => { e.stopPropagation(); goBack(); });
 
-  // tool cursor (the Wii pointer art, tinted with the current color)
+  // tool cursor (the Wii pointer art, tinted with the current colour)
   const cursor = el('canvas', { id: 'cursor', width: 60, height: 60 }, root);
   cursor.style.display = 'none';
   const cctx = cursor.getContext('2d');
@@ -381,7 +381,7 @@ function studio() {
   setColor(S.color); setTool('brush');
 
   // ---------------------------------------------------------------- history (5 steps)
-  // The line layer is only saved when a coloring page is up (stamps can cover its lines).
+  // The line layer is only saved when a colouring page is up (stamps can cover its lines).
   const snapshot = () => ({ img: pctx.getImageData(0, 0, paint.width, paint.height), page: S.page,
                             lines: S.page ? lctx.getImageData(0, 0, lines.width, lines.height) : null });
   function remember() {
@@ -396,7 +396,7 @@ function studio() {
   function undo() { if (!S.history.length) return; S.redo.push(snapshot()); restore(S.history.pop()); }
   function redo() { if (!S.redo.length) return; S.history.push(snapshot()); restore(S.redo.pop()); }
 
-  // ---------------------------------------------------------------- coloring pages
+  // ---------------------------------------------------------------- colouring pages
   const pageCache = {};
   async function showPage(id) {
     S.page = id;
@@ -514,7 +514,7 @@ function studio() {
         remember();
         const r = stampRect(S.stamp, p);
         pctx.drawImage(im, r.x, r.y, r.w, r.h);
-        // a stamp sits on top: remove the coloring-page lines it covers
+        // a stamp sits on top: remove the colouring-page lines it covers
         lctx.save(); lctx.globalCompositeOperation = 'destination-out'; lctx.drawImage(im, r.x, r.y, r.w, r.h); lctx.restore();
         Sound.sfx('beep', 0.6);
       };
@@ -639,7 +639,7 @@ function studio() {
     });
   }
 
-  // 3x3 picker used for stamps and the coloring book
+  // 3x3 picker used for stamps and the colouring book
   function openPicker(kind) {
     const items = kind === 'stamps' ? D.stamps.map(s => ({ stamp: s, src: 'assets/stamps/' + s.id + '.png' }))
       : [{ blank: true, src: ui('AS_blank_clearscreenl') }].concat(D.pages.map(p => ({ page: p.id, src: 'assets/pages/' + p.id + '_thumb.png' })));
