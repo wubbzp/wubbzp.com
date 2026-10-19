@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SquigglePants Art Studio</title>
+<meta name="description" content="A fan recreation of the Art Studio from SpongeBob SquigglePants (Wii, 2011), rebuilt in the browser from the game's own art and music.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="viewport">
+  <div id="stage" aria-label="Art Studio">
+    <!-- scenes are built by app.js -->
+  </div>
+</div>
+<div id="hud">
+  <button id="muteBtn" type="button" aria-label="Mute music and sounds" title="Mute (M)">&#128266;</button>
+  <button id="helpBtn" type="button" aria-label="Controls" title="Controls">?</button>
+</div>
+<div id="help" hidden>
+  <div class="helpCard">
+    <h2>Controls</h2>
+    <ul>
+      <li><b>Draw</b>: click and drag on the canvas, or use a finger or pen.</li>
+      <li><b>Colors</b>: the round color button, or <kbd>A</kbd>.</li>
+      <li><b>Tools</b>: brush, eraser, fill and stamps, or <kbd>1</kbd>&ndash;<kbd>4</kbd>. Click the brush or eraser again to pick a size.</li>
+      <li><b>Size</b>: <kbd>&uarr;</kbd> / <kbd>&darr;</kbd> (the + and &minus; on the D-pad). Stamps get bigger and smaller too.</li>
+      <li><b>Undo / Redo</b>: <kbd>&larr;</kbd> / <kbd>&rarr;</kbd>, or <kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd>. Five steps, like the original.</li>
+      <li><b>Pick up a color</b>: right-click the canvas, or hold <kbd>Alt</kbd> and click.</li>
+      <li><b>Back / Exit</b>: <kbd>B</kbd> or <kbd>Esc</kbd>. <b>Mute</b>: <kbd>M</kbd>.</li>
+      <li><b>Save</b> keeps up to three pictures in this browser. <b>SD Card</b> downloads a PNG, and loading from it opens a picture from your computer.</li>
+    </ul>
+    <p class="small">A fan recreation of the Art Studio from <i>SpongeBob SquigglePants</i> (THQ / WayForward, 2011) for the uDraw GameTablet, using the game's own art and music. Not affiliated with or endorsed by Nickelodeon, THQ or WayForward.</p>
+    <button type="button" id="helpClose">OK</button>
+  </div>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

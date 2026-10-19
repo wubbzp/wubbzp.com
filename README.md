@@ -24,6 +24,7 @@ wubbzp.com is a plain static website (HTML, CSS and a small amount of JavaScript
 | `about/`, `music/`, `links/`, `contact/` | The other pages |
 | `404.html` | The "page not found" page |
 | `channels/` | Forwards old `/channels/` links to `/links/` |
+| `artstudio/` | A playable fan recreation of the Art Studio from *SpongeBob SquigglePants* (Wii, 2011), built from the game's own art and music; self-contained, with its own assets |
 | `assets/css/style.css` | Styles shared by every page |
 | `assets/js/site.js` | Scripts shared by every page: the Music and Links lists, the visitor counter, the copy buttons and the pronunciation button |
 | `assets/fonts/` | House Holiday Sans and VAG Rounded |
