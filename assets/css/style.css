@@ -1007,6 +1007,7 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
   gap: 8px;
 }
 .picker-tab {
+  position: relative; /* keeps the visually hidden "Album:" text inside the scrolling row */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1088,7 +1089,7 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
 .picker-hero {
   float: right;
   width: 110px;
-  margin: 30px 0 10px 14px;
+  margin: 0 0 10px 14px;
   border: 4px solid #ffffff;
   border-radius: 16px;
   box-shadow: 0 0 0 3px var(--orange-frame);
@@ -1168,8 +1169,10 @@ a.card:hover { transform: translateY(-3px) rotate(-1deg); }
   font-size: 17px;
   color: var(--purple-text);
 }
+/* House Holiday Sans has no Japanese characters, so they fall through to
+   Mochiy Pop One (loaded on the Music page), a similarly chunky, bouncy font */
 :lang(ja) {
-  font-family: "House Holiday Sans", "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+  font-family: "House Holiday Sans", "Mochiy Pop One", "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
@@ -1376,7 +1379,8 @@ a.edition-cover:hover { transform: rotate(-3deg) scale(1.05); }
   .picker-tab { flex: 0 0 78px; scroll-snap-align: start; }
   .picker-group { flex: 0 0 auto; align-self: center; writing-mode: vertical-rl; transform: rotate(180deg); padding: 6px 3px; scroll-snap-align: start; }
   .picker-group:not(:first-child) { margin-top: 0; margin-left: 6px; }
-  .picker-hero.cover { width: 110px; }
+  .picker-hero.cover { width: 96px; }
+  .picker-panel h2 { font-size: 24px; }
   .edition { grid-template-columns: 64px 1fr; gap: 10px; }
   .edition-cover { width: 64px; }
   .tracks { grid-column: 1 / -1; }
